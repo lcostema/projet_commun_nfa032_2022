@@ -1,5 +1,3 @@
-# projet_commun_nfa032_2022
-
 Projet de gestion d’un Annuaire en ligne de commande
 
 Le but de ce projet est de développer une application Java qui effectue une gestion allégée d’un Annuaire simplifié et en ligne de commande,
