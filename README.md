@@ -6,7 +6,7 @@ Le but de ce projet est de développer une application Java qui effectue une ges
 un peu inspiré de pages blanches : https://www.pagesjaunes.fr/pagesblanches
 Lorsque l’application est lancée, elle doit afficher sur la console un menu de la forme :
 
-    Bienvenue dans l’Annuaire NFA032
+Bienvenue dans l’Annuaire NFA032
 
 Administrateur :
 1. Ajouter une personne
