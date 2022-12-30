@@ -1,0 +1,3 @@
+nom;prenom;email;adressePostale;dateNaissance;profil;dateAjout;dateMaj
+1;Coco;Bello;cocobello@cnam.net;paris;01/02/03;auditeur;02/03/04;02/03/04
+2;Toto;Tutut';a;b;c;null;e;f
