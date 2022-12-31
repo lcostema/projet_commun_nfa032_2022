@@ -1,3 +1,7 @@
+import Utilisateurs.Admin;
+import Utilisateurs.Particulier;
+import Utilisateurs.Utilisateur;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -63,7 +67,7 @@ public class Gestion {
 
         afficher("""
                                 
-                Ajouter une personne (Administrateur)
+                Ajouter une utilisateur (Administrateur)
                    a. Ajouter un Admin
                    b. Ajouter un Particulier
                    c. Retour au menu principal
@@ -75,9 +79,10 @@ public class Gestion {
             if (Objects.equals(lettre, "a")
                     || Objects.equals(lettre, "b") || Objects.equals(lettre, "c")) {
                 switch (lettre) {
-                    case "a" -> //annuaire.ajouterPersonne(admin);
+                    case "a" -> annuaire.ajouterPersonne(new Admin(email, motdepasse));
                             afficher("Choix a...");
-                    case "b" -> afficher("Choix b..."); //annuaire.ajouterPersonne(particulier);
+                    case "b" ->  annuaire.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
+                    afficher("Choix b...");
                     case "c" -> main(new String[]{"a"});
                     default -> {
                     }
@@ -94,13 +99,13 @@ public class Gestion {
 //        prenom = lireString();
         afficher("Nom ?");
         nom = lireString();
-        Personne utilisateur = new Personne(nom, null, null, null, null, null, null, null);
-        afficher("'" + utilisateur + "'");
-        afficher(annuaire.trouverPersonne(utilisateur));
-        if (annuaire.trouverPersonne(utilisateur) == null)
+        Particulier particulier = new Particulier(null,null,nom,prenom,null,null,null,null,null);
+        afficher("'" + particulier + "'");
+        afficher(annuaire.trouverPersonne(particulier));
+        if (annuaire.trouverPersonne(particulier) == null)
             afficher("Pas dans l'annuaire !");
         else
-            afficher(utilisateur + " : " + annuaire.trouverPersonne(utilisateur));
+            afficher(particulier + " : " + annuaire.trouverPersonne(particulier));
     }
 
     public static void trouverPersonne() throws Exception {

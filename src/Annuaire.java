@@ -1,9 +1,12 @@
+import Utilisateurs.Admin;
+import Utilisateurs.Particulier;
+import Utilisateurs.Utilisateur;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.util.*;
 
 public class Annuaire {
-
     public static Path dossierLocal;
 
     static {
@@ -14,7 +17,7 @@ public class Annuaire {
         }
     }
 
-    private final Map<Personne, Compte> map;
+    private final Map<Utilisateur, Compte> map;
 
     public Annuaire() {
         map = new HashMap<>();
@@ -66,27 +69,33 @@ public class Annuaire {
         }
     }
 
-    public void ajouterPersonne(Personne personne, Compte compte) {
-        map.put(personne, compte);
+    public void ajouterPersonne(Object utilisateur) {
+        if (utilisateur.getClass() == Admin.class) {
+            //Ajouter administrateur uniquement au fichier comptes
+            map.put(null, compte);
+        } else {
+            //Ajouter particulier aux deux fichiers
+            map.put(utilisateur, compte);
+        }
     }
 
-    public void supprimerPersonne(Personne personne, Compte compte) {
-        map.remove(personne, compte);
+    public void supprimerPersonne(Utilisateur utilisateur, Compte compte) {
+        map.remove(utilisateur, compte);
     }
 
-    public void modifierPersonne(Personne personne, Compte compte) {
-        map.remove(personne);
-        map.put(personne, compte);
+    public void modifierPersonne(Utilisateur utilisateur, Compte compte) {
+        map.remove(utilisateur);
+        map.put(utilisateur, compte);
     }
 
-    public Compte trouverPersonne(Personne personne) {
-        return map.get(personne);
+    public Compte trouverPersonne(Utilisateur utilisateur) {
+        return map.get(utilisateur);
     }
 
     public void afficherPersonne() {
-        Set<Personne> set = new TreeSet<>(map.keySet());
-        for (Personne personne : set) {
-            System.out.println(personne + " : " + map.get(personne));
+        Set<Utilisateur> set = new TreeSet<>(map.keySet());
+        for (Utilisateur utilisateur : set) {
+            System.out.println(utilisateur + " : " + map.get(utilisateur));
         }
     }
 }
