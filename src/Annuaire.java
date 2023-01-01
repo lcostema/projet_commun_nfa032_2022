@@ -1,5 +1,4 @@
 import Utilisateurs.Admin;
-import Utilisateurs.Particulier;
 import Utilisateurs.Utilisateur;
 
 import java.io.*;
@@ -23,8 +22,17 @@ public class Annuaire {
         map = new HashMap<>();
     }
 
-    public static Map<String, Map<String, String>> chargerPersonne(File file) throws FileNotFoundException {
-        Scanner scannerFichier = new Scanner(file);
+    public static Map<String, Map<String, String>> chargerPersonne(File fichier) throws Exception {
+        Scanner scannerFichier;
+        if (!fichier.exists()) {
+            System.out.println(
+                    "\n" +
+                            "Pas trouvé le fichier" + fichier + ", il n'existe pas,\n" +
+                            "ou il a été renommé, supprimé ou déplacé !");
+            return null;
+        } else {
+            scannerFichier = new Scanner(new File(dossierLocal + "\\" + fichier));
+        }
         String[] colonne = scannerFichier.nextLine().split(";");
         Map<String, Map<String, String>> mapPersonne = new TreeMap<>();
         int j = 0;
@@ -34,7 +42,6 @@ public class Annuaire {
             for (int i = 0; i < colonne.length; i++) {
                 mapLigne.put(colonne[i], ligne[i]);
             }
-//            mapPersonne.put(ligne[0], mapLigne);
             j += 1;
             mapPersonne.put(String.valueOf(j), mapLigne);
         }
@@ -42,45 +49,18 @@ public class Annuaire {
         return mapPersonne;
     }
 
-    public static void testChargerPersonne() throws IOException {
-        System.out.println(chargerPersonne(new File(dossierLocal + "\\personne.txt")));
-        System.out.println(chargerPersonne(new File(dossierLocal + "\\compte.txt")));
+    public static void testChargerPersonne() throws Exception {
+        System.out.println(chargerPersonne(new File("personne.txt")));
+        System.out.println(chargerPersonne(new File("compte.txt")));
     }
 
-    //todo: test lecture fichier
-    // à modifier pour charger les données localement
-    public static void lireFichierPersonne() {
-        try {
-            File fichierPersonne = new File(dossierLocal + "\\personne.txt");
-            if (fichierPersonne.exists()) {
-                FileReader fr = new FileReader(fichierPersonne);
-                BufferedReader br = new BufferedReader(fr);
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line);
-                    sb.append("\n");
-                }
-                fr.close();
-                System.out.println(sb);
-
-            } else {
-                System.out.println("Pas trouvé le fichier \"personne.txt\", il n'existe pas,");
-                System.out.println("ou il a été renommé, supprimé ou déplacé !");
-                Gestion.main(new String[]{"b"});
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void ajouterPersonne(Object utilisateur) {
+    public void ajouterPersonne(Utilisateur utilisateur, Compte compte) {
         if (utilisateur.getClass() == Admin.class) {
             //Ajouter administrateur uniquement au fichier comptes
-//todo:            map.put(null, compte);
+            map.put(null, compte);
         } else {
             //Ajouter particulier aux deux fichiers
-//todo:            map.put(utilisateur, compte);
+            map.put(utilisateur, compte);
         }
     }
 
