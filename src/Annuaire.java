@@ -1,12 +1,16 @@
 import Utilisateurs.Admin;
 import Utilisateurs.Utilisateur;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.Map.Entry;
 
 public class Annuaire {
-    public static Path dossierLocal;
+    static Path dossierLocal;
+    static List<LinkedHashMap<String, String>> mapPersonne = new ArrayList<>();
+    static List<LinkedHashMap<String, String>> mapCompte = new ArrayList<>();
 
     static {
         try {
@@ -26,7 +30,8 @@ public class Annuaire {
      * dans une map "mapPersonne", donc dans la mémoire en local
      * ce qui évite de faire toutes les opérations directement sur les fichiers
      * une fois qu'une opération est terminée, on met à jour les fichiers */
-    public static Map<String, Map<String, String>> chargerPersonne(File fichier) throws Exception {
+    public static List<LinkedHashMap<String, String>> chargerPersonne(File fichier) throws Exception {
+        mapPersonne.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
             System.out.println(
@@ -38,23 +43,21 @@ public class Annuaire {
             scannerFichier = new Scanner(fichier);
         }
         String[] colonne = scannerFichier.nextLine().split(";");
-        Map<String, Map<String, String>> mapPersonne = new TreeMap<>();
-        int j = 0;
         while (scannerFichier.hasNextLine()) {
             String[] ligne = scannerFichier.nextLine().split(";");
-            Map<String, String> mapLigne = new TreeMap<>();
+            LinkedHashMap<String, String> mapLigne = new LinkedHashMap<>();
             for (int i = 0; i < colonne.length; i++) {
                 mapLigne.put(colonne[i], ligne[i]);
             }
-            j += 1;
-            mapPersonne.put(String.valueOf(j), mapLigne);
+            mapPersonne.add(mapLigne);
         }
         scannerFichier.close();
         return mapPersonne;
     }
 
     // chargerCompte(File fichier) nécessaire pour les matchs d'adresses email entre les 2 maps
-    public static Map<String, Map<String, String>> chargerCompte(File fichier) throws Exception {
+    public static List<LinkedHashMap<String, String>> chargerCompte(File fichier) throws Exception {
+        mapCompte.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
             System.out.println(
@@ -66,16 +69,13 @@ public class Annuaire {
             scannerFichier = new Scanner(fichier);
         }
         String[] colonne = scannerFichier.nextLine().split(";");
-        Map<String, Map<String, String>> mapCompte = new TreeMap<>();
-        int j = 0;
         while (scannerFichier.hasNextLine()) {
             String[] ligne = scannerFichier.nextLine().split(";");
-            Map<String, String> mapLigne = new TreeMap<>();
+            LinkedHashMap<String, String> mapLigne = new LinkedHashMap<>();
             for (int i = 0; i < colonne.length; i++) {
                 mapLigne.put(colonne[i], ligne[i]);
             }
-            j += 1;
-            mapCompte.put(String.valueOf(j), mapLigne);
+            mapCompte.add(mapLigne);
         }
         scannerFichier.close();
         return mapCompte;
@@ -85,6 +85,30 @@ public class Annuaire {
         System.out.println(chargerPersonne(new File(dossierLocal + "\\personne.txt")));
         System.out.println();
         System.out.println(chargerCompte(new File(dossierLocal + "\\compte.txt")));
+    }
+
+    static int matchNom = 0;
+
+    public static void rechercheParNom(String nom) {
+        matchNom = 0;
+        for (LinkedHashMap<String, String> readMap : mapPersonne) {
+            for (Entry<String, String> stringEntry : readMap.entrySet()) {
+                if (stringEntry.getKey().equals("nom")) {
+                    if (stringEntry.getValue().equalsIgnoreCase(nom)) {
+                        System.out.println(
+                                "Prénom : \t" + readMap.get("prenom") + "\n"
+                                + "Nom : \t\t" + readMap.get("nom") + "\n"
+                                + "email : \t" + readMap.get("email")  + "\n"
+                        );
+                        matchNom += 1;
+                    }
+                }
+            }
+        }
+        if (matchNom < 1) {
+            matchNom = 0;
+            System.out.println("Ce nom n'existe pas ...!");
+        }
     }
 
     public void ajouterPersonne(Utilisateur utilisateur, Compte compte) {

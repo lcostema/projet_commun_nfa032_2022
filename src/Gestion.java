@@ -1,7 +1,6 @@
-import Utilisateurs.Admin;
 import Utilisateurs.Particulier;
-import Utilisateurs.Utilisateur;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -27,6 +26,9 @@ public class Gestion {
     }
 
     public static void main(String[] args) throws Exception {
+        Annuaire.chargerPersonne(new File(Annuaire.dossierLocal + "\\personne.txt"));
+        Annuaire.chargerCompte(new File(Annuaire.dossierLocal + "\\compte.txt"));
+
         afficher("""
                                     
                 Bienvenue dans l’Annuaire NFA032
@@ -46,9 +48,9 @@ public class Gestion {
                 if (chiffre == 1 || chiffre == 2 || chiffre == 3) {
                     switch (chiffre) {
                         // 1. Ajouter une personneOld
-                        case 1 -> choixAdmin();
+                        case 1 -> menuAdmin();
                         // 2. Rechercher un ou des particuliers
-                        case 2 -> trouverPersonne();
+                        case 2 -> menuChercherPersonne();
                         // 3. Modifier mes informations personnelles
                         case 3 -> afficher("Choix 3..."); //annuaire.modifierPersonne();
                         default -> {
@@ -65,7 +67,7 @@ public class Gestion {
         }
     }
 
-    public static void choixAdmin() throws Exception {
+    public static void menuAdmin() throws Exception {
         //todo: passer par identification
 
         afficher("""
@@ -114,7 +116,7 @@ public class Gestion {
             afficher(particulier + " : " + annuaire.trouverPersonne(particulier));
     }
 
-    public static void trouverPersonne() throws Exception {
+    public static void menuChercherPersonne() throws Exception {
         afficher("""
                                 
                 Rechercher un ou des particuliers
@@ -134,12 +136,13 @@ public class Gestion {
                     case "a" -> {
                         // seulement pour tester;
                         // le chargement des fichiers se fera au démmarrage de l'appli
-                        Annuaire.testChargerPersonne(); //trouverParNom();
+                        chercherParNom(); //Annuaire.testsMapPersonne();
                     }
                     // b. Par email
-                    case "b" -> afficher("Choix b..."); //annuaire.trouverPersonne(email);
+                    case "b" -> { afficher("Choix b..."); //annuaire.menuChercherPersonne(email);
+                    }
                     // c. Par profil
-                    case "c" -> afficher("Choix c..."); //annuaire.trouverPersonne(profil);
+                    case "c" -> afficher("Choix c..."); //annuaire.menuChercherPersonne(profil);
                     // d. Retour au menu principal
                     case "d" -> main(new String[]{"a"});
                     default -> {
@@ -150,6 +153,12 @@ public class Gestion {
                 afficher(entrerABCD);
             }
         }
+    }
+
+    public static void chercherParNom() {
+        afficher("Entrer le Nom à rechercher :");
+        String nom = lireString();
+        Annuaire.rechercheParNom(nom);
     }
 
 }
