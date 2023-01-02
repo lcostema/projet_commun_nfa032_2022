@@ -45,8 +45,11 @@ public class Gestion {
                 int chiffre = lireInt();
                 if (chiffre == 1 || chiffre == 2 || chiffre == 3) {
                     switch (chiffre) {
+                        // 1. Ajouter une personneOld
                         case 1 -> choixAdmin();
+                        // 2. Rechercher un ou des particuliers
                         case 2 -> trouverPersonne();
+                        // 3. Modifier mes informations personnelles
                         case 3 -> afficher("Choix 3..."); //annuaire.modifierPersonne();
                         default -> {
                         }
@@ -79,10 +82,13 @@ public class Gestion {
             if (Objects.equals(lettre, "a")
                     || Objects.equals(lettre, "b") || Objects.equals(lettre, "c")) {
                 switch (lettre) {
-                    case "a" -> annuaire.ajouterPersonne(new Admin(email, motdepasse));
+                    // a. Ajouter un Admin
+                    case "a" -> // todo : annuaire.ajouterPersonne(new Admin(email, motdepasse));
                             afficher("Choix a...");
-                    case "b" ->  annuaire.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
-                    afficher("Choix b...");
+                    // b. Ajouter un Particulier
+                    case "b" ->  // todo : annuaire.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
+                            afficher("Choix b...");
+                    // c. Retour au menu principal
                     case "c" -> main(new String[]{"a"});
                     default -> {
                     }
@@ -95,11 +101,11 @@ public class Gestion {
 
     public static void trouverParNom() {
         String prenom, nom;
-//        afficher("Prénom ?");
-//        prenom = lireString();
+        afficher("Prénom ?");
+        prenom = lireString();
         afficher("Nom ?");
         nom = lireString();
-        Particulier particulier = new Particulier(null,null,nom,prenom,null,null,null,null,null);
+        Particulier particulier = new Particulier(null, null, nom, prenom, null, null, null, null, null);
         afficher("'" + particulier + "'");
         afficher(annuaire.trouverPersonne(particulier));
         if (annuaire.trouverPersonne(particulier) == null)
@@ -124,14 +130,17 @@ public class Gestion {
             if (Objects.equals(lettre, "a") || Objects.equals(lettre, "b")
                     || Objects.equals(lettre, "c") || Objects.equals(lettre, "d")) {
                 switch (lettre) {
+                    // a. Par nom
                     case "a" -> {
-//                        trouverParNom();
-//                        Annuaire.lireFichierPersonne();
-                        Annuaire.testChargerPersonne();
-//                            afficher("Choix a...");
+                        // seulement pour tester;
+                        // le chargement des fichiers se fera au démmarrage de l'appli
+                        Annuaire.testChargerPersonne(); //trouverParNom();
                     }
+                    // b. Par email
                     case "b" -> afficher("Choix b..."); //annuaire.trouverPersonne(email);
+                    // c. Par profil
                     case "c" -> afficher("Choix c..."); //annuaire.trouverPersonne(profil);
+                    // d. Retour au menu principal
                     case "d" -> main(new String[]{"a"});
                     default -> {
                     }
