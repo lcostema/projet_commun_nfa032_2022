@@ -1,6 +1,10 @@
+import Utilisateurs.GestionFiles;
 import Utilisateurs.Particulier;
+import Utilisateurs.Utilisateur;
 
 import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -28,6 +32,44 @@ public class Gestion {
     public static void main(String[] args) throws Exception {
         Annuaire.chargerPersonne(new File(Annuaire.dossierLocal + "\\personne.txt"));
         Annuaire.chargerCompte(new File(Annuaire.dossierLocal + "\\compte.txt"));
+
+//#####################################################################################################################################################################
+//######################################################## Test Guillaume #############################################################################################
+//#####################################################################################################################################################################
+
+
+        //Création du Hashmap des comptes qui contient tous les objets Utilisateurs
+        GestionFiles gf = new GestionFiles();
+        HashMap<String, Utilisateur> comptes = new HashMap<>();
+        comptes = gf.chargerUtilisateurs(new File(Annuaire.dossierLocal + "\\compte.txt"));
+        comptes.forEach((u, utilisateur) -> System.out.println(u + " ==> " + utilisateur.getEmail() + " " + utilisateur.getMotdepasse() + " " + utilisateur.getRole()));
+
+        //On ajoute un Utilisateur au Hasmap des comptes et on le sauvegarde
+        Utilisateur u = new Utilisateur("monAdminTest@test.com","pwTest", Utilisateur.Role.Administrateur);
+        comptes.put(u.getEmail(),u);
+        gf.sauvergarderUtilisateurs(comptes,new File(Annuaire.dossierLocal + "\\comptes.Guillaume.txt"));
+
+
+
+        //Création du Hashmap des Particuliers (annuaire) qui contient tous les objets Particuliers
+        HashMap<String, Particulier> annuaire = new HashMap<>();
+        annuaire = gf.chargerParticuliers(new File(Annuaire.dossierLocal + "\\personne.txt"));
+        annuaire.forEach((p, particulier) -> System.out.println(p + particulier.toString()));
+
+        //on ajoute un particulier et on sauvegarde
+        Date today = new Date();
+        Particulier p = new Particulier("particulierTest@test.com","pwTest","parti","Culier","12 rue des sables 44000 Nantes",new Date("18/05/2000"), today, today, Particulier.Profil.Auditeurs);
+        annuaire.put(p.getEmail(),p);
+        gf.sauvegarderParticuliers(annuaire,new File(Annuaire.dossierLocal + "\\annuaire.Guillaume.txt") );
+
+//#####################################################################################################################################################################
+//######################################################## Fin test Guillaume #########################################################################################
+//#####################################################################################################################################################################
+
+
+
+
+
 
         afficher("""
                                     

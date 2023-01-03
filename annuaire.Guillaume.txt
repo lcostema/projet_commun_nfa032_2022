@@ -1,0 +1,4 @@
+parti;Culier;particulierTest@test.com;12 rue des sables 44000 Nantes;Tue Jun 05 00:00:00 CEST 2001;Auditeurs;Tue Jan 03 14:31:00 CET 2023;Tue Jan 03 14:31:00 CET 2023
+Tutu;Toto;tototutu@cnam.fr;b;Wed May 14 00:00:00 CEST 2014;Enseignants;Sun Mar 02 00:00:00 CET 4;Sun Mar 02 00:00:00 CET 4
+Cool;Coco;cocobello@cnam.net;p>Paris;Thu Feb 01 00:00:00 CET 3;Auditeurs;Sun Mar 02 00:00:00 CET 4;Sun Mar 02 00:00:00 CET 4
+Cool;Ilest;ilestcool@lmail.com;Nice;Tue May 04 00:00:00 CET 6;Direction;Thu Dec 31 00:00:00 CET 22;Thu Dec 31 00:00:00 CET 22
