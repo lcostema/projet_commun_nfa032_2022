@@ -87,27 +87,51 @@ public class Annuaire {
         System.out.println(chargerCompte(new File(dossierLocal + "\\compte.txt")));
     }
 
-    static int matchNom = 0;
+    static int matchValue = 0;
+    static String erreurRecherche = null;
 
-    public static void rechercheParNom(String nom) {
-        matchNom = 0;
+    public static void recherchePersonnes(String keyColonne, String valueLigne) {
+        matchValue = 0;
         for (LinkedHashMap<String, String> readMap : mapPersonne) {
             for (Entry<String, String> stringEntry : readMap.entrySet()) {
-                if (stringEntry.getKey().equals("nom")) {
-                    if (stringEntry.getValue().equalsIgnoreCase(nom)) {
-                        System.out.println(
-                                "Prénom : \t" + readMap.get("prenom") + "\n"
-                                + "Nom : \t\t" + readMap.get("nom") + "\n"
-                                + "email : \t" + readMap.get("email")  + "\n"
-                        );
-                        matchNom += 1;
+                if (stringEntry.getKey().equals(keyColonne)) {
+                    if (stringEntry.getValue().equalsIgnoreCase(valueLigne)) {
+                        switch (keyColonne) {
+                            case "nom" -> {
+                                erreurRecherche = "Ce nom n'existe pas ...!";
+                                System.out.println(
+                                        "Prénom : \t" + readMap.get("prenom") + "\n"
+                                                + "Nom : \t\t" + readMap.get("nom") + "\n"
+                                                + "email : \t" + readMap.get("email") + "\n"
+                                );
+                                matchValue += 1;
+                            }
+                            case "email" -> {
+                                erreurRecherche = "Pas trouvé cet email ...!";
+                                System.out.println(
+                                        "email : \t" + readMap.get("email") + "\n"
+                                                + "Prénom : \t" + readMap.get("prenom") + "\n"
+                                                + "Nom : \t\t" + readMap.get("nom") + "\n"
+                                );
+                                matchValue += 1;
+                            }
+                            case "profil" -> {
+                                erreurRecherche = "Personne trouvé avec ce profil ...!";
+                                System.out.println(
+                                        "Profil : \t" + readMap.get("profil") + "\n"
+                                                + "Prénom : \t" + readMap.get("prenom") + "\n"
+                                                + "Nom : \t\t" + readMap.get("nom") + "\n"
+                                );
+                                matchValue += 1;
+                            }
+                        }
                     }
                 }
             }
         }
-        if (matchNom < 1) {
-            matchNom = 0;
-            System.out.println("Ce nom n'existe pas ...!");
+        if (matchValue < 1) {
+            matchValue = 0;
+            System.out.println(erreurRecherche);
         }
     }
 

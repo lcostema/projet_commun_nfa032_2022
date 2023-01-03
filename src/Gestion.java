@@ -133,16 +133,11 @@ public class Gestion {
                     || Objects.equals(lettre, "c") || Objects.equals(lettre, "d")) {
                 switch (lettre) {
                     // a. Par nom
-                    case "a" -> {
-                        // seulement pour tester;
-                        // le chargement des fichiers se fera au démmarrage de l'appli
-                        chercherParNom(); //Annuaire.testsMapPersonne();
-                    }
+                    case "a" -> chercherParNom(); //Annuaire.testsMapPersonne();
                     // b. Par email
-                    case "b" -> { afficher("Choix b..."); //annuaire.menuChercherPersonne(email);
-                    }
+                    case "b" -> chercherParEmail(); //annuaire.menuChercherPersonne(profil);
                     // c. Par profil
-                    case "c" -> afficher("Choix c..."); //annuaire.menuChercherPersonne(profil);
+                    case "c" -> chercherParProfil();
                     // d. Retour au menu principal
                     case "d" -> main(new String[]{"a"});
                     default -> {
@@ -156,9 +151,21 @@ public class Gestion {
     }
 
     public static void chercherParNom() {
-        afficher("Entrer le Nom à rechercher :");
-        String nom = lireString();
-        Annuaire.rechercheParNom(nom);
+        afficher("Entrer le nom à rechercher :");
+        String value = lireString();
+        Annuaire.recherchePersonnes("nom", value);
+    }
+
+    public static void chercherParEmail() {
+        afficher("Entrer l'email à rechercher :");
+        String value = lireString();
+        Annuaire.recherchePersonnes("email", value);
+    }
+
+    public static void chercherParProfil() {
+        afficher("Entrer le profil à rechercher :");
+        String value = lireString();
+        Annuaire.recherchePersonnes("profil", value);
     }
 
 }
