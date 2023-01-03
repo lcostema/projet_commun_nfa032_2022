@@ -11,6 +11,7 @@ public class Annuaire {
     static Path dossierLocal;
     static List<LinkedHashMap<String, String>> mapPersonne = new ArrayList<>();
     static List<LinkedHashMap<String, String>> mapCompte = new ArrayList<>();
+    static int matchValue = 0;
 
     static {
         try {
@@ -26,18 +27,18 @@ public class Annuaire {
         map = new HashMap<>();
     }
 
-    /* "chargerPersonne(File fichier)" mets le contenu de "fichier"
+    /* "chargerPersonne(File fichier)" met le contenu de "fichier"
      * dans une map "mapPersonne", donc dans la mémoire en local
      * ce qui évite de faire toutes les opérations directement sur les fichiers
-     * une fois qu'une opération est terminée, on met à jour les fichiers */
+     * todo : une fois qu'une opération est terminée, on met à jour les fichiers */
     public static List<LinkedHashMap<String, String>> chargerPersonne(File fichier) throws Exception {
         mapPersonne.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
-            System.out.println(
-                    "\n" +
-                            "Pas trouvé le fichier" + fichier + ", il n'existe pas,\n" +
-                            "ou il a été renommé, supprimé ou déplacé !");
+            System.out.println(Gestion.ANSI_RED + "\n" +
+                    "Pas trouvé le fichier : \n" + Gestion.ANSI_RESET + fichier + Gestion.ANSI_RED +
+                    "\nIl n'existe pas, ou il a été renommé, supprimé ou déplacé.\n" +
+                    "Le programme ne peut pas fonctionner correctement !" + Gestion.ANSI_RESET);
             return null;
         } else {
             scannerFichier = new Scanner(fichier);
@@ -55,15 +56,15 @@ public class Annuaire {
         return mapPersonne;
     }
 
-    // chargerCompte(File fichier) nécessaire pour les matchs d'adresses email entre les 2 maps
+    // chargerCompte(File fichier) (séparément) nécessaire pour les matchs d'adresses email entre les 2 maps
     public static List<LinkedHashMap<String, String>> chargerCompte(File fichier) throws Exception {
         mapCompte.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
-            System.out.println(
-                    "\n" +
-                            "Pas trouvé le fichier" + fichier + ", il n'existe pas,\n" +
-                            "ou il a été renommé, supprimé ou déplacé !");
+            System.out.println(Gestion.ANSI_RED + "\n" +
+                    "Pas trouvé le fichier : \n" + Gestion.ANSI_RESET + fichier + Gestion.ANSI_RED +
+                    "\nIl n'existe pas, ou il a été renommé, supprimé ou déplacé.\n" +
+                    "Le programme ne peut pas fonctionner correctement !" + Gestion.ANSI_RESET);
             return null;
         } else {
             scannerFichier = new Scanner(fichier);
@@ -87,9 +88,6 @@ public class Annuaire {
         System.out.println(chargerCompte(new File(dossierLocal + "\\compte.txt")));
     }
 
-    static int matchValue = 0;
-    static String erreurRecherche = null;
-
     public static void recherchePersonnes(String keyColonne, String valueLigne) {
         matchValue = 0;
         for (LinkedHashMap<String, String> readMap : mapPersonne) {
@@ -98,16 +96,14 @@ public class Annuaire {
                     if (stringEntry.getValue().equalsIgnoreCase(valueLigne)) {
                         switch (keyColonne) {
                             case "nom" -> {
-                                erreurRecherche = "Ce nom n'existe pas ...!";
                                 System.out.println(
-                                        "Prénom : \t" + readMap.get("prenom") + "\n"
-                                                + "Nom : \t\t" + readMap.get("nom") + "\n"
+                                        "Nom : \t\t" + readMap.get("nom") + "\n"
+                                                + "Prénom : \t" + readMap.get("prenom") + "\n"
                                                 + "email : \t" + readMap.get("email") + "\n"
                                 );
                                 matchValue += 1;
                             }
                             case "email" -> {
-                                erreurRecherche = "Pas trouvé cet email ...!";
                                 System.out.println(
                                         "email : \t" + readMap.get("email") + "\n"
                                                 + "Prénom : \t" + readMap.get("prenom") + "\n"
@@ -116,7 +112,6 @@ public class Annuaire {
                                 matchValue += 1;
                             }
                             case "profil" -> {
-                                erreurRecherche = "Personne trouvé avec ce profil ...!";
                                 System.out.println(
                                         "Profil : \t" + readMap.get("profil") + "\n"
                                                 + "Prénom : \t" + readMap.get("prenom") + "\n"
@@ -131,7 +126,16 @@ public class Annuaire {
         }
         if (matchValue < 1) {
             matchValue = 0;
-            System.out.println(erreurRecherche);
+            if (keyColonne.equalsIgnoreCase("nom")) {
+                Gestion.afficherRouge("Ce nom n'existe pas ...!");
+                System.out.println();
+            } else if (keyColonne.equalsIgnoreCase("email")) {
+                Gestion.afficherRouge("Pas trouvé cet email ...!");
+                System.out.println();
+            } else if (keyColonne.equalsIgnoreCase("profil")) {
+                Gestion.afficherRouge("Aucun utilisateur trouvé sous ce profil ...!");
+                System.out.println();
+            }
         }
     }
 
