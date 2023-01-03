@@ -1,4 +1,4 @@
-import Utilisateurs.GestionFiles;
+import GestionFiles.GestionFiles;
 import Utilisateurs.Particulier;
 import Utilisateurs.Utilisateur;
 

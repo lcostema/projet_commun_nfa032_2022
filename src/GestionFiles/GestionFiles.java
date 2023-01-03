@@ -1,5 +1,8 @@
-package Utilisateurs;
+package GestionFiles;
 
+
+import Utilisateurs.Particulier;
+import Utilisateurs.Utilisateur;
 
 import java.io.*;
 
