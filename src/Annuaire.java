@@ -83,9 +83,9 @@ public class Annuaire {
     }
 
     public static void testChargerPersonne() throws Exception {
-        System.out.println(chargerPersonne(new File(dossierLocal + "\\personne.txt")));
+        System.out.println(chargerPersonne(new File(dossierLocal + "\\personnes.txt")));
         System.out.println();
-        System.out.println(chargerCompte(new File(dossierLocal + "\\compte.txt")));
+        System.out.println(chargerCompte(new File(dossierLocal + "\\comptes.txt")));
     }
 
     public static void recherchePersonnes(String keyColonne, String valueLigne) {

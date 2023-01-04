@@ -53,8 +53,8 @@ public class Gestion {
     }
 
     public static void main(String[] args) throws Exception {
-        Annuaire.chargerPersonne(new File(Annuaire.dossierLocal + "\\personne.txt"));
-        Annuaire.chargerCompte(new File(Annuaire.dossierLocal + "\\compte.txt"));
+        Annuaire.chargerPersonne(new File(Annuaire.dossierLocal + "\\personnes.txt"));
+        Annuaire.chargerCompte(new File(Annuaire.dossierLocal + "\\comptes.txt"));
 
         afficherCyan("""
                                     
