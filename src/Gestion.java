@@ -1,5 +1,3 @@
-import Utilisateurs.Particulier;
-
 import java.io.File;
 import java.util.Objects;
 import java.util.Scanner;
@@ -15,20 +13,19 @@ public class Gestion {
     static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
     static String entrer123 = "Veuillez entrer les chiffres 1, 2 ou 3 uniquement :";
     static String erreurChoix = "Saisie incorrecte !";
-    static Annuaire annuaire = new Annuaire();
 
-//    public static final String ANSI_BLACK = "\u001B[30m";
-//    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-//    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-//    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-//    public static final String ANSI_YELLOW = "\u001B[33m";
-//    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-//    public static final String ANSI_BLUE = "\u001B[34m";
-//    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-//    public static final String ANSI_PURPLE = "\u001B[35m";
-//    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-//    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-//    public static final String ANSI_WHITE = "\u001B[37m";
+    //*    public static final String ANSI_BLACK = "\u001B[30m";
+//*    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+//*    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+//*    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+//*    public static final String ANSI_YELLOW = "\u001B[33m";
+//*    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+//*    public static final String ANSI_BLUE = "\u001B[34m";
+//*    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+//*    public static final String ANSI_PURPLE = "\u001B[35m";
+//*    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+//*    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+//*    public static final String ANSI_WHITE = "\u001B[37m";
 //    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
     static int chiffre = 0;
 
@@ -53,8 +50,8 @@ public class Gestion {
     }
 
     public static void main(String[] args) throws Exception {
-        Annuaire.chargerPersonne(new File(Annuaire.dossierLocal + "\\personnes.txt"));
-        Annuaire.chargerCompte(new File(Annuaire.dossierLocal + "\\comptes.txt"));
+        Annuaire.chargerPersonnes(new File(Annuaire.dossierLocal + "\\personnes.txt"));
+        Annuaire.chargerComptes(new File(Annuaire.dossierLocal + "\\comptes.txt"));
 
         afficherCyan("""
                                     
@@ -80,12 +77,12 @@ public class Gestion {
                 }
                 if (chiffre == 1 || chiffre == 2 || chiffre == 3) {
                     switch (chiffre) {
-                        // 1. Ajouter une personneOld
+                        // 1. Ajouter une personne
                         case 1 -> menuAdmin();
                         // 2. Rechercher un ou des particuliers
                         case 2 -> menuChercherPersonne();
                         // 3. Modifier mes informations personnelles
-                        case 3 -> afficherVert("Choix 3..."); //annuaire.modifierPersonne();
+                        case 3 -> afficherVert("Choix 3...");
                         default -> {
                         }
                     }
@@ -133,21 +130,6 @@ public class Gestion {
         }
     }
 
-    public static void trouverParNom() {
-        String prenom, nom;
-        afficherCyan("Prénom ?");
-        prenom = lireString();
-        afficherCyan("Nom ?");
-        nom = lireString();
-        Particulier particulier = new Particulier(null, null, nom, prenom, null, null, null, null, null);
-        afficherCyan("'" + particulier + "'");
-        afficherCyan(annuaire.trouverPersonne(particulier));
-        if (annuaire.trouverPersonne(particulier) == null)
-            afficherCyan("Pas dans l'annuaire !");
-        else
-            afficherCyan(particulier + " : " + annuaire.trouverPersonne(particulier));
-    }
-
     public static void menuChercherPersonne() throws Exception {
         afficherCyan("""                                
                 Rechercher un ou des particuliers
@@ -164,9 +146,9 @@ public class Gestion {
                     || Objects.equals(lettre, "c") || Objects.equals(lettre, "d")) {
                 switch (lettre) {
                     // a. Par nom
-                    case "a" -> chercherParNom(); //Annuaire.testsMapPersonne();
+                    case "a" -> chercherParNom();
                     // b. Par email
-                    case "b" -> chercherParEmail(); //annuaire.menuChercherPersonne(profil);
+                    case "b" -> chercherParEmail();
                     // c. Par profil
                     case "c" -> chercherParProfil();
                     // d. Retour au menu principal

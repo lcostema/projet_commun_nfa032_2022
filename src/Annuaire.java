@@ -1,11 +1,11 @@
-import Utilisateurs.Admin;
-import Utilisateurs.Utilisateur;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.Scanner;
 
 public class Annuaire {
     static Path dossierLocal;
@@ -21,17 +21,11 @@ public class Annuaire {
         }
     }
 
-    private final Map<Utilisateur, Compte> map;
-
-    public Annuaire() {
-        map = new HashMap<>();
-    }
-
-    /* "chargerPersonne(File fichier)" met le contenu de "fichier"
+    /* "chargerPersonnes(File fichier)" met le contenu de "fichier"
      * dans une map "mapPersonne", donc dans la mémoire en local
      * ce qui évite de faire toutes les opérations directement sur les fichiers
      * todo : une fois qu'une opération est terminée, on met à jour les fichiers */
-    public static List<LinkedHashMap<String, String>> chargerPersonne(File fichier) throws Exception {
+    public static List<LinkedHashMap<String, String>> chargerPersonnes(File fichier) throws Exception {
         mapPersonne.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
@@ -56,8 +50,8 @@ public class Annuaire {
         return mapPersonne;
     }
 
-    // chargerCompte(File fichier) (séparément) nécessaire pour les matchs d'adresses email entre les 2 maps
-    public static List<LinkedHashMap<String, String>> chargerCompte(File fichier) throws Exception {
+    // chargerComptes(File fichier) (séparément) nécessaire pour les matchs d'adresses email entre les 2 maps
+    public static List<LinkedHashMap<String, String>> chargerComptes(File fichier) throws Exception {
         mapCompte.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
@@ -82,11 +76,11 @@ public class Annuaire {
         return mapCompte;
     }
 
-    public static void testChargerPersonne() throws Exception {
-        System.out.println(chargerPersonne(new File(dossierLocal + "\\personnes.txt")));
-        System.out.println();
-        System.out.println(chargerCompte(new File(dossierLocal + "\\comptes.txt")));
-    }
+//    public static void testChargerPersonne() throws Exception {
+//        System.out.println(chargerPersonnes(new File(dossierLocal + "\\personnes.txt")));
+//        System.out.println();
+//        System.out.println(chargerComptes(new File(dossierLocal + "\\comptes.txt")));
+//    }
 
     public static void recherchePersonnes(String keyColonne, String valueLigne) {
         matchValue = 0;
@@ -139,33 +133,4 @@ public class Annuaire {
         }
     }
 
-    public void ajouterPersonne(Utilisateur utilisateur, Compte compte) {
-        if (utilisateur.getClass() == Admin.class) {
-            //Ajouter administrateur uniquement au fichier comptes
-            map.put(null, compte);
-        } else {
-            //Ajouter particulier aux deux fichiers
-            map.put(utilisateur, compte);
-        }
-    }
-
-    public void supprimerPersonne(Utilisateur utilisateur, Compte compte) {
-        map.remove(utilisateur, compte);
-    }
-
-    public void modifierPersonne(Utilisateur utilisateur, Compte compte) {
-        map.remove(utilisateur);
-        map.put(utilisateur, compte);
-    }
-
-    public Compte trouverPersonne(Utilisateur utilisateur) {
-        return map.get(utilisateur);
-    }
-
-    public void afficherPersonne() {
-        Set<Utilisateur> set = new TreeSet<>(map.keySet());
-        for (Utilisateur utilisateur : set) {
-            System.out.println(utilisateur + " : " + map.get(utilisateur));
-        }
-    }
 }
