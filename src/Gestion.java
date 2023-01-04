@@ -8,6 +8,7 @@ public class Gestion {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
     static Scanner scannerClavier = new Scanner(System.in);
     static String entrerABC = "Veuillez entrer les lettres a, b ou c uniquement :";
     static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
@@ -18,7 +19,7 @@ public class Gestion {
 //*    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
 //*    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
 //*    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-//*    public static final String ANSI_YELLOW = "\u001B[33m";
+//*
 //*    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
 //*    public static final String ANSI_BLUE = "\u001B[34m";
 //*    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
@@ -31,6 +32,9 @@ public class Gestion {
 
     public static void afficherCyan(Object invite) {
         System.out.println(ANSI_CYAN + invite + ANSI_RESET);
+    }
+    public static void afficherYellow(Object invite) {
+        System.out.println(ANSI_YELLOW + invite + ANSI_RESET);
     }
 
     public static void afficherRouge(Object invite) {
@@ -114,10 +118,10 @@ public class Gestion {
                     || Objects.equals(lettre, "b") || Objects.equals(lettre, "c")) {
                 switch (lettre) {
                     // a. Ajouter un Admin
-                    case "a" -> // todo : annuaire.ajouterPersonne(new Admin(email, motdepasse));
+                    case "a" -> // todo : compte.ajouterPersonne(new Admin(email, motdepasse));
                             afficherCyan("Choix a...");
                     // b. Ajouter un Particulier
-                    case "b" ->  // todo : annuaire.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
+                    case "b" ->  // todo : compte.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
                             afficherCyan("Choix b...");
                     // c. Retour au menu principal
                     case "c" -> main(new String[]{"a"});
@@ -157,7 +161,7 @@ public class Gestion {
                     }
                 }
             } else {
-                afficherRouge(erreurChoix);
+//                afficherRouge(erreurChoix);
                 afficherRouge(entrerABCD);
             }
         }

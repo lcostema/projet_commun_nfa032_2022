@@ -25,7 +25,7 @@ public class Annuaire {
      * dans une map "mapPersonne", donc dans la mémoire en local
      * ce qui évite de faire toutes les opérations directement sur les fichiers
      * todo : une fois qu'une opération est terminée, on met à jour les fichiers */
-    public static List<LinkedHashMap<String, String>> chargerPersonnes(File fichier) throws Exception {
+    public static void chargerPersonnes(File fichier) throws Exception {
         mapPersonne.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
@@ -33,7 +33,7 @@ public class Annuaire {
                     "Pas trouvé le fichier : \n" + Gestion.ANSI_RESET + fichier + Gestion.ANSI_RED +
                     "\nIl n'existe pas, ou il a été renommé, supprimé ou déplacé.\n" +
                     "Le programme ne peut pas fonctionner correctement !" + Gestion.ANSI_RESET);
-            return null;
+            return;
         } else {
             scannerFichier = new Scanner(fichier);
         }
@@ -47,11 +47,10 @@ public class Annuaire {
             mapPersonne.add(mapLigne);
         }
         scannerFichier.close();
-        return mapPersonne;
     }
 
     // chargerComptes(File fichier) (séparément) nécessaire pour les matchs d'adresses email entre les 2 maps
-    public static List<LinkedHashMap<String, String>> chargerComptes(File fichier) throws Exception {
+    public static void chargerComptes(File fichier) throws Exception {
         mapCompte.clear();
         Scanner scannerFichier;
         if (!fichier.exists()) {
@@ -59,7 +58,7 @@ public class Annuaire {
                     "Pas trouvé le fichier : \n" + Gestion.ANSI_RESET + fichier + Gestion.ANSI_RED +
                     "\nIl n'existe pas, ou il a été renommé, supprimé ou déplacé.\n" +
                     "Le programme ne peut pas fonctionner correctement !" + Gestion.ANSI_RESET);
-            return null;
+            return;
         } else {
             scannerFichier = new Scanner(fichier);
         }
@@ -73,7 +72,6 @@ public class Annuaire {
             mapCompte.add(mapLigne);
         }
         scannerFichier.close();
-        return mapCompte;
     }
 
 //    public static void testChargerPersonne() throws Exception {
@@ -121,13 +119,13 @@ public class Annuaire {
         if (matchValue < 1) {
             matchValue = 0;
             if (keyColonne.equalsIgnoreCase("nom")) {
-                Gestion.afficherRouge("Ce nom n'existe pas ...!");
+                Gestion.afficherYellow("Ce nom n'existe pas ...!");
                 System.out.println();
             } else if (keyColonne.equalsIgnoreCase("email")) {
-                Gestion.afficherRouge("Pas trouvé cet email ...!");
+                Gestion.afficherYellow("Pas trouvé cet email ...!");
                 System.out.println();
             } else if (keyColonne.equalsIgnoreCase("profil")) {
-                Gestion.afficherRouge("Aucun utilisateur trouvé sous ce profil ...!");
+                Gestion.afficherYellow("Aucun utilisateur trouvé sous ce profil ...!");
                 System.out.println();
             }
         }
