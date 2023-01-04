@@ -12,7 +12,8 @@ public class Gestion {
     static Scanner scannerClavier = new Scanner(System.in);
     static String entrerABC = "Veuillez entrer les lettres a, b ou c uniquement :";
     static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
-    static String entrer123 = "Veuillez entrer les chiffres 1, 2 ou 3 uniquement :";
+    static String entrer123 = "Veuillez entrer un chiffre entre 1 et 3 uniquement :";
+    static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
     static String erreurChoix = "Saisie incorrecte !";
 
     //*    public static final String ANSI_BLACK = "\u001B[30m";
@@ -33,6 +34,7 @@ public class Gestion {
     public static void afficherCyan(Object invite) {
         System.out.println(ANSI_CYAN + invite + ANSI_RESET);
     }
+
     public static void afficherYellow(Object invite) {
         System.out.println(ANSI_YELLOW + invite + ANSI_RESET);
     }
@@ -58,17 +60,17 @@ public class Gestion {
         Annuaire.chargerComptes(new File(Annuaire.dossierLocal + "\\comptes.txt"));
 
         afficherCyan("""
-                                    
+                                     
                 Bienvenue dans l’Annuaire NFA032
-                                    
+                                
                 Administrateur :
                    1. Ajouter une personne
-                                    
+                                
                 Particulier :
                    2. Rechercher un ou des particuliers
                    3. Modifier mes informations personnelles
                 """);
-        afficherVert("Choisir (taper le chiffres puis Enter) :");
+        afficherVert("Choisir (taper le chiffre puis Enter) :");
 
         while (scannerClavier.hasNext()) {
             if (scannerClavier.hasNextInt()) {
@@ -82,11 +84,11 @@ public class Gestion {
                 if (chiffre == 1 || chiffre == 2 || chiffre == 3) {
                     switch (chiffre) {
                         // 1. Ajouter une personne
-                        case 1 -> menuAdmin();
+                        case 1 -> Admin.authentificationAdmin("admin");
                         // 2. Rechercher un ou des particuliers
                         case 2 -> menuChercherPersonne();
                         // 3. Modifier mes informations personnelles
-                        case 3 -> afficherVert("Choix 3...");
+                        case 3 -> Admin.authentificationAdmin("particulier");
                         default -> {
                         }
                     }
@@ -104,8 +106,8 @@ public class Gestion {
     public static void menuAdmin() throws Exception {
         //todo: passer par identification
 
-        afficherCyan("""                                
-                Ajouter une utilisateur (Administrateur)
+        afficherCyan("""
+                Ajouter un utilisateur (Administrateur)
                    a. Ajouter un Admin
                    b. Ajouter un Particulier
                    c. Retour au menu principal
@@ -135,7 +137,7 @@ public class Gestion {
     }
 
     public static void menuChercherPersonne() throws Exception {
-        afficherCyan("""                                
+        afficherCyan("""
                 Rechercher un ou des particuliers
                    a. Par nom
                    b. Par email
@@ -156,7 +158,7 @@ public class Gestion {
                     // c. Par profil
                     case "c" -> chercherParProfil();
                     // d. Retour au menu principal
-                    case "d" -> main(new String[]{"a"});
+                    case "d" -> main(new String[]{"b"});
                     default -> {
                     }
                 }
@@ -187,16 +189,18 @@ public class Gestion {
                    1. Auditeur
                    2. Enseignant
                    3. Direction
+                   4. Retour au menu "Rechercher un ou des particuliers"
                 """);
         while (scannerClavier.hasNext()) {
             try {
                 chiffre = lireInt();
             } catch (Exception exception) {
                 afficherRouge(erreurChoix);
-                afficherRouge(entrer123);
+                afficherRouge(entrer1234);
+//                menuChercherPersonne();
                 return;
             }
-            if (chiffre == 1 || chiffre == 2 || chiffre == 3) {
+            if (chiffre == 1 || chiffre == 2 || chiffre == 3 || chiffre == 4) {
                 switch (chiffre) {
                     // 1. Auditeur
                     case 1 -> {
@@ -213,11 +217,12 @@ public class Gestion {
                         Annuaire.recherchePersonnes("profil", "direction");
                         menuChercherPersonne();
                     }
+                    case 4 -> menuChercherPersonne();
                     default -> {
                     }
                 }
             } else {
-                afficherRouge(entrer123);
+                afficherRouge(entrer1234);
             }
         }
     }
