@@ -24,7 +24,9 @@ public class Annuaire {
     /* "chargerPersonnes(File fichier)" met le contenu de "fichier"
      * dans une map "mapPersonne", donc dans la mémoire en local
      * ce qui évite de faire toutes les opérations directement sur les fichiers
-     * todo : une fois qu'une opération est terminée, on met à jour les fichiers */
+     * todo : une fois qu'une opération d'écriture/modif est terminée,
+     *   on doit mettre à jour les fichiers (réécriture ou append) */
+
     public static void chargerPersonnes(File fichier) throws Exception {
         mapPersonne.clear();
         Scanner scannerFichier;
@@ -74,7 +76,7 @@ public class Annuaire {
         scannerFichier.close();
     }
 
-//    public static void testChargerPersonne() throws Exception {
+//*    public static void testChargerPersonne() throws Exception {
 //        System.out.println(chargerPersonnes(new File(dossierLocal + "\\personnes.txt")));
 //        System.out.println();
 //        System.out.println(chargerComptes(new File(dossierLocal + "\\comptes.txt")));
