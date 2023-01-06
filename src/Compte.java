@@ -1,47 +1,53 @@
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class Admin {
+public class Compte {
 
     static boolean emailMatch, roleMatch, mdpMatch;
     static String roleInput;
     static int nbErreurs;
     String email, mdp, role;
 
-    public Admin(String email, String mdp, String role) {
+    public Compte(String email, String mdp, String role) {
         super();
         this.email = email;
         this.mdp = mdp;
         this.role = role;
     }
 
-    public static void authentificationAdmin(String role) throws Exception {
+    public static void authentification(String role) throws Exception {
         roleInput = role;
         String authentEmail, authentMdp;
         Scanner scannerMdp = new Scanner(System.in);
-        System.out.print("email administrateur :\n");
+        if(Objects.equals(roleInput, "admin")) {
+            System.out.print("email administrateur :\n");
+        } else if (Objects.equals(roleInput, "user")) {
+            System.out.print("email utilisateur :\n");
+        }
         while (scannerMdp.hasNext()) {
             authentEmail = scannerMdp.nextLine();
             System.out.print("Mot de passe :\n");
             authentMdp = scannerMdp.nextLine();
             if (role.equals("admin")) {
-                rechercheComptes("admin", authentEmail, authentMdp);
+                authentiCompte("admin", authentEmail, authentMdp);
                 if (mdpMatch) {
                     Gestion.menuAdmin();
                 }
-            } else if (role.equals("modifInfosPerso")) {
-                rechercheComptes("user", authentEmail, authentMdp);
+            } else if (role.equals("user")) {
+                authentiCompte("user", authentEmail, authentMdp);
                 if (mdpMatch) {
                     // todo: lancer menu "Modifier mes informations personnelles"
                     //Gestion.menuModifInfosPerso();
                     String zozo = "zozo";
+                    Gestion.main(new String[]{"d"}); // pour test
                 }
             }
         }
     }
 
-    public static void rechercheComptes(String authentRole, String authentEmail, String authentMdp) throws Exception {
+    public static void authentiCompte(String authentRole, String authentEmail, String authentMdp) throws Exception {
         emailMatch = false;
         roleMatch = false;
         mdpMatch = false;
@@ -62,7 +68,7 @@ public class Admin {
             nbErreurs += 1;
             Gestion.afficherYellow("Pas trouvé cet email ...!");
             if (nbErreurs < 3) {
-                authentificationAdmin(roleInput);
+                authentification(roleInput);
             } else {
                 nbErreurs = 0;
                 Gestion.afficherRouge("Trop de tentatives erronées !");
@@ -71,9 +77,14 @@ public class Admin {
         }
         if (!roleMatch) {
             nbErreurs += 1;
-            Gestion.afficherYellow("Vous n'êtes pas administrateur ...!");
+            if(Objects.equals(roleInput, "admin")) {
+                Gestion.afficherYellow("Vous n'êtes pas administrateur ...!");
+            } else if (Objects.equals(roleInput, "user")) {
+                Gestion.afficherRouge("Ceci est un compte administrateur, \n" +
+                        " veuillez utiliser une adresse mail utilisateur");
+            }
             if (nbErreurs < 3) {
-                authentificationAdmin(roleInput);
+                authentification(roleInput);
             } else {
                 nbErreurs = 0;
                 Gestion.afficherRouge("Trop de tentatives erronées !");
@@ -84,7 +95,7 @@ public class Admin {
             nbErreurs += 1;
             Gestion.afficherYellow("Mot de passe erroné ...!");
             if (nbErreurs < 3) {
-                authentificationAdmin(roleInput);
+                authentification(roleInput);
             } else {
                 nbErreurs = 0;
                 Gestion.afficherRouge("Trop de tentatives erronées !");
@@ -96,7 +107,7 @@ public class Admin {
     public boolean equals(Object obj) {
         if (getClass() != obj.getClass())
             return false;
-        Admin admin = (Admin) obj;
+        Compte admin = (Compte) obj;
         return email.equals(admin.email) && mdp.equals(admin.mdp) && role.equals(admin.role);
     }
 }

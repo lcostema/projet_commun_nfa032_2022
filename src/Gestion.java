@@ -83,11 +83,11 @@ public class Gestion {
                 if (chiffre == 1 || chiffre == 2 || chiffre == 3) {
                     switch (chiffre) {
                         // 1. Ajouter une personne
-                        case 1 -> Admin.authentificationAdmin("admin");
+                        case 1 -> Compte.authentification("admin");
                         // 2. Rechercher un ou des particuliers
                         case 2 -> menuChercherPersonne();
                         // 3. Modifier mes informations personnelles
-                        case 3 -> Admin.authentificationAdmin("particulier");
+                        case 3 -> Compte.authentification("user");
                         default -> {
                         }
                     }
