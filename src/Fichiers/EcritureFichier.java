@@ -1,7 +1,6 @@
 package Fichiers;
 
-import Utilisateurs.Compte;
-import Utilisateurs.Particulier;
+import Utilisateurs.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,15 +9,13 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- *
+ * Cette classe permet de sauvegarder le contenu des Hashmaps annuaire et comptes dans des fichiers .txt
  */
 public class EcritureFichier {
-    //Cette classe permet de sauvegarger le contenu des Hashmaps annuaire et comptes dans des fichiers .txt
-
 
     /**
-     *
-      * @param comptes
+     * Méthode pour écrire dans le fichier comptes
+     * @param comptes
      * @param file
      * @throws IOException
      */
@@ -28,10 +25,11 @@ public class EcritureFichier {
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
 
-        comptes.forEach((u, utilisateur) -> {
+        comptes.forEach((u, compte) -> {
             String email = u;
-            String password = utilisateur.getMotDePasse();
-            String role = utilisateur.getRole();
+            String password = compte.getMotDePasse();
+            String role = compte.getRole().toString();
+
             String ligne = email+";"+password+";"+role;
             try {
                 bw.write(ligne);
@@ -64,7 +62,7 @@ public class EcritureFichier {
             String email = particulier.getEmail();
             String postalAdress = particulier.getAdressePostale();
             String birthday = particulier.getDateNaissance().toString();
-            String profil = particulier.getProfil();
+            String profil = particulier.getProfil().toString();
             String joinDate = particulier.getDateAjout().toString();
             String updateDate = particulier.getDateMaj().toString();
 
@@ -83,6 +81,4 @@ public class EcritureFichier {
         bw.close();
         fw.close();
     }
-
-
 }

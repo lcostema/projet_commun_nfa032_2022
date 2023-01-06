@@ -41,7 +41,6 @@ public class Accueil {
     static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
     static String erreurChoix = "Saisie incorrecte !";
 
-
     static boolean quitter = false;
     static MenuAccueil mA = new MenuAccueil();
 
@@ -50,30 +49,23 @@ public class Accueil {
 
     static Scanner scannerClavier = new Scanner(System.in);
 
+    /**
+     * Méthode principale
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
 
         EcritureFichier ef = new EcritureFichier();
         LectureFichier lf = new LectureFichier();
 
         lf.lectureComptes(new File(Path.of(".").toRealPath() + "\\src\\comptes.txt"));
-//        System.out.println(lf.getComptes().get("tototutu@cnam.fr").getMotDePasse());
+        //System.out.println(lf.getComptes().get("tototutu@cnam.fr").getMotDePasse());
 
-
+        /** boucle programme */
         while (!quitter){
             mA.afficherMenuAccueil();
-
-
-
-
-
-
-
-        }//boucle programme
-
-
-        //ecrire les fichiers
-
+        }
         System.out.println("Merci d'avoir utliser le programme");
-
     }
 }
