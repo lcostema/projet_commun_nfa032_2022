@@ -4,7 +4,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Compte {
-
+// Note : le fichier (donc, sa map) "comptes" doit contenir au minimum
+//  les adresses email des utilisateurs du fichier (map) personnes
     static boolean emailMatch, roleMatch, mdpMatch;
     static String roleInput;
     static int nbErreurs;
@@ -17,6 +18,7 @@ public class Compte {
         this.role = role;
     }
 
+    // authentification(String role) fonctionne pour admin ou user selon le "role" passé en argument
     public static void authentification(String role) throws Exception {
         roleInput = role;
         String authentEmail, authentMdp;
@@ -33,21 +35,23 @@ public class Compte {
             if (role.equals("admin")) {
                 authentiCompte("admin", authentEmail, authentMdp);
                 if (mdpMatch) {
+                    // comme il est maintenant authentifié, on lance le menu de l'admin
                     Gestion.menuAdmin();
                 }
             } else if (role.equals("user")) {
                 authentiCompte("user", authentEmail, authentMdp);
                 if (mdpMatch) {
-                    // todo: lancer menu "Modifier mes informations personnelles"
-                    //Gestion.menuModifInfosPerso();
-                    String zozo = "zozo";
+                    // comme il est maintenant authentifié, on laisse l'utilisateur faire ses modifs
                     Gestion.main(new String[]{"d"}); // pour test
                 }
             }
         }
     }
 
+    // authentiCompte() vérifie que les arguments passés matchent avec les infos du fichier
+    // ...en fait, de la map issue du fichier compte
     public static void authentiCompte(String authentRole, String authentEmail, String authentMdp) throws Exception {
+        // on initialise les Match à false dès le début pour qu'ils perdent une valeur true précédente
         emailMatch = false;
         roleMatch = false;
         mdpMatch = false;
@@ -64,6 +68,7 @@ public class Compte {
                 }
             }
         }
+        // ci-dessous, gère les erreurs (!xxxMatch) et retourne à main() au bout de 3 essais infructueux
         if (!emailMatch) {
             nbErreurs += 1;
             Gestion.afficherYellow("Pas trouvé cet email ...!");

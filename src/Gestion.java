@@ -55,9 +55,11 @@ public class Gestion {
     }
 
     public static void main(String[] args) throws Exception {
+        // dès le lancement de l'appli, on récupère le contenu des fichiers
+        // avec la méthode chargerPersonnes() de la classe "Annuaire"
         Annuaire.chargerPersonnes(new File(Annuaire.dossierLocal + "\\personnes.txt"));
         Annuaire.chargerComptes(new File(Annuaire.dossierLocal + "\\comptes.txt"));
-
+        // menu principal
         afficherCyan("""
                                      
                 Bienvenue dans l’Annuaire NFA032
@@ -73,6 +75,7 @@ public class Gestion {
 
         while (scannerClavier.hasNext()) {
             if (scannerClavier.hasNextInt()) {
+                // try/catch obligatoire pour éviter de crasher en cas d'entrée de caractère autre qu'int
                 try {
                     chiffre = lireInt();
                 } catch (Exception exception) {
@@ -83,14 +86,18 @@ public class Gestion {
                 if (chiffre == 1 || chiffre == 2 || chiffre == 3) {
                     switch (chiffre) {
                         // 1. Ajouter une personne
+                        // comme seulement un admin peut faire cela, on commence par l'authentifier
                         case 1 -> Compte.authentification("admin");
                         // 2. Rechercher un ou des particuliers
                         case 2 -> menuChercherPersonne();
                         // 3. Modifier mes informations personnelles
+                        // comme seulement l'utilisateur concerné peut le faire,
+                        //  on commence par l'authentifier
                         case 3 -> Compte.authentification("user");
                         default -> {
                         }
                     }
+                    // gestion erreurs d'entrée
                 } else {
                     afficherRouge(entrer123);
                 }
@@ -103,7 +110,7 @@ public class Gestion {
     }
 
     public static void menuAdmin() throws Exception {
-        //todo: passer par identification
+        //todo: à faire !
 
         afficherCyan("""
                 Ajouter un utilisateur (Administrateur)
@@ -171,7 +178,9 @@ public class Gestion {
     public static void chercherParNom() throws Exception {
         afficherCyan("Entrer le nom à rechercher :");
         String value = lireString();
+        // lance la méthode de recherche dans "Annuaire"
         Annuaire.recherchePersonnes("nom", value);
+        // ...et retourne au menu une fois fait
         menuChercherPersonne();
     }
 
@@ -183,6 +192,7 @@ public class Gestion {
     }
 
     public static void chercherParProfil() throws Exception {
+        // comme il n'y a que 3 possibilités, mis sous forme de choix
         afficherCyan("""                                
                 Rechercher par profil
                    1. Auditeur

@@ -26,10 +26,10 @@ public class Annuaire {
      * ce qui évite de faire toutes les opérations directement sur les fichiers
      * todo : une fois qu'une opération d'écriture/modif est terminée,
      *   on doit mettre à jour les fichiers (réécriture ou append) */
-
     public static void chargerPersonnes(File fichier) throws Exception {
         mapPersonne.clear();
         Scanner scannerFichier;
+        // gestion erreur fichier manquant
         if (!fichier.exists()) {
             System.out.println(Gestion.ANSI_RED + "\n" +
                     "Pas trouvé le fichier : \n" + Gestion.ANSI_RESET + fichier + Gestion.ANSI_RED +
@@ -39,13 +39,16 @@ public class Annuaire {
         } else {
             scannerFichier = new Scanner(fichier);
         }
+        // on lit la première ligne qui contient les key communes à toutes les lignes suivantes de data
         String[] colonne = scannerFichier.nextLine().split(";");
         while (scannerFichier.hasNextLine()) {
             String[] ligne = scannerFichier.nextLine().split(";");
             LinkedHashMap<String, String> mapLigne = new LinkedHashMap<>();
             for (int i = 0; i < colonne.length; i++) {
+                // on ajoute les tuples à la map intermédiaire
                 mapLigne.put(colonne[i], ligne[i]);
             }
+            // on ajoute les lignes de tuples à la map principale (en fait, une liste)
             mapPersonne.add(mapLigne);
         }
         scannerFichier.close();
@@ -76,13 +79,17 @@ public class Annuaire {
         scannerFichier.close();
     }
 
+    // une méthode intermédiaire pour tester le résultat des chargements vers les listes de maps
 //*    public static void testChargerPersonne() throws Exception {
 //        System.out.println(chargerPersonnes(new File(dossierLocal + "\\personnes.txt")));
 //        System.out.println();
 //        System.out.println(chargerComptes(new File(dossierLocal + "\\comptes.txt")));
 //    }
 
+    // les arguments "keyColonne" et "valueLigne" pour faire référence au contenu des fichiers !
     public static void recherchePersonnes(String keyColonne, String valueLigne) {
+        // "matchValue" sert à vérifier si le paramètre existe au moins 1 fois,
+        //  sinon, on renvoie les erreurs type "pas trouvé"
         matchValue = 0;
         for (LinkedHashMap<String, String> readMap : mapPersonne) {
             for (Entry<String, String> stringEntry : readMap.entrySet()) {
@@ -118,6 +125,7 @@ public class Annuaire {
                 }
             }
         }
+        // gestion des erreurs d'absence des valeurs cherchées
         if (matchValue < 1) {
             matchValue = 0;
             if (keyColonne.equalsIgnoreCase("nom")) {
