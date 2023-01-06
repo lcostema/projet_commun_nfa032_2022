@@ -49,7 +49,6 @@ public class MenuAccueil extends Accueil{
 
 
             } else {
-                afficherRouge(erreurChoix);
                 afficherRouge(entrer1234);
                 scannerClavier.next();
             }

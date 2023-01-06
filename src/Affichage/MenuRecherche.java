@@ -17,11 +17,11 @@ public class MenuRecherche extends Accueil {
             String lettre = scannerClavier.next();
             switch (lettre) {
                 // a. Par nom
-                //                    case "a" -> chercherParNom();
+//                    case "a" -> chercherParNom();
                 // b. Par email
-                //                    case "b" -> chercherParEmail();
+//                    case "b" -> chercherParEmail();
                 // c. Par profil
-                //                      case "c" -> chercherParProfil();
+//                      case "c" -> chercherParProfil();
                 // d. Retour au menu principal
                 case "d" -> mA.afficherMenuAccueil();
                 default -> afficherRouge(entrerABCD);

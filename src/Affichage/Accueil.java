@@ -21,11 +21,9 @@ public class Accueil {
     public static void afficherCyan(Object invite) {
         System.out.println(ANSI_CYAN + invite + ANSI_RESET);
     }
-
-    public static void afficherYellow(Object invite) {
+    public static void afficherJaune(Object invite) {
         System.out.println(ANSI_YELLOW + invite + ANSI_RESET);
     }
-
     public static void afficherRouge(Object invite) {
         System.out.println(ANSI_RED + invite + ANSI_RESET);
     }
@@ -66,6 +64,6 @@ public class Accueil {
         while (!quitter){
             mA.afficherMenuAccueil();
         }
-        System.out.println("Merci d'avoir utliser le programme");
+        System.out.println("Merci d'avoir utlisé le programme");
     }
 }
