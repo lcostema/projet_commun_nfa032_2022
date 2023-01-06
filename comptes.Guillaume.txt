@@ -1,6 +1,0 @@
-admin@cnam.fr;admin;user
-tototutu@cnam.fr;user-2;user
-monAdminTest@test.com;pwTest;admin
-cocobello@cnam.net;user-1;user
-ilestcool@lmail.com;user-3;user
-email;mdp;user

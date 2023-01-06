@@ -1,10 +1,9 @@
 package Utilisateurs;
 
-import java.util.Date;
 
-public class Admin extends Utilisateur {
+public class Admin extends Compte {
 
-    Admin(String email, String motdepasse) {
-        super(email, motdepasse, Role.Administrateur);
+    Admin(String email, String motDePasse, String role ) {
+        super(email, motDePasse, role);
     }
 }

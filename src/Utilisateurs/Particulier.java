@@ -2,16 +2,12 @@ package Utilisateurs;
 
 import java.util.Date;
 
-public class Particulier extends Utilisateur {
-    private String nom, prenom, adressePostale;
+public class Particulier extends Compte {
+    private String nom, prenom, adressePostale, profil;
     private Date dateNaissance, dateAjout, dateMaj;
-    public enum Profil {
-        Auditeurs, Enseignants, Direction
-    }
-    private Profil profil;
 
-    public Particulier(String email, String motdepasse, String nom, String prenom, String adressePostale, Date dateNaissance, Date dateAjout, Date dateMaj, Profil profil) {
-        super(email, motdepasse, Role.Particulier);
+    public Particulier(String email, String motdepasse, String nom, String prenom, String adressePostale, Date dateNaissance, Date dateAjout, Date dateMaj, String profil) {
+        super(email, motdepasse, profil);
         this.nom = nom;
         this.prenom = prenom;
         this.adressePostale = adressePostale;
@@ -69,11 +65,9 @@ public class Particulier extends Utilisateur {
         this.dateMaj = dateMaj;
     }
 
-    public Profil getProfil() {
-        return profil;
-    }
+    public String getProfil() { return profil; }
 
-    public void setProfil(Profil profil) {
+    public void setProfil(String profil) {
         this.profil = profil;
     }
 }
