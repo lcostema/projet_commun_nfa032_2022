@@ -1,4 +1,0 @@
-prenom;nom;email;adressePostale;dateNaissance;profil;dateAjout;dateMaj
-Coco;Bello;cocobello@cnam.net;p>Paris;01/02/03;auditeur;02/03/04;02/03/04
-Toto;Tutu;tototutu@cnam.fr;b;c;null;02/03/04;02/03/04
-Ilest;Cool;ilestcool@lmail.com;Nice;04/05/06;direction;31/12/22;31/12/22

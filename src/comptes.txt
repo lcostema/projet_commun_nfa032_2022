@@ -1,0 +1,5 @@
+email;mdp;role
+admin@cnam.fr;admin;admin
+cocobello@cnam.net;user-1;user
+tototutu@cnam.fr;user-2;user
+ilestcool@lmail.com;user-3;user
