@@ -1,21 +1,20 @@
 package Affichage;
 
-public class MenuAccueil extends Accueil{
+import Utilisateurs.Compte;
 
-    public void afficherMenuAccueil(){
+public class MenuAccueil extends Accueil {
+
+    public void afficherMenuAccueil() {
         afficherCyan("""
                                      
                  *** Bienvenue dans l’Annuaire NFA032 ***
                                 
-                Administrateur :
-                    1. Se connecter en Admin
-   
+                Recherche :
+                    1. Rechercher un ou des particuliers
                 Particulier :
                     2. Modifier mes informations personnelles
-                
-                Rechercher :
-                    3. Rechercher un ou des particuliers
-                    
+                Administrateur :
+                    3. Accéder au menu Admin
                 Quitter le programme:
                    4. Quitter le programme
                 """);
@@ -33,22 +32,31 @@ public class MenuAccueil extends Accueil{
                     return;
                 }
 
-
                 switch (chiffre) {
-                    // 1. Ajouter une personne
-                    // comme seulement un admin peut faire cela, on commence par l'authentifier
-                    case 1 -> MenuAdmin.afficherMenuAdmin();
+                    // 1. Faire une recherche de particulier(s)
+                    case 1 -> MenuRecherche.afficherMenuRecherche();
+
                     // 2. Modifier ses infos personnelles (en tant que Particulier)
-                    case 2 -> MenuParticulier.afficherMenuParticulier();
-                    // 3. Faire une recherche de particulier(s)
-                    case 3 -> MenuRecherche.afficherMenuRecherche();
+                    case 2 -> {
+                        if (Compte.authentification("user")) {
+                            System.out.println("\n Particulier authentifié !\n");
+                            MenuParticulier.afficherMenuParticulier();
+                        }
+                    }
+
+                    // 3. Accéder au menu Admin
+                    // seulement un admin peut faire cela, on commence par l'authentifier
+                    case 3 -> {
+                        if (Compte.authentification("admin")) {
+                            MenuAdmin.afficherMenuAdmin();
+                        }
+                    }
                     case 4 -> quitter = true;
                     default -> afficherRouge(entrer1234);
                 }
-                // gestion erreurs d'entrée
-
 
             } else {
+                // gestion erreurs d'entrée
                 afficherRouge(entrer1234);
                 scannerClavier.next();
             }

@@ -40,7 +40,7 @@ public class Accueil {
     static String erreurChoix = "Saisie incorrecte !";
 
     static boolean quitter = false;
-    static MenuAccueil mA = new MenuAccueil();
+    protected static MenuAccueil mA = new MenuAccueil();
 
     static HashMap<String, Compte> comptes = new HashMap<>();
     static HashMap<String, Particulier> annuaire = new HashMap<>();
@@ -52,13 +52,14 @@ public class Accueil {
      * @param args
      * @throws Exception
      */
+    protected static LectureFichier lf = new LectureFichier();
+
     public static void main(String[] args) throws Exception {
 
         EcritureFichier ef = new EcritureFichier();
-        LectureFichier lf = new LectureFichier();
 
         lf.lectureComptes(new File(Path.of(".").toRealPath() + "\\src\\comptes.txt"));
-        //System.out.println(lf.getComptes().get("tototutu@cnam.fr").getMotDePasse());
+//        System.out.println(lf.getComptes().get("admin@cnam.fr").getRole());
 
         /** boucle programme */
         while (!quitter){
