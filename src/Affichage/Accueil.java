@@ -44,6 +44,9 @@ public class Accueil {
     static boolean quitter = false;
     static MenuAccueil mA = new MenuAccueil();
 
+    //TODO: discuter l'emplacement des URI des fichiers.txt
+    static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
+    static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
 
     static Scanner scannerClavier = new Scanner(System.in);
@@ -58,7 +61,7 @@ public class Accueil {
         EcritureFichier ef = new EcritureFichier();
         LectureFichier lf = new LectureFichier();
 
-        lf.lectureComptes(new File(Path.of(".").toRealPath() + "\\src\\comptes.txt"));
+        lf.lectureComptes(comptesTxt);
         //System.out.println(lf.getComptes().get("tototutu@cnam.fr").getMotDePasse());
 
         /** boucle programme */
