@@ -11,6 +11,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
+
+import static Affichage.Accueil.dateFormatter;
 
 /**
  * Classe pour charger le contenu des fichiers annuaire.txt et comptes.txt dans des Hashmaps
@@ -59,6 +62,7 @@ public class LectureFichier {
         FileReader in = new FileReader(file);
         BufferedReader br = new BufferedReader(in);
 
+
         String var = br.readLine();
         while (var != null) {
             //on récupère les champs dans un tableau de String
@@ -67,17 +71,15 @@ public class LectureFichier {
             String lastName = ligne[1];
             String email = ligne[2];
             String postalAdress = ligne[3];
-            String birthday = ligne[4];
-            Date dBirthday = new SimpleDateFormat("dd/MM/yyyy").parse(birthday);
+            Date birthday = dateFormatter.parse(ligne[4]);
             Particulier.Profil profil = Particulier.Profil.valueOf(ligne[5]);
-            String joinDate = ligne[6];
-            Date dJoinDate = new SimpleDateFormat("dd/MM/yyyy").parse(joinDate);
-            String updateDate = ligne[7];
-            Date dUpdateDate = new SimpleDateFormat("dd/MM/yyyy").parse(updateDate);
+            Date joinDate = dateFormatter.parse(ligne[6]);
+            Date updateDate = dateFormatter.parse(ligne[7]);
+
 
             String password = "Coder la fonction qui va chercher le mdp dans le Hashmap comptes";
 
-            Particulier p = new Particulier(email, password, lastName, firstName, postalAdress, dBirthday, dJoinDate, dUpdateDate, profil);
+            Particulier p = new Particulier(email, password, lastName, firstName, postalAdress, birthday, joinDate, updateDate, profil);
 
             annuaire.put(email, p);
 
