@@ -1,4 +1,4 @@
-Jean;Dupont;mailDeTest@test.com;1 place de la gare 75000 Paris;24/06/2000;Direction;03/07/2001;05/07/2001
+Dupont;Jean;mailDeTest@test.com;1 place de la gare 75000 Paris;24/06/2000;Direction;03/07/2001;05/07/2001
 Tutu;Toto;tototutu@cnam.fr;b;25/08/1985;Enseignant;02/03/0004;02/03/0004
 Dupont;michel;encoreUnTest@test.com;3 rue du parc 44000 Nantes;24/06/2000;Enseignant;03/07/2001;05/07/2001
 Cool;Coco;cocobello@cnam.net;Paris;01/02/0003;Auditeur;02/03/0004;02/03/0004
