@@ -1,3 +1,4 @@
-Coco;Cool;cocobello@cnam.net;Paris;01/02/03;Auditeur;02/03/04;02/03/04
-Toto;Tutu;tototutu@cnam.fr;b;25/08/1985;Enseignant;02/03/04;02/03/04
-Ilest;Cool;ilestcool@lmail.com;Nice;04/05/06;Auditeur;31/12/22;31/12/22
+Dupont;Jean;mailDeTest@test.com;1 place de la gare 75000 Paris;24/06/2000;Auditeur;03/07/2001;05/07/2001
+Tutu;Toto;tototutu@cnam.fr;b;25/08/1985;Enseignant;02/03/0004;02/03/0004
+Cool;Coco;cocobello@cnam.net;Paris;01/02/0003;Auditeur;02/03/0004;02/03/0004
+Cool;Ilest;ilestcool@lmail.com;Nice;04/05/0006;Auditeur;31/12/0022;31/12/0022
