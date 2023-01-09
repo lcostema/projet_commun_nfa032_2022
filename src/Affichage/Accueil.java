@@ -1,14 +1,12 @@
 package Affichage;
 
 import Fichiers.*;
+import Recherche.*;
 import Utilisateurs.Compte;
 import Utilisateurs.Particulier;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -77,9 +75,20 @@ public class Accueil {
 
 //Test Ecriture des fichiers
 //        lf.getComptes().put("mailDeTest@test.com", new Compte("mailDeTest@test.com", "mdpTest", Compte.Role.Administrateur));
-//        lf.getAnnuaire().put("mailDeTest@test.com", new Particulier("mailDeTest@test.com", "mdpTest","Dupont","Jean","1 place de la gare 75000 Paris",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Auditeur));
+//        lf.getAnnuaire().put("mailDeTest@test.com", new Particulier("mailDeTest@test.com", "mdpTest","Dupont","Jean","1 place de la gare 75000 Paris",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Direction));
 //        ef.ecrireComptes(lf.getComptes(), comptesTxt);
 //        ef.ecrireAnnuaire(lf.getAnnuaire(), annuaireTxt);
+
+
+// Test Recherche dans annuaire
+//        Recherche recherche = new Recherche();
+//        //par profil
+//        recherche.rechercherDansAnnuaire(lf.getAnnuaire(), Particulier.Profil.Auditeur);
+//        System.out.println(recherche.rechercherDansAnnuaire(lf.getAnnuaire(), "tototutu@cnam.fr"));
+//        lf.getAnnuaire().put("encoreUnTest@test.com", new Particulier("encoreUnTest@test.com", "mdpTest","Dupont","michel","3 rue du parc 44000 Nantes",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Enseignant));
+//        ef.ecrireAnnuaire(lf.getAnnuaire(), annuaireTxt);
+//        System.out.println(recherche.rechercherDansAnnuaire(lf.getAnnuaire(), "Dupont"));
+
 
 
         /** boucle programme */
