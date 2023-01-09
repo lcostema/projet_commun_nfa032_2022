@@ -10,11 +10,16 @@ import java.util.List;
  * La recherche peut se faire selon plusieurs critères:
  *  - Par nom (par String)
  *  - Par email (par String) On va vérifier la présence de '@' dans le String donné en paramètre
- *  - Par Profil
+ *  - Par Utilisateur.Profil
  */
 public class Recherche {
 
-
+    /**
+     * Méthode qui permet de rechercher un ou des particuliers dans l'annuaire selon l'email ou le nom
+     * @param annuaire Hashmap contenant les objets Particulier
+     * @param str s'il contient un '@': recherche sur les keys du hashmap, sinon, recherche dans le champ 'nom' des Particulier
+     * @return
+     */
     public List<Particulier> rechercherDansAnnuaire(HashMap<String, Particulier> annuaire, String str){
         List<Particulier> liste = new ArrayList<>();
 
@@ -28,6 +33,12 @@ public class Recherche {
         return liste;
     }
 
+    /**
+     * éthode qui permet de rechercher un ou des particuliers dans l'annuaire selon le profil (Auditeur, Enseignant ou Direction) des Particulier
+     * @param annuaire Hashmap contenant les objets Particulier
+     * @param profil attribut d'un Particulier {Auditeur, Enseignant, Direction}
+     * @return
+     */
     public List<Particulier> rechercherDansAnnuaire(HashMap<String, Particulier> annuaire, Particulier.Profil profil) {
         List<Particulier> liste = new ArrayList<>();
 
