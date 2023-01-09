@@ -1,38 +1,43 @@
 package GestionComptes;
 
 import Affichage.Accueil;
+import Fichiers.*;
+import java.util.HashMap;
 
-import java.util.Scanner;
+
 
 public class AjouterAdmin {
     
     //Authentification admin effectuée lors de l'accès au menu admin
 
-    //Vérification que le compte n'existe pas déjà en testant l'email
-    public static void verificationEmail(){
-
-
-    }
-
-        //System.out.println "Veuillez indiquer l'email de l'administrateur à ajouter"
-        //email = entree scanner 
-
-        //si email = email hasmaps comptes
-            //System.out.println "Cet email est déjà utilisé"
-            //close scanner
-            //Retour menu admin
-
-        //sinon
-            //System.out.println "Veuillez indiquer le mot de passe du compte administrateur"
-            //mdp =  entree scanner
-            //AjoutAdmin : new compte (email, mdp, admin) + ajout dans le hasmap comptes
-            public static void ajoutAdmin(){
-
+    /**
+     * Méthode pour ajouter un compte Admin
+     */
+    public static void ajoutAdmin(){
         
-            }
-            
-            //enregistrement de comptes.txt
-            //retour menu admin
+        //vérification de l'email
+        Affichage.Accueil.afficherCyan("Veuillez indiquer l'email de l'administrateur à ajouter : ");
+ 
+        String email = Affichage.Accueil.scannerClavier.nextLine();
 
+        //test pour vérifier si c'est un email ? Par exemple en testant si contient un "@" 
+            
+        //if (email == lf.getComptes().get(email)){
+            //Affichage.Accueil.afficherRouge("Cet email est déjà utilisé");
+            //Retour menu admin
+        //}
+
+        //else {
+            // Affichage.Accueil.afficherCyan("Veuillez indiquer le mot de passe du nouveau compte :"); 
+            //String mdp =  Affichage.Accueil.scannerClavier.nextLine();
+            //AjoutAdmin : new compte (email, mdp, admin) + ajout dans le hasmap comptes
+            //}
+
+            
+        //enregistrement de comptes.txt
+        //retour menu admin
+
+
+       }       
 
 }

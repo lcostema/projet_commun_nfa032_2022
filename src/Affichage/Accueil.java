@@ -47,7 +47,7 @@ public class Accueil {
     static HashMap<String, Compte> comptes = new HashMap<>();
     static HashMap<String, Particulier> annuaire = new HashMap<>();
 
-    static Scanner scannerClavier = new Scanner(System.in);
+    public static Scanner scannerClavier = new Scanner(System.in);
 
     /**
      * Méthode principale

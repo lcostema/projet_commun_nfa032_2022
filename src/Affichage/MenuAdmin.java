@@ -1,12 +1,11 @@
 package Affichage;
 
 import java.util.Objects;
+import GestionComptes.*;
 
 public class MenuAdmin extends Accueil {
 
     public static void afficherMenuAdmin(){
-
-
 
         afficherCyan("""
                 Ajouter un utilisateur (Administrateur)
@@ -18,24 +17,19 @@ public class MenuAdmin extends Accueil {
 
 
         if (scannerClavier.hasNext()) {
-            String lettre = scannerClavier.next();
-            if (Objects.equals(lettre, "a")
-                    || Objects.equals(lettre, "b") || Objects.equals(lettre, "c")) {
-                switch (lettre) {
-                    // a. Ajouter un Admin
-                    case "a" -> // todo : compte.ajouterPersonne(new Admin(email, motdepasse));
-                            afficherCyan("Choix a...");
-                    // b. Ajouter un Particulier
-                    case "b" ->  // todo : compte.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
-                            afficherCyan("Choix b...");
-                    // c. Retour au menu principal
-                    case "c" -> mA.afficherMenuAccueil();
-                    default -> {
-                    }
-                }
-            } else {
-                afficherRouge(entrerABC);
+            String lettre = scannerClavier.next(); //Question Isa : pourquoi pas char ?
+          
+            switch (lettre) {
+                // a. Ajouter un Admin
+                case "a" -> // todo : GestionComptes.ajouterAdmin(new Admin(email, motdepasse));
+                        GestionComptes.AjouterAdmin.ajoutAdmin();
+                // b. Ajouter un Particulier
+                case "b" ->  // todo : compte.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
+                        afficherCyan("Choix b...");
+                // c. Retour au menu principal
+                case "c" -> mA.afficherMenuAccueil();
+                default -> afficherRouge(entrerABC);
             }
-        }
+        } 
     }
 }
