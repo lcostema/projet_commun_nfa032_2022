@@ -67,8 +67,8 @@ public class LectureFichier {
         while (var != null) {
             //on récupère les champs dans un tableau de String
             String[] ligne = var.split(";");
-            String firstName = ligne[0];
-            String lastName = ligne[1];
+            String lastName = ligne[0];
+            String firstName = ligne[1];
             String email = ligne[2];
             String postalAdress = ligne[3];
             Date birthday = dateFormatter.parse(ligne[4]);
