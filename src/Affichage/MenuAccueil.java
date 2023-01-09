@@ -1,10 +1,10 @@
 package Affichage;
 
-import Utilisateurs.Compte;
+import Authentification.Connexion;
 
 public class MenuAccueil extends Accueil {
 
-    public void afficherMenuAccueil() {
+    public void ouvrirMenuAccueil() {
         afficherCyan("""
                                      
                  *** Bienvenue dans l’Annuaire NFA032 ***
@@ -38,8 +38,8 @@ public class MenuAccueil extends Accueil {
 
                     // 2. Modifier ses infos personnelles (en tant que Particulier)
                     case 2 -> {
-                        if (Compte.authentification("user")) {
-                            System.out.println("\n Particulier authentifié !\n");
+                        if (Connexion.authentification("user")) {
+                            afficherNormal("\n Particulier authentifié !\n");
                             MenuParticulier.afficherMenuParticulier();
                         }
                     }
@@ -47,7 +47,8 @@ public class MenuAccueil extends Accueil {
                     // 3. Accéder au menu Admin
                     // seulement un admin peut faire cela, on commence par l'authentifier
                     case 3 -> {
-                        if (Compte.authentification("admin")) {
+                        if (Connexion.authentification("admin")) {
+                            afficherNormal("\n Administrateur authentifié !\n");
                             MenuAdmin.afficherMenuAdmin();
                         }
                     }

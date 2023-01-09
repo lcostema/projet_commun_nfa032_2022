@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class MenuAdmin extends Accueil {
 
-    public static void afficherMenuAdmin(){
+    public static void afficherMenuAdmin() {
 
         afficherCyan("""
                 Ajouter un utilisateur (Administrateur)
@@ -20,12 +20,12 @@ public class MenuAdmin extends Accueil {
                 switch (lettre) {
                     // a. Ajouter un Admin
                     case "a" -> // todo : compte.ajouterPersonne(new Admin(email, motdepasse));
-                            afficherCyan("Choix a...");
+                            afficherNormal("Choix a...");
                     // b. Ajouter un Particulier
                     case "b" ->  // todo : compte.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
-                            afficherCyan("Choix b...");
+                            afficherNormal("Choix b...");
                     // c. Retour au menu principal
-                    case "c" -> mA.afficherMenuAccueil();
+                    case "c" -> mA.ouvrirMenuAccueil();
                     default -> {
                     }
                 }
