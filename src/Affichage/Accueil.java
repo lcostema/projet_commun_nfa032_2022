@@ -7,6 +7,7 @@ import Utilisateurs.Particulier;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -49,6 +50,10 @@ public class Accueil {
     static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
     static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
+    static public HashMap<String, Compte> comptes = new HashMap<>();
+    static public HashMap<String, Particulier> annuaire = new HashMap<>();
+
+
     //ajout du formateur de date
     static public SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
@@ -65,8 +70,10 @@ public class Accueil {
         LectureFichier lf = new LectureFichier();
 
 //lecture des fichiers
-//        lf.lectureComptes(comptesTxt);
-//        lf.lectureAnnuaire(annuaireTxt);
+        lf.lectureComptes(comptesTxt);
+        comptes = lf.getComptes();
+        lf.lectureAnnuaire(annuaireTxt);
+        annuaire = lf.getAnnuaire();
 
 //Test Lecture des fichiers
 //        System.out.println(dateFormatter.format(lf.getAnnuaire().get("cocobello@cnam.net").getDateAjout()));
@@ -78,18 +85,7 @@ public class Accueil {
 //        lf.getAnnuaire().put("mailDeTest@test.com", new Particulier("mailDeTest@test.com", "mdpTest","Dupont","Jean","1 place de la gare 75000 Paris",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Direction));
 //        ef.ecrireComptes(lf.getComptes(), comptesTxt);
 //        ef.ecrireAnnuaire(lf.getAnnuaire(), annuaireTxt);
-
-
-// Test Recherche dans annuaire
-//        Recherche recherche = new Recherche();
-//        //par profil
-//        recherche.rechercherDansAnnuaire(lf.getAnnuaire(), Particulier.Profil.Auditeur);
-//        System.out.println(recherche.rechercherDansAnnuaire(lf.getAnnuaire(), "tototutu@cnam.fr"));
-//        lf.getAnnuaire().put("encoreUnTest@test.com", new Particulier("encoreUnTest@test.com", "mdpTest","Dupont","michel","3 rue du parc 44000 Nantes",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Enseignant));
-//        ef.ecrireAnnuaire(lf.getAnnuaire(), annuaireTxt);
-//        System.out.println(recherche.rechercherDansAnnuaire(lf.getAnnuaire(), "Dupont"));
-
-
+        
 
         /** boucle programme */
         while (!quitter){
