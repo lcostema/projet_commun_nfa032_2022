@@ -44,8 +44,7 @@ public class Accueil {
     static boolean quitter = false;
     static MenuAccueil mA = new MenuAccueil();
 
-    static HashMap<String, Compte> comptes = new HashMap<>();
-    static HashMap<String, Particulier> annuaire = new HashMap<>();
+
 
     static Scanner scannerClavier = new Scanner(System.in);
 
