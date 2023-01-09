@@ -1,56 +1,60 @@
 package Recherche;
 
+import Fichiers.LectureFichier;
 import Utilisateurs.Particulier;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-/**
- * La classe Recherche va permettre de requêter les Objets Particulier contenus dans le Hashmap annuaire.
- * La recherche peut se faire selon plusieurs critères:
- *  - Par nom (par String)
- *  - Par email (par String) On va vérifier la présence de '@' dans le String donné en paramètre
- *  - Par Utilisateur.Profil
- */
+import java.io.File;
+import java.util.*;
+
+
 public class Recherche {
 
-    /**
-     * Méthode qui permet de rechercher un ou des particuliers dans l'annuaire selon l'email ou le nom
-     * @param annuaire Hashmap contenant les objets Particulier
-     * @param str s'il contient un '@': recherche sur les keys du hashmap, sinon, recherche dans le champ 'nom' des Particulier
-     * @return
-     */
-    public List<Particulier> rechercherDansAnnuaire(HashMap<String, Particulier> annuaire, String str){
-        List<Particulier> liste = new ArrayList<>();
+    public Particulier chercherParEmail(HashMap<String, Particulier> annuaire, Scanner sc){
+        System.out.println("Veuillez saisir un email à rechercher : ");
+        String email = sc.next();
 
-        if (str.contains("@")){
-            liste.add(annuaire.get(str));
-        } else {
-            liste = annuaire.values().stream().filter(p -> p.getNom().equals(str)).toList();
-        }
+        System.out.println(annuaire.get(email));
+
+        return annuaire.get(email);
+    }
+
+    public List<Particulier> chercherParNom(HashMap<String, Particulier> annuaire, Scanner sc){
+        List<Particulier> liste;
+
+        System.out.println("Veuillez saisir un nom à rechercher : ");
+        String nom = sc.next();
+        liste = annuaire.values().stream().filter(p -> p.getNom().equals(nom)).toList();
+
+        System.out.println(liste);
 
         //return liste pour affichage ou appel affichage ICI ?
         return liste;
     }
 
-    /**
-     * éthode qui permet de rechercher un ou des particuliers dans l'annuaire selon le profil (Auditeur, Enseignant ou Direction) des Particulier
-     * @param annuaire Hashmap contenant les objets Particulier
-     * @param profil attribut d'un Particulier {Auditeur, Enseignant, Direction}
-     * @return
-     */
-    public List<Particulier> rechercherDansAnnuaire(HashMap<String, Particulier> annuaire, Particulier.Profil profil) {
-        List<Particulier> liste = new ArrayList<>();
-
-        for (Particulier p : annuaire.values()){
-            if (p.getProfil() == profil){
-                liste.add(p);
+    public List<Particulier> chercherParProfil(HashMap<String, Particulier> annuaire, Scanner sc){
+        List<Particulier> liste;
+        boolean profilConforme = false;
+        String profil;
+        do{
+            System.out.println("Veuillez saisir un profil à rechercher (A)uditeur, (E)nseignant, (D)irection): ");
+            profil = sc.next();
+            if (profil.equals("A") || profil.equals("a") || profil.equals("E") || profil.equals("e")|| profil.equals("D") || profil.equals("d")){
+                profilConforme=true;
             }
+        } while (!profilConforme);
+
+        Particulier.Profil pro = null;
+        switch (profil) {
+            case "a", "A" -> pro = Particulier.Profil.Auditeur;
+            case "e", "E" -> pro = Particulier.Profil.Enseignant;
+            case "d", "D" -> pro = Particulier.Profil.Direction;
         }
 
-        //return liste pour affichage ou appel affichage ICI ?
+        Particulier.Profil finalPro = pro;
+        liste = annuaire.values().stream().filter(p -> p.getProfil() == finalPro).toList();
+
+        System.out.println(liste);
+
         return liste;
     }
-
-
 }
