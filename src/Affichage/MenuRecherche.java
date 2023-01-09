@@ -21,14 +21,14 @@ public class MenuRecherche extends Accueil {
             switch (lettre) {
 
                 // a. Par nom
-                case "a" -> re.chercherParNom(annuaire, scannerClavier);
+                case "a" -> {re.chercherParNom(annuaire, scannerClavier); afficherMenuRecherche();}
                 // b. Par email
-                case "b" -> re.chercherParEmail(annuaire, scannerClavier);
+                case "b" -> {re.chercherParEmail(annuaire, scannerClavier); afficherMenuRecherche();}
                 // c. Par profil
-                case "c" -> re.chercherParProfil(annuaire, scannerClavier);
+                case "c" -> {re.chercherParProfil(annuaire, scannerClavier); afficherMenuRecherche();}
                 // d. Retour au menu principal
                 case "d" -> mA.afficherMenuAccueil();
-                default -> afficherRouge(entrerABCD);
+                default -> {afficherRouge(entrerABCD); afficherMenuRecherche();}
             }
         }
     }
