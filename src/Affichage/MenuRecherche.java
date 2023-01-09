@@ -1,5 +1,7 @@
 package Affichage;
 
+import Recherche.Recherche;
+
 import java.util.Objects;
 
 public class MenuRecherche extends Accueil {
@@ -15,13 +17,15 @@ public class MenuRecherche extends Accueil {
 
         if (scannerClavier.hasNext()) {
             String lettre = scannerClavier.next();
+            Recherche re = new Recherche();
             switch (lettre) {
+
                 // a. Par nom
-                //                    case "a" -> chercherParNom();
+                case "a" -> re.chercherParNom(annuaire, scannerClavier);
                 // b. Par email
-                //                    case "b" -> chercherParEmail();
+                case "b" -> re.chercherParEmail(annuaire, scannerClavier);
                 // c. Par profil
-                //                      case "c" -> chercherParProfil();
+                case "c" -> re.chercherParProfil(annuaire, scannerClavier);
                 // d. Retour au menu principal
                 case "d" -> mA.afficherMenuAccueil();
                 default -> afficherRouge(entrerABCD);
