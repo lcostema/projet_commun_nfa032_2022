@@ -1,7 +1,9 @@
 package Affichage;
 
+import java.util.HashMap;
 import java.util.Objects;
 import GestionComptes.*;
+import Utilisateurs.Compte;
 
 public class MenuAdmin extends Accueil {
 
@@ -16,20 +18,20 @@ public class MenuAdmin extends Accueil {
         afficherVert("Choisir (taper la lettre puis Enter) :");
 
 
-        if (scannerClavier.hasNext()) {
-            String lettre = scannerClavier.next(); //Question Isa : pourquoi pas char ?
+//        if (scannerClavier.hasNext()) {
+            String lettre = scannerClavier.next();
           
             switch (lettre) {
                 // a. Ajouter un Admin
                 case "a" -> // todo : GestionComptes.ajouterAdmin(new Admin(email, motdepasse));
-                        GestionComptes.AjouterAdmin.ajoutAdmin();
+                        GestionComptes.AjouterAdmin.ajoutAdmin(comptes);
                 // b. Ajouter un Particulier
                 case "b" ->  // todo : compte.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
                         afficherCyan("Choix b...");
                 // c. Retour au menu principal
                 case "c" -> mA.afficherMenuAccueil();
-                default -> afficherRouge(entrerABC);
+                default -> {afficherRouge(entrerABC); afficherMenuAdmin();}
             }
-        } 
+//        }
     }
 }

@@ -2,6 +2,8 @@ package GestionComptes;
 
 import Affichage.Accueil;
 import Fichiers.*;
+import Utilisateurs.Compte;
+
 import java.util.HashMap;
 
 
@@ -13,12 +15,19 @@ public class AjouterAdmin {
     /**
      * Méthode pour ajouter un compte Admin
      */
-    public static void ajoutAdmin(){
+    public static void ajoutAdmin(HashMap<String, Compte> comptes){
         
         //vérification de l'email
         Affichage.Accueil.afficherCyan("Veuillez indiquer l'email de l'administrateur à ajouter : ");
  
         String email = Affichage.Accueil.scannerClavier.nextLine();
+
+        //Pour consulter le Hashmap :
+//        comptes.get(KEY)
+
+        //Pour ajoute au hashamp
+//        comptes.put(STRING, COMPTE)
+
 
         //test pour vérifier si c'est un email ? Par exemple en testant si contient un "@" 
             

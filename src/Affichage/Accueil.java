@@ -60,6 +60,9 @@ public class Accueil {
         LectureFichier lf = new LectureFichier();
 
         lf.lectureComptes(new File(Path.of(".").toRealPath() + "\\src\\comptes.txt"));
+        comptes = lf.getComptes();
+
+
         //System.out.println(lf.getComptes().get("tototutu@cnam.fr").getMotDePasse());
 
         /** boucle programme */
