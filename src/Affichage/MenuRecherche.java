@@ -1,5 +1,11 @@
 package Affichage;
 
+
+import Recherche.Recherche;
+
+import java.util.Objects;
+
+
 public class MenuRecherche extends Accueil {
     public static void afficherMenuRecherche() {
         afficherCyan("""
@@ -13,16 +19,20 @@ public class MenuRecherche extends Accueil {
 
         if (scannerClavier.hasNext()) {
             String lettre = scannerClavier.next();
+            Recherche re = new Recherche();
+
             switch (lettre) {
                 // a. Par nom
-                case "a" -> afficherNormal("Choix a..."); //chercherParNom();
+
+                case "a" -> {re.chercherParNom(annuaire, scannerClavier); afficherMenuRecherche();}
                 // b. Par email
-                case "b" -> afficherNormal("Choix a..."); //chercherParEmail();
+                case "b" -> {re.chercherParEmail(annuaire, scannerClavier); afficherMenuRecherche();}
                 // c. Par profil
-                case "c" -> afficherNormal("Choix a..."); //chercherParProfil();
+                case "c" -> {re.chercherParProfil(annuaire, scannerClavier); afficherMenuRecherche();}
                 // d. Retour au menu principal
-                case "d" -> mA.ouvrirMenuAccueil();
-                default -> afficherRouge(entrerABCD);
+                case "d" -> mA.afficherMenuAccueil();
+                default -> {afficherRouge(entrerABCD); afficherMenuRecherche();}
+
             }
         }
     }

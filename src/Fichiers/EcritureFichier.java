@@ -6,7 +6,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
+
+import static Affichage.Accueil.dateFormatter;
 
 /**
  * Cette classe permet de sauvegarder le contenu des Hashmaps annuaire et comptes dans des fichiers .txt
@@ -61,10 +65,10 @@ public class EcritureFichier {
             String firstName = particulier.getPrenom();
             String email = particulier.getEmail();
             String postalAdress = particulier.getAdressePostale();
-            String birthday = particulier.getDateNaissance().toString();
+            String birthday = dateFormatter.format(particulier.getDateNaissance());
             String profil = particulier.getProfil().toString();
-            String joinDate = particulier.getDateAjout().toString();
-            String updateDate = particulier.getDateMaj().toString();
+            String joinDate = dateFormatter.format(particulier.getDateAjout());
+            String updateDate = dateFormatter.format(particulier.getDateMaj());
 
             String ligne = lastName +";"+ firstName +";"+ email +";"+ postalAdress +";"+ birthday +";"+ profil +";"+ joinDate +";"+ updateDate;
             try {
