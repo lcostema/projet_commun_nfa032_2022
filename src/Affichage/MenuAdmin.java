@@ -16,22 +16,27 @@ public class MenuAdmin extends Accueil {
 
         if (scannerClavier.hasNext()) {
             String lettre = scannerClavier.next();
-            if (Objects.equals(lettre, "a") || Objects.equals(lettre, "b") || Objects.equals(lettre, "c")) {
                 switch (lettre) {
                     // a. Ajouter un Admin
-                    case "a" -> // todo : compte.ajouterPersonne(new Admin(email, motdepasse));
+                    case "a" ->
                             afficherNormal("Choix a...");
+                        //GestionComptes.AjouterAdmin()  //TODO: ISABELLE EST DESSUS
+
                     // b. Ajouter un Particulier
-                    case "b" ->  // todo : compte.ajouterPersonne(new Particulier(email, motdepasse, nom, prenom, adressePostale, dateNaissance, dateAjout, dateMaj, profil));
+                    case "b" ->
                             afficherNormal("Choix b...");
+
+                        //GestionComptes.AjouterParticulier() //TODO:ISABELLE EST DESSUS
+
+                    //c. Modifier Un Particulier
+                    case "c" -> afficherNormal("Choix c...");
+                        //GestionComptes.ModifierParticulier(); //TODO: A ATTRIBUE
+
                     // c. Retour au menu principal
-                    case "c" -> mA.ouvrirMenuAccueil();
-                    default -> {
+                    case "d" -> mA.ouvrirMenuAccueil();
+                    default -> {afficherRouge(entrerABCD); afficherMenuAdmin();}
                     }
                 }
-            } else {
-                afficherRouge(entrerABC);
-            }
+
         }
-    }
 }

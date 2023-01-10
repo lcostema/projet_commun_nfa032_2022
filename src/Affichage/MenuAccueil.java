@@ -1,6 +1,7 @@
 package Affichage;
 
 import Authentification.Connexion;
+import Utilisateurs.Particulier;
 
 public class MenuAccueil extends Accueil {
 
@@ -40,7 +41,9 @@ public class MenuAccueil extends Accueil {
                     case 2 -> {
                         if (Connexion.authentification("user")) {
                             afficherNormal("\n Particulier authentifié !\n");
-                            MenuParticulier.afficherMenuParticulier();
+
+                            String email = "toto";
+                            MenuParticulier.afficherMenuParticulier(email);
                         }
                     }
 
