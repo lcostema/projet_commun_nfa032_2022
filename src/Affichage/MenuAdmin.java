@@ -1,10 +1,14 @@
 package Affichage;
 
+import java.util.HashMap;
 import java.util.Objects;
+import GestionComptes.*;
+import Utilisateurs.Compte;
 
 public class MenuAdmin extends Accueil {
 
-    public static void afficherMenuAdmin() {
+    public static void afficherMenuAdmin(){
+
 
         afficherCyan("""
                 Ajouter un utilisateur (Administrateur)
@@ -13,6 +17,7 @@ public class MenuAdmin extends Accueil {
                    c. Retour au menu principal
                 """);
         afficherVert("Choisir (taper la lettre puis Enter) :");
+
 
         if (scannerClavier.hasNext()) {
             String lettre = scannerClavier.next();
@@ -39,4 +44,6 @@ public class MenuAdmin extends Accueil {
                 }
 
         }
+  }
 }
+

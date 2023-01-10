@@ -60,7 +60,9 @@ public class Accueil {
         EcritureFichier ef = new EcritureFichier();
 
         lf.lectureComptes(new File(Path.of(".").toRealPath() + "\\src\\comptes.txt"));
-//        System.out.println(lf.getComptes().get("admin@cnam.fr").getRole());
+
+        comptes = lf.getComptes();
+
 
         /** boucle programme */
         while (!quitter) {
