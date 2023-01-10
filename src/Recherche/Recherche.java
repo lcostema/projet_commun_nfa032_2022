@@ -44,6 +44,7 @@ public class Recherche {
         String nom = sc.next();
         liste = annuaire.values().stream().filter(p -> p.getNom().equals(nom)).toList();
 
+        //TODO: remonter les 10 derniers ajoutés (date ajout)
         affRes.afficherResultatRecherche(liste);
     }
 
@@ -62,7 +63,7 @@ public class Recherche {
         do{
             System.out.println("Veuillez saisir un profil à rechercher (A)uditeur, (E)nseignant, (D)irection): ");
             profil = sc.next();
-            if (profil.equals("A") || profil.equals("a") || profil.equals("E") || profil.equals("e")|| profil.equals("D") || profil.equals("d")){
+            if (profil.equalsIgnoreCase("a") || profil.equalsIgnoreCase("e")|| profil.equalsIgnoreCase("d")){
                 profilConforme=true;
             }
         } while (!profilConforme);
@@ -72,10 +73,12 @@ public class Recherche {
             case "a", "A" -> pro = Particulier.Profil.Auditeur;
             case "e", "E" -> pro = Particulier.Profil.Enseignant;
             case "d", "D" -> pro = Particulier.Profil.Direction;
+            default -> System.out.println("Saisissez a, e ou d");
         }
-
         Particulier.Profil finalPro = pro;
+
         liste = annuaire.values().stream().filter(p -> p.getProfil() == finalPro).toList();
+        //TODO: remonter les 10 derniers ajoutés (date ajout)
 
         affRes.afficherResultatRecherche(liste);
     }

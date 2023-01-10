@@ -18,8 +18,8 @@ public class MenuRecherche extends Accueil {
         if (scannerClavier.hasNext()) {
             String lettre = scannerClavier.next();
             Recherche re = new Recherche();
-            switch (lettre) {
 
+            switch (lettre) {
                 // a. Par nom
                 case "a" -> {re.chercherParNom(annuaire, scannerClavier); afficherMenuRecherche();}
                 // b. Par email

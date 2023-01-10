@@ -20,7 +20,7 @@ public class ResultatRecherche extends Accueil{
         System.out.println("Email : " + p.getEmail());
         System.out.println("Adresse postale : " + p.getAdressePostale());
         System.out.println("Date de Naissance : " + dateFormatter.format(p.getDateNaissance()));
-        System.out.println("Profil :" + p.getProfil().toString());
+        System.out.println("Profil : " + p.getProfil().toString());
         System.out.println("Date d'ajout : " + dateFormatter.format(p.getDateAjout()));
         System.out.println("Date de mise à jour : " + dateFormatter.format(p.getDateMaj()));
     }
@@ -46,7 +46,7 @@ public class ResultatRecherche extends Accueil{
         if(liste.size() == 0){
             System.out.println("Aucune entrée trouvée");
         } else {
-            System.out.println(liste.size() + " entrée(s) trouvée(s) dans l'annuaire :");
+            System.out.println(liste.size() + " entrée(s) trouvée(s) dans l'annuaire (par date d'ajout) :");
             liste.forEach(p -> afficherParticulier(p));
         }
     }
