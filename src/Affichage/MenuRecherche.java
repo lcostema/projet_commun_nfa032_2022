@@ -1,8 +1,10 @@
 package Affichage;
 
+
 import Recherche.Recherche;
 
 import java.util.Objects;
+
 
 public class MenuRecherche extends Accueil {
     public static void afficherMenuRecherche() {
@@ -21,6 +23,7 @@ public class MenuRecherche extends Accueil {
 
             switch (lettre) {
                 // a. Par nom
+
                 case "a" -> {re.chercherParNom(annuaire, scannerClavier); afficherMenuRecherche();}
                 // b. Par email
                 case "b" -> {re.chercherParEmail(annuaire, scannerClavier); afficherMenuRecherche();}
@@ -29,6 +32,7 @@ public class MenuRecherche extends Accueil {
                 // d. Retour au menu principal
                 case "d" -> mA.afficherMenuAccueil();
                 default -> {afficherRouge(entrerABCD); afficherMenuRecherche();}
+
             }
         }
     }
