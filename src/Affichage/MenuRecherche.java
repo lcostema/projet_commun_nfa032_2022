@@ -1,7 +1,5 @@
 package Affichage;
 
-import java.util.Objects;
-
 public class MenuRecherche extends Accueil {
     public static void afficherMenuRecherche() {
         afficherCyan("""
@@ -17,13 +15,13 @@ public class MenuRecherche extends Accueil {
             String lettre = scannerClavier.next();
             switch (lettre) {
                 // a. Par nom
-                //                    case "a" -> chercherParNom();
+                case "a" -> afficherNormal("Choix a..."); //chercherParNom();
                 // b. Par email
-                //                    case "b" -> chercherParEmail();
+                case "b" -> afficherNormal("Choix a..."); //chercherParEmail();
                 // c. Par profil
-                //                      case "c" -> chercherParProfil();
+                case "c" -> afficherNormal("Choix a..."); //chercherParProfil();
                 // d. Retour au menu principal
-                case "d" -> mA.afficherMenuAccueil();
+                case "d" -> mA.ouvrirMenuAccueil();
                 default -> afficherRouge(entrerABCD);
             }
         }

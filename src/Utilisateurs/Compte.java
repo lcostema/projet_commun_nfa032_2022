@@ -1,20 +1,20 @@
 package Utilisateurs;
 
+import Affichage.Accueil;
+
 /**
  * Classe des comptes
  */
-public class Compte {
+public class Compte extends Accueil {
+    private final Role role;
     private String email, motDePasse;
-    public enum Role {
-        Administrateur, Particulier
-    }
-    private Role role;
 
     /**
      * Constructeur d'un compte
-     * @param email Email de l'utilisateur
+     *
+     * @param email      Email de l'utilisateur
      * @param motDePasse Mot de passe de l'utilisateur
-     * @param role Role de l'utilisateur
+     * @param role       Role de l'utilisateur
      */
     public Compte(String email, String motDePasse, Role role) {
         this.email = email;
@@ -24,6 +24,7 @@ public class Compte {
 
     /**
      * Getter Email
+     *
      * @return email
      */
     public String getEmail() {
@@ -32,6 +33,7 @@ public class Compte {
 
     /**
      * Setter email
+     *
      * @param email
      */
     public void setEmail(String email) {
@@ -40,6 +42,7 @@ public class Compte {
 
     /**
      * Getter Mot de passe
+     *
      * @return motDePasse
      */
     public String getMotDePasse() {
@@ -48,6 +51,7 @@ public class Compte {
 
     /**
      * Setter Mot de passe
+     *
      * @param motDePasse
      */
     public void setMotDePasse(String motDePasse) {
@@ -56,9 +60,15 @@ public class Compte {
 
     /**
      * Getter Role
+     *
      * @return role
      */
     public Role getRole() {
         return role;
     }
+
+    public enum Role {
+        Administrateur, Particulier
+    }
+
 }

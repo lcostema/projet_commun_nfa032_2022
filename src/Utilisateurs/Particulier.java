@@ -15,18 +15,19 @@ public class Particulier extends Compte {
 
     /**
      * Constructeur d'un particulier
-     * @param email Email de l'utilisateur
-     * @param motDePasse Mot de passe de l'utilisateur
-     * @param nom Nom de l'utilisateur
-     * @param prenom Prénom de l'utilisateur
+     *
+     * @param email          Email de l'utilisateur
+     * @param motDePasse     Mot de passe de l'utilisateur
+     * @param nom            Nom de l'utilisateur
+     * @param prenom         Prénom de l'utilisateur
      * @param adressePostale Adresse de l'utilisateur
-     * @param dateNaissance Date de naissance de l'utilisateur
-     * @param dateAjout Date d'ajout de l'utilisateur
-     * @param dateMaj Date de mise à jour des infos de l'utilisateur
-     * @param profil Profil de l'utilisateur
+     * @param dateNaissance  Date de naissance de l'utilisateur
+     * @param dateAjout      Date d'ajout de l'utilisateur
+     * @param dateMaj        Date de mise à jour des infos de l'utilisateur
+     * @param profil         Profil de l'utilisateur
      */
     public Particulier(String email, String motDePasse, String nom, String prenom, String adressePostale, Date dateNaissance, Date dateAjout, Date dateMaj, Profil profil) {
-        super(email, motDePasse, Role.Particulier);
+        super(email, motDePasse, Compte.Role.Particulier);
         this.nom = nom;
         this.prenom = prenom;
         this.adressePostale = adressePostale;
@@ -38,6 +39,7 @@ public class Particulier extends Compte {
 
     /**
      * Getter nom
+     *
      * @return nom
      */
     public String getNom() {
@@ -46,6 +48,7 @@ public class Particulier extends Compte {
 
     /**
      * Setter nom
+     *
      * @param nom
      */
     public void setNom(String nom) {
@@ -54,6 +57,7 @@ public class Particulier extends Compte {
 
     /**
      * Getter prénom
+     *
      * @return prenom
      */
     public String getPrenom() {
@@ -62,6 +66,7 @@ public class Particulier extends Compte {
 
     /**
      * Setter prénom
+     *
      * @param prenom
      */
     public void setPrenom(String prenom) {
@@ -70,6 +75,7 @@ public class Particulier extends Compte {
 
     /**
      * Getter adresse postale
+     *
      * @return adressePostale
      */
     public String getAdressePostale() {
@@ -78,6 +84,7 @@ public class Particulier extends Compte {
 
     /**
      * Setter adresse postale
+     *
      * @param adressePostale
      */
     public void setAdressePostale(String adressePostale) {
@@ -86,6 +93,7 @@ public class Particulier extends Compte {
 
     /**
      * Getter date de naissance
+     *
      * @return dateNaissance
      */
     public Date getDateNaissance() {
@@ -94,6 +102,7 @@ public class Particulier extends Compte {
 
     /**
      * Setter date de naissance
+     *
      * @param dateNaissance
      */
     public void setDateNaissance(Date dateNaissance) {
@@ -102,6 +111,7 @@ public class Particulier extends Compte {
 
     /**
      * Getter date d'ajout
+     *
      * @return dateAjout
      */
     public Date getDateAjout() {
@@ -110,6 +120,7 @@ public class Particulier extends Compte {
 
     /**
      * Setter date d'ajout
+     *
      * @param dateAjout
      */
     public void setDateAjout(Date dateAjout) {
@@ -118,6 +129,7 @@ public class Particulier extends Compte {
 
     /**
      * Getter date de mise à jour
+     *
      * @return dateMaj
      */
     public Date getDateMaj() {
@@ -126,6 +138,7 @@ public class Particulier extends Compte {
 
     /**
      * Setter date de mise à jour
+     *
      * @param dateMaj
      */
     public void setDateMaj(Date dateMaj) {
@@ -134,6 +147,7 @@ public class Particulier extends Compte {
 
     /**
      * Getter profil
+     *
      * @return profil
      */
     public Profil getProfil() {
@@ -142,9 +156,11 @@ public class Particulier extends Compte {
 
     /**
      * Setter profil
+     *
      * @param profil
      */
     public void setProfil(Profil profil) {
         this.profil = profil;
     }
+
 }
