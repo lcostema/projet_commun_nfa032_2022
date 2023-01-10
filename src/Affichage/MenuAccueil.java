@@ -39,7 +39,7 @@ public class MenuAccueil extends Accueil {
 
                     // 2. Modifier ses infos personnelles (en tant que Particulier)
                     case 2 -> {
-                        if (Connexion.authentification("user")) {
+                        if (Connexion.authentification("user", comptes)) {
                             afficherNormal("\n Particulier authentifié !\n");
 
                             String email = "toto";
@@ -50,7 +50,7 @@ public class MenuAccueil extends Accueil {
                     // 3. Accéder au menu Admin
                     // seulement un admin peut faire cela, on commence par l'authentifier
                     case 3 -> {
-                        if (Connexion.authentification("admin")) {
+                        if (Connexion.authentification("admin", comptes)) {
                             afficherNormal("\n Administrateur authentifié !\n");
                             MenuAdmin.afficherMenuAdmin();
                         }

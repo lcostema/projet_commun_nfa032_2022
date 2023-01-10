@@ -19,23 +19,12 @@ public class Accueil {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_YELLOW = "\u001B[33m";
-    public static MenuAccueil mA = new MenuAccueil();
-    /**
-     * Méthode principale
-     *
-     * @param args
-     * @throws Exception
-     */
-    public static LectureFichier lf = new LectureFichier();
+
     //Les strings de réponses des menus
     static String entrerABC = "Veuillez entrer les lettres a, b ou c uniquement :";
     static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
     static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
     static String erreurChoix = "Saisie incorrecte !";
-    static boolean quitter = false;
-    static HashMap<String, Compte> comptes = new HashMap<>();
-    static HashMap<String, Particulier> annuaire = new HashMap<>();
-    static Scanner scannerClavier = new Scanner(System.in);
 
     public static void afficherNormal(Object invite) {
         System.out.println(invite);
@@ -58,7 +47,7 @@ public class Accueil {
     }
 
     static boolean quitter = false;
-    static MenuAccueil mA = new MenuAccueil();
+    static public MenuAccueil mA = new MenuAccueil();
 
     //TODO: discuter l'emplacement des URI des fichiers.txt
     static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
@@ -81,6 +70,7 @@ public class Accueil {
     public static void main(String[] args) throws Exception {
 
         EcritureFichier ef = new EcritureFichier();
+        LectureFichier lf = new LectureFichier();
 
 
 //lecture des fichiers
@@ -102,7 +92,7 @@ public class Accueil {
         
 
 
-        /** boucle programme */
+        /* boucle programme */
         while (!quitter) {
             mA.ouvrirMenuAccueil();
         }

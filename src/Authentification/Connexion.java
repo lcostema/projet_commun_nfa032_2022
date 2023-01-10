@@ -1,7 +1,9 @@
 package Authentification;
 
 import Affichage.Accueil;
+import Utilisateurs.Compte;
 
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -12,7 +14,7 @@ public class Connexion {
     static String roleInput;
     static Scanner scanner = new Scanner(System.in);
 
-    public static boolean authentification(String role) {
+    public static boolean authentification(String role, HashMap<String, Compte> comptes){
         roleInput = role;
         String authentEmail, authentRole;
         if (Objects.equals(roleInput, "admin")) {
@@ -22,17 +24,17 @@ public class Connexion {
         }
         if (scanner.hasNext()) {
             authentEmail = scanner.next();
-            if (Accueil.lf.getComptes().get(authentEmail) == null) {
+            if (comptes.get(authentEmail) == null) {
                 Accueil.afficherJaune("Pas trouvé cet email ...!");
                 nbErreurs += 1;
-                checkErreurs();
+                checkErreurs(comptes);
             } else {
-                authentRole = String.valueOf(Accueil.lf.getComptes().get(authentEmail).getRole());
+                authentRole = String.valueOf(comptes.get(authentEmail).getRole());
                 if (roleInput.equals("admin")) {
                     if (!authentRole.equals("Administrateur")) {
                         Accueil.afficherJaune("Vous n'êtes pas administrateur ...!");
                         nbErreurs += 1;
-                        checkErreurs();
+                        checkErreurs(comptes);
                     }
                 }
                 if (roleInput.equals("user")) {
@@ -40,29 +42,29 @@ public class Connexion {
                         Accueil.afficherRouge("Ceci est un compte Administrateur, \n" +
                                 " veuillez utiliser une adresse mail Particulier");
                         nbErreurs += 1;
-                        checkErreurs();
+                        checkErreurs(comptes);
                     }
                 }
                 nbErreurs = 0;
-                checkMDP(authentEmail);
+                checkMDP(authentEmail, comptes);
             }
         }
         return true;
     }
 
-    private static void checkMDP(String email) {
+    private static void checkMDP(String email, HashMap<String, Compte> comptes) {
         System.out.print("Mot de passe :\n");
         String authentMDP = scanner.next();
-        if (!Objects.equals(String.valueOf(Accueil.lf.getComptes().get(email).getMotDePasse()), authentMDP)) {
+        if (!Objects.equals(String.valueOf(comptes.get(email).getMotDePasse()), authentMDP)) {
             Accueil.afficherJaune("Mot de passe erroné ...!");
             nbErreurs += 1;
-            checkErreursMDP(email);
+            checkErreursMDP(email, comptes);
         }
     }
 
-    private static void checkErreursMDP(String email) {
+    private static void checkErreursMDP(String email, HashMap<String, Compte> comptes) {
         if (nbErreurs < maxErreurs) {
-            checkMDP(email);
+            checkMDP(email, comptes);
         } else {
             nbErreurs = 0;
             Accueil.afficherRouge("Trop de tentatives erronées !");
@@ -70,9 +72,9 @@ public class Connexion {
         }
     }
 
-    private static void checkErreurs() {
+    private static void checkErreurs(HashMap<String, Compte> comptes) {
         if (nbErreurs < maxErreurs) {
-            authentification(roleInput);
+            authentification(roleInput, comptes);
         } else {
             nbErreurs = 0;
             Accueil.afficherRouge("Trop de tentatives erronées !");

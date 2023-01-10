@@ -30,7 +30,7 @@ public class MenuRecherche extends Accueil {
                 // c. Par profil
                 case "c" -> {re.chercherParProfil(annuaire, scannerClavier); afficherMenuRecherche();}
                 // d. Retour au menu principal
-                case "d" -> mA.afficherMenuAccueil();
+                case "d" -> mA.ouvrirMenuAccueil();
                 default -> {afficherRouge(entrerABCD); afficherMenuRecherche();}
 
             }

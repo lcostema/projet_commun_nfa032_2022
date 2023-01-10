@@ -45,5 +45,4 @@ public class MenuAdmin extends Accueil {
 
         }
   }
-}
 
