@@ -19,12 +19,23 @@ public class Accueil {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_YELLOW = "\u001B[33m";
+    static public MenuAccueil mA = new MenuAccueil();
+    static public HashMap<String, Compte> comptes = new HashMap<>();
+    static public HashMap<String, Particulier> annuaire = new HashMap<>();
+
+    //ajout du formateur de date
+    static public SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    static public Scanner scannerClavier = new Scanner(System.in);
 
     //Les strings de réponses des menus
-    static String entrerABC = "Veuillez entrer les lettres a, b ou c uniquement :";
     static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
     static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
     static String erreurChoix = "Saisie incorrecte !";
+    static boolean quitter = false;
+
+    //TODO: discuter l'emplacement des URI des fichiers.txt
+    static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
+    static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
     public static void afficherNormal(Object invite) {
         System.out.println(invite);
@@ -46,24 +57,9 @@ public class Accueil {
         System.out.println(ANSI_GREEN + invite + ANSI_RESET);
     }
 
-    static boolean quitter = false;
-    static public MenuAccueil mA = new MenuAccueil();
-
-    //TODO: discuter l'emplacement des URI des fichiers.txt
-    static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
-    static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
-
-    static public HashMap<String, Compte> comptes = new HashMap<>();
-    static public HashMap<String, Particulier> annuaire = new HashMap<>();
-
-
-    //ajout du formateur de date
-    static public SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-
-    static public Scanner scannerClavier = new Scanner(System.in);
-
     /**
      * Méthode principale
+     *
      * @param args
      * @throws Exception
      */
@@ -71,7 +67,6 @@ public class Accueil {
 
         EcritureFichier ef = new EcritureFichier();
         LectureFichier lf = new LectureFichier();
-
 
 //lecture des fichiers
         lf.lectureComptes(comptesTxt);
@@ -89,7 +84,6 @@ public class Accueil {
 //        lf.getAnnuaire().put("mailDeTest@test.com", new Particulier("mailDeTest@test.com", "mdpTest","Dupont","Jean","1 place de la gare 75000 Paris",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Direction));
 //        ef.ecrireComptes(lf.getComptes(), comptesTxt);
 //        ef.ecrireAnnuaire(lf.getAnnuaire(), annuaireTxt);
-        
 
 
         /* boucle programme */

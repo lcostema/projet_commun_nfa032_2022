@@ -11,10 +11,13 @@ public class MenuAdmin extends Accueil {
                    c. Modifier un Particulier
                    c. Retour au menu principal
                 """);
+
         afficherVert("Choisir (taper la lettre puis Enter) :");
 
         if (scannerClavier.hasNext()) {
+
             String lettre = scannerClavier.next();
+
             switch (lettre) {
                 // a. Ajouter un Admin
                 case "a" -> afficherNormal("Choix a...");
@@ -22,12 +25,11 @@ public class MenuAdmin extends Accueil {
 
                 // b. Ajouter un Particulier
                 case "b" -> afficherNormal("Choix b...");
-
-                //GestionComptes.AjouterParticulier() //TODO:ISABELLE EST DESSUS
+                //GestionComptes.AjouterParticulier() //TODO: ISABELLE EST DESSUS
 
                 //c. Modifier Un Particulier
                 case "c" -> afficherNormal("Choix c...");
-                //GestionComptes.ModifierParticulier(); //TODO: A ATTRIBUE
+                //GestionComptes.ModifierParticulier(); //TODO: ANDREA DESSUS JEUDI 12
 
                 // c. Retour au menu principal
                 case "d" -> mA.ouvrirMenuAccueil();

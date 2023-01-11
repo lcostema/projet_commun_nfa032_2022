@@ -6,10 +6,12 @@ public class MenuAccueil extends Accueil {
 
     public void ouvrirMenuAccueil() {
 
-        afficherCyan("""
+        afficherNormal("""
                                      
                  *** Bienvenue dans l’Annuaire NFA032 ***
-                                
+                """);
+
+        afficherCyan("""
                 Recherche :
                     1. Rechercher un ou des particuliers
                 Particulier :
@@ -25,7 +27,8 @@ public class MenuAccueil extends Accueil {
         if (scannerClavier.hasNext()) {
             int chiffre;
             if (scannerClavier.hasNextInt()) {
-                // try/catch obligatoire pour éviter de crasher en cas d'entrée de caractère autre qu'int
+
+                // try/catch pour éviter de crasher en cas d'entrée de caractère autre qu'int
                 try {
                     chiffre = scannerClavier.nextInt();
                 } catch (Exception exception) {
@@ -36,19 +39,22 @@ public class MenuAccueil extends Accueil {
                     // 1. Faire une recherche de particulier(s)
                     case 1 -> MenuRecherche.afficherMenuRecherche();
 
-                    // 2. Modifier ses infos personnelles (en tant que Particulier)
+                    // 2. Modifier mes infos personnelles (authentification du Particulier)
                     case 2 -> {
                         if (Connexion.authentification("user", comptes)) {
                             afficherNormal("\n Particulier authentifié !\n");
                             Connexion.nbErreurs = 0;
 
-                            String email = "toto";
-                            MenuParticulier.afficherMenuParticulier(email);
+                            // récupération email entré à l'authentification
+                            MenuParticulier.ouvrirMenuParticulier(Connexion.inputEmail);
+                            // ...puis on réinitialise
+                            Connexion.inputEmail = "";
+                            scannerClavier.reset();
                         }
                     }
 
                     // 3. Accéder au menu Admin
-                    // seulement un admin peut faire cela, on commence par l'authentifier
+                    // Seulement un admin peut faire cela, on commence par l'authentifier
                     case 3 -> {
                         if (Connexion.authentification("admin", comptes)) {
                             afficherNormal("\n Administrateur authentifié !\n");
@@ -56,6 +62,8 @@ public class MenuAccueil extends Accueil {
                             MenuAdmin.afficherMenuAdmin();
                         }
                     }
+
+                    // 4. Quitter le programme
                     case 4 -> quitter = true;
                     default -> afficherRouge(entrer1234);
                 }

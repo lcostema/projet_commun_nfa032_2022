@@ -10,34 +10,43 @@ import java.util.Scanner;
 public class Connexion {
 
     public static int nbErreurs;
+    public static String inputEmail;
     static int maxErreurs = 3;
     static String roleInput;
     static Scanner scanner = new Scanner(System.in);
+    static String authentEmail = null;
 
     public static boolean authentification(String role, HashMap<String, Compte> comptes) {
+
+        String authentRole;
         roleInput = role;
-        String authentEmail, authentRole;
-        if (Objects.equals(roleInput, "admin")) {
+
+        if (Objects.equals(role, "admin")) {
             System.out.print("email administrateur :\n");
-        } else if (Objects.equals(roleInput, "user")) {
+        } else if (Objects.equals(role, "user")) {
             System.out.print("email utilisateur :\n");
         }
+
         if (scanner.hasNext()) {
+
             authentEmail = scanner.next();
+
             if (comptes.get(authentEmail) == null) {
                 Accueil.afficherJaune("Pas trouvé cet email ...!");
                 nbErreurs += 1;
                 checkErreurs(comptes);
             } else {
+
                 authentRole = String.valueOf(comptes.get(authentEmail).getRole());
-                if (roleInput.equals("admin")) {
+
+                if (role.equals("admin")) {
                     if (!authentRole.equals("Administrateur")) {
                         Accueil.afficherJaune("Vous n'êtes pas administrateur ...!");
                         nbErreurs += 1;
                         checkErreurs(comptes);
                     }
                 }
-                if (roleInput.equals("user")) {
+                if (role.equals("user")) {
                     if (!authentRole.equals("Particulier")) {
                         Accueil.afficherRouge("Ceci est un compte Administrateur, \n" +
                                 " veuillez utiliser une adresse mail Particulier");
@@ -53,8 +62,14 @@ public class Connexion {
     }
 
     private static void checkMDP(String email, HashMap<String, Compte> comptes) {
-        System.out.print("Mot de passe :\n");
+
+        Accueil.afficherNormal("Mot de passe :");
         String authentMDP = scanner.next();
+
+        if (roleInput.equals("user")) {
+            inputEmail = authentEmail;
+        }
+
         if (!Objects.equals(String.valueOf(comptes.get(email).getMotDePasse()), authentMDP)) {
             Accueil.afficherJaune("Mot de passe erroné ...!");
             nbErreurs += 1;
