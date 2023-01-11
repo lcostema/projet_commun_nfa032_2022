@@ -45,6 +45,9 @@ public class ResultatRecherche extends Accueil{
     public void afficherResultatRecherche(List<Particulier> liste){
         if(liste.size() == 0){
             System.out.println("Aucune entrée trouvée");
+        } else if (liste.size() >= 10) {
+            System.out.println("10 entrée(s) ou plus trouvée(s) dans l'annuaire, affichage des plus récentes (par date d'ajout) :");
+            liste.forEach(p -> afficherParticulier(p));
         } else {
             System.out.println(liste.size() + " entrée(s) trouvée(s) dans l'annuaire (par date d'ajout) :");
             liste.forEach(p -> afficherParticulier(p));
