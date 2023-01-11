@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class Connexion {
 
-    static int nbErreurs;
+    public static int nbErreurs;
     static int maxErreurs = 3;
     static String roleInput;
     static Scanner scanner = new Scanner(System.in);
 
-    public static boolean authentification(String role, HashMap<String, Compte> comptes){
+    public static boolean authentification(String role, HashMap<String, Compte> comptes) {
         roleInput = role;
         String authentEmail, authentRole;
         if (Objects.equals(roleInput, "admin")) {
@@ -81,5 +81,4 @@ public class Connexion {
             Accueil.mA.ouvrirMenuAccueil();
         }
     }
-
 }

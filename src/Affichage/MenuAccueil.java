@@ -1,11 +1,11 @@
 package Affichage;
 
 import Authentification.Connexion;
-import Utilisateurs.Particulier;
 
 public class MenuAccueil extends Accueil {
 
     public void ouvrirMenuAccueil() {
+
         afficherCyan("""
                                      
                  *** Bienvenue dans l’Annuaire NFA032 ***
@@ -21,6 +21,7 @@ public class MenuAccueil extends Accueil {
                 """);
 
         afficherVert("Choisir (taper le chiffre puis Enter) :");
+
         if (scannerClavier.hasNext()) {
             int chiffre;
             if (scannerClavier.hasNextInt()) {
@@ -28,8 +29,6 @@ public class MenuAccueil extends Accueil {
                 try {
                     chiffre = scannerClavier.nextInt();
                 } catch (Exception exception) {
-                    afficherRouge(erreurChoix);
-                    afficherRouge(entrer1234);
                     return;
                 }
 
@@ -41,6 +40,7 @@ public class MenuAccueil extends Accueil {
                     case 2 -> {
                         if (Connexion.authentification("user", comptes)) {
                             afficherNormal("\n Particulier authentifié !\n");
+                            Connexion.nbErreurs = 0;
 
                             String email = "toto";
                             MenuParticulier.afficherMenuParticulier(email);
@@ -52,6 +52,7 @@ public class MenuAccueil extends Accueil {
                     case 3 -> {
                         if (Connexion.authentification("admin", comptes)) {
                             afficherNormal("\n Administrateur authentifié !\n");
+                            Connexion.nbErreurs = 0;
                             MenuAdmin.afficherMenuAdmin();
                         }
                     }
@@ -61,6 +62,7 @@ public class MenuAccueil extends Accueil {
 
             } else {
                 // gestion erreurs d'entrée
+                afficherRouge(erreurChoix);
                 afficherRouge(entrer1234);
                 scannerClavier.next();
             }
