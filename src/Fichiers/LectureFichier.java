@@ -8,20 +8,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
-import static Affichage.Accueil.dateFormatter;
+import static Affichage.Accueil.*;
 
 /**
  * Classe pour charger le contenu des fichiers annuaire.txt et comptes.txt dans des Hashmaps
  */
 public class LectureFichier {
-    HashMap<String, Compte> comptes = new HashMap<>();
-    HashMap<String, Particulier> annuaire = new HashMap<>();
-
     public HashMap<String, Compte> getComptes() {
         return comptes;
     }
@@ -42,8 +37,15 @@ public class LectureFichier {
         while (var != null) {
             //on récupère les champs dans un tableau de String
             String[] ligne = var.split(";");
+            Compte c = null;
             //on crée le Compte
-            Compte c = new Compte(ligne[0], ligne[1], Compte.Role.valueOf(ligne[2]));
+            Particulier particulier = annuaire.get(ligne[0]);
+            particulier.setMotDePasse(ligne[1]);
+            /* Cas d'un admin présent dans l'annuaire */
+            if (Compte.Role.valueOf(ligne[2]) == Compte.Role.Administrateur) {
+                particulier.setRole(Compte.Role.Administrateur);
+            }
+            c = particulier.getCompte();
             //on l'ajoute dans le hashmap
             comptes.put(ligne[0], c);
             var = br.readLine();
@@ -62,7 +64,6 @@ public class LectureFichier {
         FileReader in = new FileReader(file);
         BufferedReader br = new BufferedReader(in);
 
-
         String var = br.readLine();
         while (var != null) {
             //on récupère les champs dans un tableau de String
@@ -76,10 +77,7 @@ public class LectureFichier {
             Date joinDate = dateFormatter.parse(ligne[6]);
             Date updateDate = dateFormatter.parse(ligne[7]);
 
-
-            String password = "Coder la fonction qui va chercher le mdp dans le Hashmap comptes";
-
-            Particulier p = new Particulier(email, password, lastName, firstName, postalAdress, birthday, joinDate, updateDate, profil);
+            Particulier p = new Particulier(email, null, lastName, firstName, postalAdress, birthday, joinDate, updateDate, profil);
 
             annuaire.put(email, p);
 
