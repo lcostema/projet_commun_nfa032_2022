@@ -1,13 +1,14 @@
 package Affichage;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import Authentification.Connexion;
 import Utilisateurs.Particulier;
 
 public class MenuAccueil extends Accueil {
 
-    public void ouvrirMenuAccueil() throws IOException {
+    public void ouvrirMenuAccueil() throws IOException, ParseException {
         afficherCyan("""
                                      
                  *** Bienvenue dans l’Annuaire NFA032 ***

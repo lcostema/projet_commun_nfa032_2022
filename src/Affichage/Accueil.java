@@ -7,6 +7,7 @@ import Utilisateurs.Particulier;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
@@ -68,7 +69,7 @@ public class Accueil {
      * @param args
      * @throws Exception
      */
-    public static void main(String[] args) throws Exception, IOException {
+    public static void main(String[] args) throws Exception, IOException, ParseException {
 
         EcritureFichier ef = new EcritureFichier();
         LectureFichier lf = new LectureFichier();

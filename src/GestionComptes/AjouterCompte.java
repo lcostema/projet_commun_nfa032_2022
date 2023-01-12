@@ -8,6 +8,7 @@ import Utilisateurs.Compte.Role;
 import Utilisateurs.Particulier.Profil;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,8 +21,9 @@ public class AjouterCompte extends MenuAdmin {
      * Ajout de compte.
      * Selon role = Administrateur || Particulier ajout au seul fichier compte ou également au fichier annuaire.
      * @throws IOException
+     * @throws ParseException
      */
-    public static void creationCompte(HashMap<String, Compte> comptes, Role role) throws IOException{
+    public static void creationCompte(HashMap<String, Compte> comptes, Role role) throws IOException, ParseException{
 
         //renseignement et vérification de l'email
         afficherVert("Veuillez indiquer l'email du compte " + role + " à ajouter : ");
@@ -79,7 +81,7 @@ public class AjouterCompte extends MenuAdmin {
             //String dateNaissance =  scannerClavier.next();
             Date dateDeNaissance = dateFormatter.parse(scannerClavier.next());
 
-            Profil profil;
+            Profil profil = null;
             String reponse;
             afficherVert("Veuillez indiquer le profil du Particulier à ajouter (a pour Auditeur, e pour Enseignant ou d pour Direction) :"); 
             do {

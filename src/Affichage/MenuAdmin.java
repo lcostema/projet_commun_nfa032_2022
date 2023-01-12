@@ -1,12 +1,13 @@
 package Affichage;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import Utilisateurs.Compte.Role;
 
 public class MenuAdmin extends Accueil {
 
-    public static void afficherMenuAdmin() throws IOException {
+    public static void afficherMenuAdmin() throws IOException, ParseException {
 
 
         afficherCyan("""
