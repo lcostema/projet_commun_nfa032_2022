@@ -50,7 +50,7 @@ public class Accueil {
     static public MenuAccueil mA = new MenuAccueil();
 
     //TODO: discuter l'emplacement des URI des fichiers.txt
-    static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
+    public static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
     static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
     static public HashMap<String, Compte> comptes = new HashMap<>();
@@ -73,23 +73,11 @@ public class Accueil {
         LectureFichier lf = new LectureFichier();
 
 
-//lecture des fichiers
+        //lecture des fichiers
         lf.lectureComptes(comptesTxt);
         comptes = lf.getComptes();
         lf.lectureAnnuaire(annuaireTxt);
         annuaire = lf.getAnnuaire();
-
-//Test Lecture des fichiers
-//        System.out.println(dateFormatter.format(lf.getAnnuaire().get("cocobello@cnam.net").getDateAjout()));
-//        System.out.println(lf.getAnnuaire().get("cocobello@cnam.net").getDateAjout());
-//        System.out.println(lf.getComptes().get("tototutu@cnam.fr").getMotDePasse());
-
-//Test Ecriture des fichiers
-//        lf.getComptes().put("mailDeTest@test.com", new Compte("mailDeTest@test.com", "mdpTest", Compte.Role.Administrateur));
-//        lf.getAnnuaire().put("mailDeTest@test.com", new Particulier("mailDeTest@test.com", "mdpTest","Dupont","Jean","1 place de la gare 75000 Paris",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Direction));
-//        ef.ecrireComptes(lf.getComptes(), comptesTxt);
-//        ef.ecrireAnnuaire(lf.getAnnuaire(), annuaireTxt);
-        
 
 
         /* boucle programme */

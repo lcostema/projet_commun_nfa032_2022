@@ -2,8 +2,10 @@ package Affichage;
 
 import java.util.HashMap;
 import java.util.Objects;
+
 import GestionComptes.*;
 import Utilisateurs.Compte;
+import Utilisateurs.Compte.Role;
 
 public class MenuAdmin extends Accueil {
 
@@ -11,10 +13,11 @@ public class MenuAdmin extends Accueil {
 
 
         afficherCyan("""
-                Ajouter un utilisateur (Administrateur)
+                Menu Admin
                    a. Ajouter un Admin
                    b. Ajouter un Particulier
-                   c. Retour au menu principal
+                   c. Modifier un Particulier
+                   d. Retour au menu principal
                 """);
         afficherVert("Choisir (taper la lettre puis Enter) :");
 
@@ -24,14 +27,11 @@ public class MenuAdmin extends Accueil {
                 switch (lettre) {
                     // a. Ajouter un Admin
                     case "a" ->
-                            afficherNormal("Choix a...");
-                        //GestionComptes.AjouterAdmin()  //TODO: ISABELLE EST DESSUS
+                            GestionComptes.AjouterCompte.creationCompte(comptes, Role.Administrateur);  
 
                     // b. Ajouter un Particulier
                     case "b" ->
-                            afficherNormal("Choix b...");
-
-                        //GestionComptes.AjouterParticulier() //TODO:ISABELLE EST DESSUS
+                            GestionComptes.AjouterCompte.creationCompte(comptes, Role.Particulier);
 
                     //c. Modifier Un Particulier
                     case "c" -> afficherNormal("Choix c...");

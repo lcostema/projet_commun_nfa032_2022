@@ -23,7 +23,7 @@ public class EcritureFichier {
      * @param file
      * @throws IOException
      */
-    public void ecrireComptes(HashMap<String, Compte> comptes, File file) throws IOException {
+    public static void ecrireComptes(HashMap<String, Compte> comptes, File file) throws IOException {
         //Méthode qui prend en argument la variable comptes(Hashmap<String, Utilisateur>) où String est l'email
 
         FileWriter fw = new FileWriter(file);
