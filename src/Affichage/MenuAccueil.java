@@ -1,13 +1,15 @@
 package Affichage;
 
 import Authentification.Connexion;
-import Utilisateurs.Particulier;
+import Utilisateurs.Compte;
+
+import java.io.IOException;
 
 public class MenuAccueil extends Accueil {
 
-    public void ouvrirMenuAccueil() {
-        afficherCyan("""
-                                     
+    public void ouvrirMenuAccueil() throws IOException {
+        /* TODO Potentiellement recharger les fichiers à chaque retour à l'accueil? */
+        afficherCyan("""            
                  *** Bienvenue dans l’Annuaire NFA032 ***
                                 
                 Recherche :
@@ -32,27 +34,22 @@ public class MenuAccueil extends Accueil {
                     afficherRouge(entrer1234);
                     return;
                 }
-
                 switch (chiffre) {
                     // 1. Faire une recherche de particulier(s)
                     case 1 -> MenuRecherche.afficherMenuRecherche();
 
                     // 2. Modifier ses infos personnelles (en tant que Particulier)
                     case 2 -> {
-                        if (Connexion.authentification("user", comptes)) {
-                            afficherNormal("\n Particulier authentifié !\n");
-
-                            String email = "toto";
-                            MenuParticulier.afficherMenuParticulier(email);
+                        if (Connexion.authentification(Compte.Role.Particulier)) {
+                            MenuParticulier.ouvrirMenuParticulier(Connexion.authentEmail);
+                            Connexion.authentEmail = null;
                         }
                     }
-
                     // 3. Accéder au menu Admin
-                    // seulement un admin peut faire cela, on commence par l'authentifier
                     case 3 -> {
-                        if (Connexion.authentification("admin", comptes)) {
-                            afficherNormal("\n Administrateur authentifié !\n");
+                        if (Connexion.authentification(Compte.Role.Administrateur)) {
                             MenuAdmin.afficherMenuAdmin();
+                            Connexion.authentEmail = null;
                         }
                     }
                     case 4 -> quitter = true;
