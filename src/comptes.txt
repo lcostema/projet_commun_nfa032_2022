@@ -1,5 +1,6 @@
 admin@cnam.fr;admin;Administrateur
 mailDeTest@test.com;mdpTest;Administrateur
 tototutu@cnam.fr;user-2;Particulier
+isa@test.fr;isa;Administrateur
 cocobello@cnam.net;user-1;Particulier
 ilestcool@lmail.com;user-3;Particulier

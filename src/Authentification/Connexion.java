@@ -3,6 +3,7 @@ package Authentification;
 import Affichage.Accueil;
 import Utilisateurs.Compte;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ public class Connexion {
     static String roleInput;
     static Scanner scanner = new Scanner(System.in);
 
-    public static boolean authentification(String role, HashMap<String, Compte> comptes){
+    public static boolean authentification(String role, HashMap<String, Compte> comptes) throws IOException{
         roleInput = role;
         String authentEmail, authentRole;
         if (Objects.equals(roleInput, "admin")) {
@@ -52,7 +53,7 @@ public class Connexion {
         return true;
     }
 
-    private static void checkMDP(String email, HashMap<String, Compte> comptes) {
+    private static void checkMDP(String email, HashMap<String, Compte> comptes) throws IOException {
         System.out.print("Mot de passe :\n");
         String authentMDP = scanner.next();
         if (!Objects.equals(String.valueOf(comptes.get(email).getMotDePasse()), authentMDP)) {
@@ -62,7 +63,7 @@ public class Connexion {
         }
     }
 
-    private static void checkErreursMDP(String email, HashMap<String, Compte> comptes) {
+    private static void checkErreursMDP(String email, HashMap<String, Compte> comptes) throws IOException {
         if (nbErreurs < maxErreurs) {
             checkMDP(email, comptes);
         } else {
@@ -72,7 +73,7 @@ public class Connexion {
         }
     }
 
-    private static void checkErreurs(HashMap<String, Compte> comptes) {
+    private static void checkErreurs(HashMap<String, Compte> comptes) throws IOException {
         if (nbErreurs < maxErreurs) {
             authentification(roleInput, comptes);
         } else {

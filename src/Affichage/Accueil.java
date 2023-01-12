@@ -6,6 +6,7 @@ import Utilisateurs.Compte;
 import Utilisateurs.Particulier;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
@@ -51,7 +52,7 @@ public class Accueil {
 
     //TODO: discuter l'emplacement des URI des fichiers.txt
     public static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
-    static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
+    public static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
     static public HashMap<String, Compte> comptes = new HashMap<>();
     static public HashMap<String, Particulier> annuaire = new HashMap<>();
@@ -67,7 +68,7 @@ public class Accueil {
      * @param args
      * @throws Exception
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception, IOException {
 
         EcritureFichier ef = new EcritureFichier();
         LectureFichier lf = new LectureFichier();

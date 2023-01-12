@@ -1,15 +1,12 @@
 package Affichage;
 
-import java.util.HashMap;
-import java.util.Objects;
+import java.io.IOException;
 
-import GestionComptes.*;
-import Utilisateurs.Compte;
 import Utilisateurs.Compte.Role;
 
 public class MenuAdmin extends Accueil {
 
-    public static void afficherMenuAdmin(){
+    public static void afficherMenuAdmin() throws IOException {
 
 
         afficherCyan("""
