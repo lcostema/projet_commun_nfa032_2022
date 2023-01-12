@@ -1,9 +1,7 @@
 package Affichage;
 
 import Fichiers.*;
-import Recherche.*;
-import Utilisateurs.Compte;
-import Utilisateurs.Particulier;
+import Utilisateurs.*;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -12,7 +10,6 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Accueil {
-
     //Mise en forme par la couleur
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -50,17 +47,18 @@ public class Accueil {
     static public MenuAccueil mA = new MenuAccueil();
 
     //TODO: discuter l'emplacement des URI des fichiers.txt
-    static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
-    static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
+    public static final File FICHIER_COMPTES = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
+    public static final File FICHIER_ANNUAIRE = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
     static public HashMap<String, Compte> comptes = new HashMap<>();
     static public HashMap<String, Particulier> annuaire = new HashMap<>();
-
 
     //ajout du formateur de date
     static public SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     static public Scanner scannerClavier = new Scanner(System.in);
+
+    /*TODO Remplacer les system out print dans les autres classes par les fonctions d'affichage de Luc*/
 
     /**
      * Méthode principale
@@ -68,35 +66,20 @@ public class Accueil {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-
         EcritureFichier ef = new EcritureFichier();
         LectureFichier lf = new LectureFichier();
 
-
-//lecture des fichiers
-        lf.lectureComptes(comptesTxt);
-        comptes = lf.getComptes();
-        lf.lectureAnnuaire(annuaireTxt);
+        // Lecture des fichiers
+        lf.lectureAnnuaire(FICHIER_ANNUAIRE);
         annuaire = lf.getAnnuaire();
+        lf.lectureComptes(FICHIER_COMPTES);
+        comptes = lf.getComptes();
 
-//Test Lecture des fichiers
-//        System.out.println(dateFormatter.format(lf.getAnnuaire().get("cocobello@cnam.net").getDateAjout()));
-//        System.out.println(lf.getAnnuaire().get("cocobello@cnam.net").getDateAjout());
-//        System.out.println(lf.getComptes().get("tototutu@cnam.fr").getMotDePasse());
-
-//Test Ecriture des fichiers
-//        lf.getComptes().put("mailDeTest@test.com", new Compte("mailDeTest@test.com", "mdpTest", Compte.Role.Administrateur));
-//        lf.getAnnuaire().put("mailDeTest@test.com", new Particulier("mailDeTest@test.com", "mdpTest","Dupont","Jean","1 place de la gare 75000 Paris",dateFormatter.parse("24/06/2000") ,dateFormatter.parse("03/07/2001"),dateFormatter.parse("05/07/2001"), Particulier.Profil.Direction));
-//        ef.ecrireComptes(lf.getComptes(), comptesTxt);
-//        ef.ecrireAnnuaire(lf.getAnnuaire(), annuaireTxt);
-        
-
-
-        /* boucle programme */
+        // Boucle programme
         while (!quitter) {
             mA.ouvrirMenuAccueil();
         }
-        System.out.println("Merci d'avoir utlisé le programme");
+        System.out.println("Merci d'avoir utilisé le programme");
         scannerClavier.close();
     }
 }
