@@ -12,10 +12,13 @@ public class MenuAccueil extends Accueil {
 
     /**
      * Affichage des options du menu accueil
-     * @throws IOException
+     * @throws IOException IOException
      */
     public static void ouvrirMenuAccueil() throws IOException {
-        afficherNormal("""            
+        // ligne vide au-dessus de *** Bienvenue dans l’Annuaire NFA032 ***
+        // pour éviter de coller en sous des affichages précédents
+        afficherNormal("""
+                
                 *** Bienvenue dans l’Annuaire NFA032 ***
                   """);
         afficherCyan("""

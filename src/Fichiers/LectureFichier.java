@@ -26,8 +26,8 @@ public class LectureFichier {
 
     /**
      * Méthode pour lire le fichier comptes et stocker les données dans la Hashmap comptes
-     * @param file
-     * @throws IOException
+     * @param file file
+     * @throws IOException IOException
      */
     public void lectureComptes(File file) throws IOException {
         FileReader in = new FileReader(file);
@@ -56,9 +56,9 @@ public class LectureFichier {
 
     /**
      * Méthode pour lire le fichier annuaire et stocker les données dans la Hashmap annuaire
-     * @param file
-     * @throws IOException
-     * @throws ParseException
+     * @param file file
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
     public void lectureAnnuaire(File file) throws IOException, ParseException {
         FileReader in = new FileReader(file);

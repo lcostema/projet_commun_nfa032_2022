@@ -34,7 +34,7 @@ public class Compte extends Accueil {
     /**
      * Setter email
      *
-     * @param email
+     * @param email email
      */
     public void setEmail(String email) {
         this.email = email;
@@ -52,7 +52,7 @@ public class Compte extends Accueil {
     /**
      * Setter Mot de passe
      *
-     * @param motDePasse
+     * @param motDePasse motDePasse
      */
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
@@ -69,8 +69,7 @@ public class Compte extends Accueil {
 
     /**
      * Setter Role
-     *
-     * @return role
+     * retourne role
      */
     public void setRole(Role role) {
         this.role = role;

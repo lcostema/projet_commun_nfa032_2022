@@ -74,7 +74,7 @@ public class Accueil {
         while (!quitter) {
             MenuAccueil.ouvrirMenuAccueil();
         }
-        System.out.println("Merci d'avoir utilisé le programme");
+        afficherNormal("Merci d'avoir utilisé le programme");
         scannerClavier.close();
     }
 }

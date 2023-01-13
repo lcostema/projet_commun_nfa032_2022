@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MenuRecherche extends Accueil {
     /**
      *Affichage des options du menu recherche
-     * @throws IOException
+     * @throws IOException IOException
      */
     public static void afficherMenuRecherche() throws IOException {
         afficherCyan("""

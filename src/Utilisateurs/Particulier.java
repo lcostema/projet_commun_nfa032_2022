@@ -7,7 +7,9 @@ import java.util.Date;
  */
 public class Particulier extends Compte {
     private String nom, prenom, adressePostale;
-    private Date dateNaissance, dateAjout, dateMaj;
+    private Date dateNaissance;
+    private final Date dateAjout;
+    private Date dateMaj;
     public enum Profil {
         Auditeur, Enseignant, Direction
     }
@@ -49,7 +51,7 @@ public class Particulier extends Compte {
     /**
      * Setter nom
      *
-     * @param nom
+     * @param nom nom
      */
     public void setNom(String nom) {
         this.nom = nom;
@@ -67,7 +69,7 @@ public class Particulier extends Compte {
     /**
      * Setter prénom
      *
-     * @param prenom
+     * @param prenom prenom
      */
     public void setPrenom(String prenom) {
         this.prenom = prenom;
@@ -85,7 +87,7 @@ public class Particulier extends Compte {
     /**
      * Setter adresse postale
      *
-     * @param adressePostale
+     * @param adressePostale adressePostale
      */
     public void setAdressePostale(String adressePostale) {
         this.adressePostale = adressePostale;
@@ -103,7 +105,7 @@ public class Particulier extends Compte {
     /**
      * Setter date de naissance
      *
-     * @param dateNaissance
+     * @param dateNaissance dateNaissance
      */
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
@@ -130,7 +132,7 @@ public class Particulier extends Compte {
     /**
      * Setter date de mise à jour
      *
-     * @param dateMaj
+     * @param dateMaj dateMaj
      */
     public void setDateMaj(Date dateMaj) {
         this.dateMaj = dateMaj;
@@ -148,7 +150,7 @@ public class Particulier extends Compte {
     /**
      * Setter profil
      *
-     * @param profil
+     * @param profil profil
      */
     public void setProfil(Profil profil) {
         this.profil = profil;

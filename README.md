@@ -2,4 +2,4 @@ Le but de ce projet est de développer une application Java qui effectue une ges
 
 Données utilisateurs : nom;prenom;email;adressePostale;dateNaissance;profil;dateAjout;dateMaj (profiles : Auditeur/Enseignant/Direction)
 
-Comptes (pour authentification) : email;mdp;rôle (rôles : Admin/User)
+Comptes (pour l'authentification) : email;mdp;rôle (rôles : Administrateur/Particulier)

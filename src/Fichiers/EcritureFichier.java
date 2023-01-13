@@ -18,9 +18,9 @@ public class EcritureFichier {
 
     /**
      * Méthode pour écrire dans le fichier comptes
-     * @param comptes
-     * @param file
-     * @throws IOException
+     * @param comptes comptes
+     * @param file file
+     * @throws IOException IOException
      */
     public static void ecrireComptes(HashMap<String, Compte> comptes, File file) throws IOException {
         //Méthode qui prend en argument la variable comptes(Hashmap<String, Utilisateur>) où String est l'email
@@ -51,9 +51,9 @@ public class EcritureFichier {
 
     /**
      * Méthode qui prend en argument la variable annuaire(Hashmap<String, User>) où String est l'email
-     * @param annuaire
-     * @param file
-     * @throws IOException
+     * @param annuaire annuaire
+     * @param file file
+     * @throws IOException IOException
      */
     public static void ecrireAnnuaire(HashMap<String, Particulier> annuaire, File file) throws IOException {
         FileWriter fw = new FileWriter(file);

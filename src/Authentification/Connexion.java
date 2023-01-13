@@ -4,8 +4,6 @@ import Affichage.Accueil;
 import Utilisateurs.Compte;
 import Utilisateurs.Particulier;
 
-import java.io.IOException;
-
 import static Affichage.Accueil.*;
 
 /**
@@ -72,6 +70,6 @@ public class Connexion {
      * @return Retourne vrai tant que les erreurs sont < MAX_ERREURS
      */
     private static boolean checkErreurs(){
-        return (nbErreurs < MAX_ERREURS) ? true : false;
+        return nbErreurs < MAX_ERREURS;
     }
 }

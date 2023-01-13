@@ -11,7 +11,7 @@ public class ResultatRecherche extends Accueil{
 
     /**
      * Méthode qui met en forme l'affichage pour un Particulier
-     * @param p
+     * @param p particulier
      */
     private void afficherParticulier(Particulier p){
         System.out.println("----------------------------------------");
@@ -27,7 +27,7 @@ public class ResultatRecherche extends Accueil{
 
     /**
      * Plolymorphisme 1 : Méthode qui affiche le resultat (1 objet Particulier) d'une recherche dans l'annuaire
-     * @param p
+     * @param p particulier
      */
     public void afficherResultatRecherche(Particulier p){
         if( p == null){
@@ -40,14 +40,14 @@ public class ResultatRecherche extends Accueil{
 
     /**
      * Plolymorphisme 2 : Méthode qui affiche le résultat (une liste d'objets Particulier) d'une recherche dans l'annuaire
-     * @param liste
+     * @param liste liste
      */
     public void afficherResultatRecherche(List<Particulier> liste){
         if(liste.size() == 0){
             System.out.println("Aucune entrée trouvée");
         } else {
             System.out.println(liste.size() + " entrée(s) trouvée(s) dans l'annuaire (par date d'ajout) :");
-            liste.forEach(p -> afficherParticulier(p));
+            liste.forEach(this::afficherParticulier);
         }
     }
 }

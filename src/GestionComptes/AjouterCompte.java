@@ -34,7 +34,7 @@ public class AjouterCompte {
             email = scannerClavier.nextLine().toLowerCase();
             if (comptes.get(email) != null){
                 Affichage.Accueil.afficherRouge("Cet email est déjà associé à un compte. \nRetour au menu administrateur.");
-                return false;
+                return true;
             }
         }
         while (!motDePasse.matches("^\\S*$") || motDePasse.isEmpty()) {
@@ -84,6 +84,6 @@ public class AjouterCompte {
         EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
         EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
 
-        return true;
+        return false;
     }
 }
