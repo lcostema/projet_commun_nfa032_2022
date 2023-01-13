@@ -51,10 +51,7 @@ public class Accueil {
 
     //ajout du formateur de date
     static public SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-
     static public Scanner scannerClavier = new Scanner(System.in);
-
-    //TODO: Remplacer les system out print dans les autres classes par les fonctions d'affichage du programme/
 
     /**
      * Méthode principale
