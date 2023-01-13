@@ -18,7 +18,7 @@ public class Accueil {
     public static final String ANSI_YELLOW = "\u001B[33m";
 
     //Les strings de réponses des menus
-    static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
+    public static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
     static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
     static String erreurChoix = "Saisie incorrecte !";
 
@@ -58,6 +58,7 @@ public class Accueil {
 
     /**
      * Méthode principale
+     *
      * @param args Pas d'argument de lancement
      * @throws Exception Exception
      */
@@ -74,7 +75,7 @@ public class Accueil {
         while (!quitter) {
             MenuAccueil.ouvrirMenuAccueil();
         }
-        System.out.println("Merci d'avoir utilisé le programme");
+        afficherNormal("Merci d'avoir utilisé le programme");
         scannerClavier.close();
     }
 }

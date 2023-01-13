@@ -16,14 +16,15 @@ import static Affichage.Accueil.*;
 public class AjouterCompte {
     /**
      * Méthode pour créer un compte ainsi que les informations correspondantes dans l'annuaire
+     *
      * @param role Role de l'utilisateur à créer
-     * @return  Réussite de l'ajout
+     * @return Réussite de l'ajout
      * @throws IOException Erreur d'écriture sur les fichiers
      */
     public static boolean creationCompte(Role role) throws IOException {
         String email = "", motDePasse = "",
-        nom = "", prenom = "", adressePostale = "",
-        dateNaissanceInput = "", profilInput = "";
+                nom = "", prenom = "", adressePostale = "",
+                dateNaissanceInput = "", profilInput = "";
 
         Date dateNaissance = null, dateAjout, dateMaj;
         Particulier.Profil profil = null;
@@ -32,9 +33,9 @@ public class AjouterCompte {
         while (!email.matches("^[a-z@.]*$") || email.isEmpty()) {
             afficherVert("Veuillez indiquer l'email du compte " + role + " à ajouter :");
             email = scannerClavier.nextLine().toLowerCase();
-            if (comptes.get(email) != null){
+            if (comptes.get(email) != null) {
                 Affichage.Accueil.afficherRouge("Cet email est déjà associé à un compte. \nRetour au menu administrateur.");
-                return false;
+                return true;
             }
         }
         while (!motDePasse.matches("^\\S*$") || motDePasse.isEmpty()) {
@@ -84,6 +85,6 @@ public class AjouterCompte {
         EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
         EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
 
-        return true;
+        return false;
     }
 }

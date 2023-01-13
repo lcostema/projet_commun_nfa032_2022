@@ -12,21 +12,25 @@ public class MenuAccueil extends Accueil {
 
     /**
      * Affichage des options du menu accueil
-     * @throws IOException
+     *
+     * @throws IOException IOException
      */
     public static void ouvrirMenuAccueil() throws IOException {
-        afficherNormal("""            
+        // ligne vide au-dessus de *** Bienvenue dans l’Annuaire NFA032 ***
+        // pour éviter de coller en sous des affichages précédents
+        afficherNormal("""
+                                
                 *** Bienvenue dans l’Annuaire NFA032 ***
-                  """);
+                """);
         afficherCyan("""
-                     Recherche :
-                        1. Rechercher un ou des particuliers
-                    Particulier :
-                        2. Modifier mes informations personnelles
-                    Administrateur :
-                        3. Accéder au menu Admin
-                    Quitter le programme:
-                       4. Quitter le programme
+                Recherche :
+                   1. Rechercher un ou des particuliers
+                Particulier :
+                   2. Modifier mes informations personnelles
+                Administrateur :
+                   3. Accéder au menu Admin
+                Quitter le programme:
+                   4. Quitter le programme
                 """);
 
         afficherVert("Choisir (taper le chiffre puis Enter) :");

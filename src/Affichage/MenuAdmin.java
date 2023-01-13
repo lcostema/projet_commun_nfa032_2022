@@ -11,7 +11,8 @@ import java.io.IOException;
 public class MenuAdmin extends Accueil {
     /**
      * Affichage des options du menu admin
-     * @throws IOException
+     *
+     * @throws IOException IOException
      */
     public static void afficherMenuAdmin() throws IOException {
         afficherCyan("""
@@ -28,13 +29,13 @@ public class MenuAdmin extends Accueil {
             switch (lettre) {
                 // a. Ajouter un Admin
                 case "a" -> {
-                    if (!GestionComptes.AjouterCompte.creationCompte(Compte.Role.Administrateur)) {
+                    if (GestionComptes.AjouterCompte.creationCompte(Compte.Role.Administrateur)) {
                         afficherMenuAdmin();
                     }
                 }
                 // b. Ajouter un Particulier
                 case "b" -> {
-                    if (!GestionComptes.AjouterCompte.creationCompte(Compte.Role.Particulier)) {
+                    if (GestionComptes.AjouterCompte.creationCompte(Compte.Role.Particulier)) {
                         afficherMenuAdmin();
                     }
                 }
@@ -46,7 +47,10 @@ public class MenuAdmin extends Accueil {
                 }
                 // d. Retour au menu principal
                 case "d" -> MenuAccueil.ouvrirMenuAccueil();
-                default -> {afficherRouge(entrerABCD); afficherMenuAdmin();}
+                default -> {
+                    afficherRouge(entrerABCD);
+                    afficherMenuAdmin();
+                }
             }
         }
     }

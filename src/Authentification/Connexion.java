@@ -4,8 +4,6 @@ import Affichage.Accueil;
 import Utilisateurs.Compte;
 import Utilisateurs.Particulier;
 
-import java.io.IOException;
-
 import static Affichage.Accueil.*;
 
 /**
@@ -18,10 +16,11 @@ public class Connexion {
 
     /**
      * Fonction principale d'authentification
+     *
      * @param role Role à authentifier
      * @return La connexion est établie
      */
-    public static boolean authentification(Particulier.Role role){
+    public static boolean authentification(Particulier.Role role) {
         while (checkErreurs()) {
             Accueil.afficherNormal("Email " + role + " :");
             if (scannerClavier.hasNext()) {
@@ -36,7 +35,7 @@ public class Connexion {
                     Accueil.afficherJaune("Vous n'êtes pas administrateur ...!");
                     return false;
                 }
-                while(!checkMDP()) {
+                while (!checkMDP()) {
                     if (!checkErreurs()) {
                         nbErreurs = 0;
                         return false;
@@ -54,6 +53,7 @@ public class Connexion {
 
     /**
      * Fonction de saisie et vérification du mot de passe
+     *
      * @return Validité après 3 essais du mot de passe
      */
     private static boolean checkMDP() {
@@ -69,9 +69,10 @@ public class Connexion {
 
     /**
      * Fonction de vérification des erreurs
+     *
      * @return Retourne vrai tant que les erreurs sont < MAX_ERREURS
      */
-    private static boolean checkErreurs(){
-        return (nbErreurs < MAX_ERREURS) ? true : false;
+    private static boolean checkErreurs() {
+        return nbErreurs < MAX_ERREURS;
     }
 }
