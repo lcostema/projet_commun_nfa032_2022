@@ -25,11 +25,11 @@ public class MenuAdmin extends Accueil {
                 switch (lettre) {
                     // a. Ajouter un Admin
                     case "a" ->
-                            GestionComptes.AjouterCompte.creationCompte(comptes, Role.Administrateur);  
+                            GestionComptes.AjouterAdmin.creationAdmin(comptes);  
 
                     // b. Ajouter un Particulier
                     case "b" ->
-                            GestionComptes.AjouterCompte.creationCompte(comptes, Role.Particulier);
+                            GestionComptes.AjouterParticulier.creationParticulier(comptes, annuaire);
 
                     //c. Modifier Un Particulier
                     case "c" -> afficherNormal("Choix c...");

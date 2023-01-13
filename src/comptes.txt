@@ -3,4 +3,7 @@ mailDeTest@test.com;mdpTest;Administrateur
 tototutu@cnam.fr;user-2;Particulier
 isa@test.fr;isa;Administrateur
 cocobello@cnam.net;user-1;Particulier
+IsaParticulier@cnam.fr;Isa;Particulier
 ilestcool@lmail.com;user-3;Particulier
+isa@isa.com;isa;Administrateur
+IsaAdmin@cnam.fr;Isa;Administrateur
