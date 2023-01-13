@@ -29,13 +29,13 @@ public class MenuAdmin extends Accueil {
             switch (lettre) {
                 // a. Ajouter un Admin
                 case "a" -> {
-                    if (GestionComptes.AjouterCompte.creationCompte(Compte.Role.Administrateur)) {
+                    if (!GestionComptes.AjouterCompte.creationCompte(Compte.Role.Administrateur)) {
                         afficherMenuAdmin();
                     }
                 }
                 // b. Ajouter un Particulier
                 case "b" -> {
-                    if (GestionComptes.AjouterCompte.creationCompte(Compte.Role.Particulier)) {
+                    if (!GestionComptes.AjouterCompte.creationCompte(Compte.Role.Particulier)) {
                         afficherMenuAdmin();
                     }
                 }
@@ -48,7 +48,7 @@ public class MenuAdmin extends Accueil {
                 // d. Retour au menu principal
                 case "d" -> MenuAccueil.ouvrirMenuAccueil();
                 default -> {
-                    afficherRouge(entrerABCD);
+                    afficherRouge(ENTRER_ABCD);
                     afficherMenuAdmin();
                 }
             }
