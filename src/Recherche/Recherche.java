@@ -15,7 +15,7 @@ import static Affichage.Accueil.*;
 public class Recherche {
 
     //on instancie la class pour afficher les résultats de recherche
-    ResultatRecherche affRes = new ResultatRecherche();
+    final ResultatRecherche affRes = new ResultatRecherche();
 
     /**
      * Recherche par email.
@@ -88,7 +88,7 @@ public class Recherche {
             case "a", "A" -> pro = Particulier.Profil.Auditeur;
             case "e", "E" -> pro = Particulier.Profil.Enseignant;
             case "d", "D" -> pro = Particulier.Profil.Direction;
-            default -> afficherRouge(entrerABCD);
+            default -> afficherRouge(ENTRER_ABCD);
         }
         Particulier.Profil finalPro = pro;
 

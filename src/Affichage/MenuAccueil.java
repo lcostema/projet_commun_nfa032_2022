@@ -41,8 +41,8 @@ public class MenuAccueil extends Accueil {
                 try {
                     chiffre = scannerClavier.nextInt();
                 } catch (Exception exception) {
-                    afficherRouge(erreurChoix);
-                    afficherRouge(entrer1234);
+                    afficherRouge(ERREUR_Choix);
+                    afficherRouge(ENTRER_1234);
                     return;
                 }
                 switch (chiffre) {
@@ -64,12 +64,12 @@ public class MenuAccueil extends Accueil {
                         }
                     }
                     case 4 -> quitter = true;
-                    default -> afficherRouge(entrer1234);
+                    default -> afficherRouge(ENTRER_1234);
                 }
 
             } else {
                 // gestion erreurs d'entrée
-                afficherRouge(entrer1234);
+                afficherRouge(ENTRER_1234);
                 scannerClavier.next();
             }
         }

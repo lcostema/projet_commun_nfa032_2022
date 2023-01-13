@@ -18,9 +18,9 @@ public class Accueil {
     public static final String ANSI_YELLOW = "\u001B[33m";
 
     //Les strings de réponses des menus
-    public static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
-    static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
-    static String erreurChoix = "Saisie incorrecte !";
+    public static final String ENTRER_ABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
+    public static final String ENTRER_1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
+    public static final String ERREUR_Choix = "Saisie incorrecte !";
 
     public static void afficherNormal(Object invite) {
         System.out.println(invite);
@@ -50,8 +50,8 @@ public class Accueil {
     static public HashMap<String, Particulier> annuaire = new HashMap<>();
 
     //ajout du formateur de date
-    static public SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-    static public Scanner scannerClavier = new Scanner(System.in);
+    static public final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    static public final Scanner scannerClavier = new Scanner(System.in);
 
     /**
      * Méthode principale

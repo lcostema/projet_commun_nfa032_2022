@@ -47,7 +47,7 @@ public class MenuRecherche extends Accueil {
                 // d. Retour au menu principal
                 case "d" -> MenuAccueil.ouvrirMenuAccueil();
                 default -> {
-                    afficherRouge(entrerABCD);
+                    afficherRouge(ENTRER_ABCD);
                     afficherMenuRecherche();
                 }
             }
