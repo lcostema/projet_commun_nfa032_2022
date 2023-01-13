@@ -75,7 +75,8 @@ public class Recherche {
         boolean profilConforme = false;
         String profil;
         do {
-            afficherCyan("Veuillez saisir un profil à rechercher (A)uditeur, (E)nseignant, (D)irection): ");
+            afficherCyan("Veuillez saisir la lettre () d'un profil à rechercher\n" +
+                    " (A)uditeur, (E)nseignant, (D)irection) :");
             profil = scannerClavier.next();
             if (profil.equalsIgnoreCase("a") || profil.equalsIgnoreCase("e") || profil.equalsIgnoreCase("d")) {
                 profilConforme = true;

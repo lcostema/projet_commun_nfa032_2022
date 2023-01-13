@@ -15,6 +15,7 @@ public class MenuRecherche extends Accueil {
      */
     public static void afficherMenuRecherche() throws IOException {
         afficherCyan("""
+                
                 Rechercher un ou des particuliers
                    a. Par nom
                    b. Par email
