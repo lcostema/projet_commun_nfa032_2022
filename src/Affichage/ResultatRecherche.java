@@ -14,7 +14,7 @@ public class ResultatRecherche extends Accueil {
      *
      * @param p particulier
      */
-    private void afficherParticulier(Particulier p) {
+    public void afficherParticulier(Particulier p) {
         afficherNormal("----------------------------------------");
         afficherNormal("Nom : " + p.getNom());
         afficherNormal("Prénom : " + p.getPrenom());

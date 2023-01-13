@@ -1,6 +1,5 @@
 package GestionComptes;
 
-import Affichage.Accueil;
 import Affichage.ResultatRecherche;
 import Fichiers.EcritureFichier;
 import Utilisateurs.Particulier;
@@ -17,17 +16,24 @@ import static Affichage.Accueil.*;
 public class ModifierParticulier {
 
     /**
-     * Permet la saisie de l'email
+     * Permet la saisie de l'email du particulier à modifier (Administrateur uniquement!)
      *
      * @return Réussite de la modification des données
      * @throws IOException Erreur d'écriture dans les fichiers
      */
     public static boolean AffichageSaisieEmail() throws IOException {
-        String email;
-        do {
-            Accueil.afficherNormal("Veuillez saisir l'email du particulier à modifier : ");
-            email = scannerClavier.next();
-        } while (!email.contains("@"));
+        String email = "";
+        while (email.isEmpty()) {
+            afficherVert("Veuillez saisir l'email du particulier à modifier (Laisser vide pour quitter le menu) : ");
+            email = scannerClavier.next().toLowerCase();
+            if (email.isEmpty()) {
+                Affichage.Accueil.afficherRouge("Retour au menu administrateur.");
+                return false;
+            } else if (annuaire.get(email) == null){
+                Affichage.Accueil.afficherRouge("Cet email n'est pas associé à un particulier.");
+                email = "";
+            }
+        }
         return ModificationDonnees(email);
     }
 
@@ -40,51 +46,42 @@ public class ModifierParticulier {
      */
     public static boolean ModificationDonnees(String email) throws IOException {
         Particulier particulier = annuaire.get(email);
-        new ResultatRecherche().afficherResultatRecherche(particulier);
+        new ResultatRecherche().afficherParticulier(particulier);
         scannerClavier.nextLine();
         String line = "";
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
             afficherVert("Modifier Nom (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             particulier.setNom(line);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
             afficherVert("Modifier Prénom (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             particulier.setPrenom(line);
         }
         line = "";
-        while (!line.matches("^[a-z@.]*$") || line.isEmpty()) {
+        while (!line.matches("^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@"
+                + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.\\p{L}{2,})$") || line.isEmpty()) {
             afficherVert("Modifier Email (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             particulier.setEmail(line);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú0-9 ,]*$") || line.isEmpty()) {
             afficherVert("Modifier Adresse postale (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             particulier.setAdressePostale(line);
         }
         line = "";
         while (line.isEmpty()) {
             afficherVert("Modifier Date de Naissance (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             try {
                 Date dateNaissance = dateFormatter.parse(line);
                 particulier.setDateNaissance(dateNaissance);
@@ -97,9 +94,7 @@ public class ModifierParticulier {
         while (line.isEmpty()) {
             afficherVert("Modifier Profil (Laisser vide en cas de non modification) " + java.util.Arrays.asList(Particulier.Profil.values()) + ":");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             try {
                 particulier.setProfil(Particulier.Profil.valueOf(line));
             } catch (IllegalArgumentException err) {
