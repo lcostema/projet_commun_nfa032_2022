@@ -98,7 +98,7 @@ public class ModifierParticulier {
         particulier.setDateMaj(new Date(System.currentTimeMillis()));
         EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
         EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
-        afficherNormal("Les données ont été modifiées.");
+        afficherJaune("Les données ont été modifiées.");
         return true;
     }
 }

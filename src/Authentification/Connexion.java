@@ -20,13 +20,12 @@ public class Connexion {
      * Fonction principale d'authentification
      * @param role Role à authentifier
      * @return La connexion est établie
-     * @throws IOException
      */
-    public static boolean authentification(Particulier.Role role) throws IOException {
+    public static boolean authentification(Particulier.Role role){
         while (checkErreurs()) {
             Accueil.afficherNormal("Email " + role + " :");
             if (scannerClavier.hasNext()) {
-                authentEmail = scannerClavier.next();
+                authentEmail = scannerClavier.next().toLowerCase();
                 if (comptes.get(authentEmail) == null) {
                     Accueil.afficherJaune("Pas trouvé cet email ...!");
                     nbErreurs++;
@@ -35,7 +34,7 @@ public class Connexion {
                 Compte.Role authentRole = comptes.get(authentEmail).getRole();
                 if (role == Compte.Role.Administrateur && authentRole != Compte.Role.Administrateur) {
                     Accueil.afficherJaune("Vous n'êtes pas administrateur ...!");
-                    nbErreurs++;
+                    return false;
                 }
                 while(!checkMDP()) {
                     if (!checkErreurs()) {
@@ -56,9 +55,8 @@ public class Connexion {
     /**
      * Fonction de saisie et vérification du mot de passe
      * @return Validité après 3 essais du mot de passe
-     * @throws IOException
      */
-    private static boolean checkMDP() throws IOException {
+    private static boolean checkMDP() {
         afficherNormal("Mot de passe :");
         String authentMDP = scannerClavier.next();
         if (!comptes.get(authentEmail).getMotDePasse().equals(authentMDP)) {
@@ -72,9 +70,8 @@ public class Connexion {
     /**
      * Fonction de vérification des erreurs
      * @return Retourne vrai tant que les erreurs sont < MAX_ERREURS
-     * @throws IOException
      */
-    private static boolean checkErreurs() throws IOException {
+    private static boolean checkErreurs(){
         return (nbErreurs < MAX_ERREURS) ? true : false;
     }
 }

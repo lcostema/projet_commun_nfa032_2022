@@ -5,21 +5,28 @@ import Utilisateurs.Compte;
 
 import java.io.IOException;
 
+/**
+ * Gestion du Menu Accueil
+ */
 public class MenuAccueil extends Accueil {
 
-    public void ouvrirMenuAccueil() throws IOException {
-        /* TODO Potentiellement recharger les fichiers à chaque retour à l'accueil? */
-        afficherCyan("""            
-                 *** Bienvenue dans l’Annuaire NFA032 ***
-                                
-                Recherche :
-                    1. Rechercher un ou des particuliers
-                Particulier :
-                    2. Modifier mes informations personnelles
-                Administrateur :
-                    3. Accéder au menu Admin
-                Quitter le programme:
-                   4. Quitter le programme
+    /**
+     * Affichage des options du menu accueil
+     * @throws IOException
+     */
+    public static void ouvrirMenuAccueil() throws IOException {
+        afficherNormal("""            
+                *** Bienvenue dans l’Annuaire NFA032 ***
+                  """);
+        afficherCyan("""
+                     Recherche :
+                        1. Rechercher un ou des particuliers
+                    Particulier :
+                        2. Modifier mes informations personnelles
+                    Administrateur :
+                        3. Accéder au menu Admin
+                    Quitter le programme:
+                       4. Quitter le programme
                 """);
 
         afficherVert("Choisir (taper le chiffre puis Enter) :");

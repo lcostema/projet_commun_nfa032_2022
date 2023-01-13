@@ -4,7 +4,14 @@ import Recherche.Recherche;
 
 import java.io.IOException;
 
+/**
+ * Gestion du menu recherche
+ */
 public class MenuRecherche extends Accueil {
+    /**
+     *Affichage des options du menu recherche
+     * @throws IOException
+     */
     public static void afficherMenuRecherche() throws IOException {
         afficherCyan("""
                 Rechercher un ou des particuliers
@@ -27,7 +34,7 @@ public class MenuRecherche extends Accueil {
                 // c. Par profil
                 case "c" -> {re.chercherParProfil(annuaire); afficherMenuRecherche();}
                 // d. Retour au menu principal
-                case "d" -> mA.ouvrirMenuAccueil();
+                case "d" -> MenuAccueil.ouvrirMenuAccueil();
                 default -> {afficherRouge(entrerABCD); afficherMenuRecherche();}
             }
         }

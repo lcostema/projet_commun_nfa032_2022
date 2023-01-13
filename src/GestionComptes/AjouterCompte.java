@@ -31,7 +31,7 @@ public class AjouterCompte {
         scannerClavier.nextLine();
         while (!email.matches("^[a-z@.]*$") || email.isEmpty()) {
             afficherVert("Veuillez indiquer l'email du compte " + role + " à ajouter :");
-            email = scannerClavier.nextLine();
+            email = scannerClavier.nextLine().toLowerCase();
             if (comptes.get(email) != null){
                 Affichage.Accueil.afficherRouge("Cet email est déjà associé à un compte. \nRetour au menu administrateur.");
                 return false;
@@ -83,6 +83,7 @@ public class AjouterCompte {
         annuaire.put(email, particulier);
         EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
         EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
+
         return true;
     }
 }

@@ -18,7 +18,6 @@ public class Accueil {
     public static final String ANSI_YELLOW = "\u001B[33m";
 
     //Les strings de réponses des menus
-    static String entrerABC = "Veuillez entrer les lettres a, b ou c uniquement :";
     static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
     static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
     static String erreurChoix = "Saisie incorrecte !";
@@ -44,9 +43,6 @@ public class Accueil {
     }
 
     static boolean quitter = false;
-    static public MenuAccueil mA = new MenuAccueil();
-
-    //TODO: discuter l'emplacement des URI des fichiers.txt
     public static final File FICHIER_COMPTES = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
     public static final File FICHIER_ANNUAIRE = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
@@ -58,15 +54,14 @@ public class Accueil {
 
     static public Scanner scannerClavier = new Scanner(System.in);
 
-    /*TODO Remplacer les system out print dans les autres classes par les fonctions d'affichage de Luc*/
+    //TODO: Remplacer les system out print dans les autres classes par les fonctions d'affichage du programme/
 
     /**
      * Méthode principale
-     * @param args
-     * @throws Exception
+     * @param args Pas d'argument de lancement
+     * @throws Exception Exception
      */
     public static void main(String[] args) throws Exception {
-        EcritureFichier ef = new EcritureFichier();
         LectureFichier lf = new LectureFichier();
 
         // Lecture des fichiers
@@ -77,7 +72,7 @@ public class Accueil {
 
         // Boucle programme
         while (!quitter) {
-            mA.ouvrirMenuAccueil();
+            MenuAccueil.ouvrirMenuAccueil();
         }
         System.out.println("Merci d'avoir utilisé le programme");
         scannerClavier.close();

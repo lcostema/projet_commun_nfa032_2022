@@ -5,7 +5,14 @@ import Utilisateurs.Compte;
 
 import java.io.IOException;
 
+/**
+ * Gestion du menu admin
+ */
 public class MenuAdmin extends Accueil {
+    /**
+     * Affichage des options du menu admin
+     * @throws IOException
+     */
     public static void afficherMenuAdmin() throws IOException {
         afficherCyan("""
                 Ajouter un utilisateur (Administrateur)
@@ -37,8 +44,8 @@ public class MenuAdmin extends Accueil {
                         afficherMenuAdmin();
                     }
                 }
-                // c. Retour au menu principal
-                case "d" -> mA.ouvrirMenuAccueil();
+                // d. Retour au menu principal
+                case "d" -> MenuAccueil.ouvrirMenuAccueil();
                 default -> {afficherRouge(entrerABCD); afficherMenuAdmin();}
             }
         }

@@ -44,9 +44,18 @@ public class Recherche {
 
         System.out.println("Veuillez saisir un nom à rechercher : ");
         String nom = scannerClavier.next();
-        liste = annuaire.values().stream().filter(p -> p.getNom().equals(nom)).toList();
+        liste = annuaire.values().stream()
+                .filter(p -> p.getNom().equalsIgnoreCase(nom))
+                .sorted((p1,p2) -> p2.getDateAjout().compareTo(p1.getDateAjout()))
+                .limit(10)
+                .sorted((p1,p2) -> p1.getPrenom().compareTo(p2.getPrenom()))
+                .toList();
+        //filter : filtre sur le nom donné en input
+        //sorted (1) : on compare la date d'ajout de l'objet n+1 par rapport à n (ce qui donne que les dates les plus récentes sont en premieres dans la liste finale)
+        //limit : on limite la taille de la liste à 10
+        //sorted (2) : on tri sur le prénoms des Particulier (le nom étant le meme)
+        //toList : on converti le stream en liste
 
-        //TODO: remonter les 10 derniers ajoutés (date ajout)
         affRes.afficherResultatRecherche(liste);
     }
 
@@ -78,8 +87,18 @@ public class Recherche {
         }
         Particulier.Profil finalPro = pro;
 
-        liste = annuaire.values().stream().filter(p -> p.getProfil() == finalPro).toList();
-        //TODO: remonter les 10 derniers ajoutés (date ajout)
+        liste = annuaire.values().stream()
+                .filter(p -> p.getProfil() == finalPro)
+                .sorted((p1,p2) -> p2.getDateAjout().compareTo(p1.getDateAjout()))
+                .limit(10)
+                .sorted((p1,p2) -> p1.getNom().compareTo(p2.getNom()))
+                .toList();
+        //filter : filtre sur le profil donné en input
+        //sorted (1): on compare la date d'ajout de l'objet n+1 par rapport à n (ce qui donne que les date les plus récentes sont en premieres dans la liste finale)
+        //limit : on limite la taille de la liste à 10
+        //sorted (2) : on tri sur les noms des Particuliers
+        //toList : on converti le stream en liste
+
 
         affRes.afficherResultatRecherche(liste);
     }
