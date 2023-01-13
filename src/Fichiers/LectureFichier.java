@@ -41,13 +41,13 @@ public class LectureFichier {
             String[] ligne = var.split(";");
             Compte c;
             //on crée le Compte
-            Particulier particulier = annuaire.get(ligne[0]);
-            particulier.setMotDePasse(ligne[1]);
-            /* Cas d'un admin présent dans l'annuaire */
             if (Compte.Role.valueOf(ligne[2]) == Compte.Role.Administrateur) {
-                particulier.setRole(Compte.Role.Administrateur);
+                c = new Compte(ligne[0], ligne[1], Compte.Role.Administrateur);
+            } else {
+                Particulier particulier = annuaire.get(ligne[0]);
+                particulier.setMotDePasse(ligne[1]);
+                c = particulier.getCompte();
             }
-            c = particulier.getCompte();
             //on l'ajoute dans le hashmap
             comptes.put(ligne[0], c);
             var = br.readLine();
