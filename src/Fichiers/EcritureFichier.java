@@ -18,8 +18,9 @@ public class EcritureFichier {
 
     /**
      * Méthode pour écrire dans le fichier comptes
+     *
      * @param comptes comptes
-     * @param file file
+     * @param file    file
      * @throws IOException IOException
      */
     public static void ecrireComptes(HashMap<String, Compte> comptes, File file) throws IOException {
@@ -33,7 +34,7 @@ public class EcritureFichier {
             String password = compte.getMotDePasse();
             String role = compte.getRole().toString();
 
-            String ligne = email+";"+password+";"+role;
+            String ligne = email + ";" + password + ";" + role;
             try {
                 bw.write(ligne);
                 bw.newLine();
@@ -50,9 +51,10 @@ public class EcritureFichier {
     }
 
     /**
-     * Méthode qui prend en argument la variable annuaire(Hashmap<String, User>) où String est l'email
+     * Méthode qui prend en argument la variable annuaire (Hashmap<String, User>) où String est l'email
+     *
      * @param annuaire annuaire
-     * @param file file
+     * @param file     file
      * @throws IOException IOException
      */
     public static void ecrireAnnuaire(HashMap<String, Particulier> annuaire, File file) throws IOException {
@@ -69,7 +71,7 @@ public class EcritureFichier {
             String joinDate = dateFormatter.format(particulier.getDateAjout());
             String updateDate = dateFormatter.format(particulier.getDateMaj());
 
-            String ligne = lastName +";"+ firstName +";"+ email +";"+ postalAdress +";"+ birthday +";"+ profil +";"+ joinDate +";"+ updateDate;
+            String ligne = lastName + ";" + firstName + ";" + email + ";" + postalAdress + ";" + birthday + ";" + profil + ";" + joinDate + ";" + updateDate;
             try {
                 bw.write(ligne);
                 bw.newLine();

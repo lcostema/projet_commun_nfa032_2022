@@ -10,9 +10,11 @@ public class Particulier extends Compte {
     private Date dateNaissance;
     private final Date dateAjout;
     private Date dateMaj;
+
     public enum Profil {
         Auditeur, Enseignant, Direction
     }
+
     private Profil profil;
 
     /**

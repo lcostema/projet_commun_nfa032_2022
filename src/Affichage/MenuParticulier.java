@@ -10,6 +10,7 @@ import java.io.IOException;
 public class MenuParticulier extends Accueil {
     /**
      * Méthode principale pour le menu particulier
+     *
      * @param email Email du particulier authentifié
      * @throws IOException Erreur d'écriture sur les fichiers
      */

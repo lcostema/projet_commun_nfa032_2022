@@ -20,12 +20,14 @@ public class LectureFichier {
     public HashMap<String, Compte> getComptes() {
         return comptes;
     }
+
     public HashMap<String, Particulier> getAnnuaire() {
         return annuaire;
     }
 
     /**
      * Méthode pour lire le fichier comptes et stocker les données dans la Hashmap comptes
+     *
      * @param file file
      * @throws IOException IOException
      */
@@ -37,7 +39,7 @@ public class LectureFichier {
         while (var != null) {
             //on récupère les champs dans un tableau de String
             String[] ligne = var.split(";");
-            Compte c = null;
+            Compte c;
             //on crée le Compte
             Particulier particulier = annuaire.get(ligne[0]);
             particulier.setMotDePasse(ligne[1]);
@@ -56,8 +58,9 @@ public class LectureFichier {
 
     /**
      * Méthode pour lire le fichier annuaire et stocker les données dans la Hashmap annuaire
+     *
      * @param file file
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public void lectureAnnuaire(File file) throws IOException, ParseException {

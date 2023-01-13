@@ -9,7 +9,8 @@ import java.io.IOException;
  */
 public class MenuRecherche extends Accueil {
     /**
-     *Affichage des options du menu recherche
+     * Affichage des options du menu recherche
+     *
      * @throws IOException IOException
      */
     public static void afficherMenuRecherche() throws IOException {
@@ -28,14 +29,26 @@ public class MenuRecherche extends Accueil {
 
             switch (lettre) {
                 // a. Par nom
-                case "a" -> {re.chercherParNom(annuaire); afficherMenuRecherche();}
+                case "a" -> {
+                    re.chercherParNom(annuaire);
+                    afficherMenuRecherche();
+                }
                 // b. Par email
-                case "b" -> {re.chercherParEmail(annuaire); afficherMenuRecherche();}
+                case "b" -> {
+                    re.chercherParEmail(annuaire);
+                    afficherMenuRecherche();
+                }
                 // c. Par profil
-                case "c" -> {re.chercherParProfil(annuaire); afficherMenuRecherche();}
+                case "c" -> {
+                    re.chercherParProfil(annuaire);
+                    afficherMenuRecherche();
+                }
                 // d. Retour au menu principal
                 case "d" -> MenuAccueil.ouvrirMenuAccueil();
-                default -> {afficherRouge(entrerABCD); afficherMenuRecherche();}
+                default -> {
+                    afficherRouge(entrerABCD);
+                    afficherMenuRecherche();
+                }
             }
         }
     }

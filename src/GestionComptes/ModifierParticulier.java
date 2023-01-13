@@ -18,6 +18,7 @@ public class ModifierParticulier {
 
     /**
      * Permet la saisie de l'email
+     *
      * @return Réussite de la modification des données
      * @throws IOException Erreur d'écriture dans les fichiers
      */
@@ -32,6 +33,7 @@ public class ModifierParticulier {
 
     /**
      * Modifie les données du particulier
+     *
      * @param email Email du particulier à modifier
      * @return Réussite de la modification des données
      * @throws IOException Erreur d'écriture dans les fichiers
@@ -44,35 +46,45 @@ public class ModifierParticulier {
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
             afficherVert("Modifier Nom (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()){ break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setNom(line);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
             afficherVert("Modifier Prénom (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()){ break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setPrenom(line);
         }
         line = "";
         while (!line.matches("^[a-z@.]*$") || line.isEmpty()) {
             afficherVert("Modifier Email (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()){ break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setEmail(line);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú0-9 ,]*$") || line.isEmpty()) {
             afficherVert("Modifier Adresse postale (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()){ break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setAdressePostale(line);
         }
         line = "";
         while (line.isEmpty()) {
             afficherVert("Modifier Date de Naissance (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()){ break; }
+            if (line.isEmpty()) {
+                break;
+            }
             try {
                 Date dateNaissance = dateFormatter.parse(line);
                 particulier.setDateNaissance(dateNaissance);
