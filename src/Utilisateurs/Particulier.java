@@ -14,7 +14,7 @@ public class Particulier extends Compte {
     private Profil profil;
 
     /**
-     * Constructeur d'un particulier
+     * Constructeur complet d'un particulier
      *
      * @param email          Email de l'utilisateur
      * @param motDePasse     Mot de passe de l'utilisateur
@@ -119,15 +119,6 @@ public class Particulier extends Compte {
     }
 
     /**
-     * Setter date d'ajout
-     *
-     * @param dateAjout
-     */
-    public void setDateAjout(Date dateAjout) {
-        this.dateAjout = dateAjout;
-    }
-
-    /**
      * Getter date de mise à jour
      *
      * @return dateMaj
@@ -162,5 +153,4 @@ public class Particulier extends Compte {
     public void setProfil(Profil profil) {
         this.profil = profil;
     }
-
 }

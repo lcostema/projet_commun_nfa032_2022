@@ -1,18 +1,22 @@
 package Affichage;
 
-import Utilisateurs.Particulier;
+import GestionComptes.ModifierParticulier;
 
-public class MenuParticulier extends Accueil{
+import java.io.IOException;
 
-    public static void afficherMenuParticulier(String email){
-
-        //Methode modifier Compte
-        Particulier p = annuaire.get(email);
-
-
-
-        //NE PAS OUBLIER DE LANCER ecrireCompte(comptes, new File(Path.of(".").toRealPath() + "\\src\\comptes.txt"))
-
-        mA.ouvrirMenuAccueil();
+/**
+ * Gestion du menu particulier
+ */
+public class MenuParticulier extends Accueil {
+    /**
+     * Méthode principale pour le menu particulier
+     * @param email Email du particulier authentifié
+     * @throws IOException Erreur d'écriture sur les fichiers
+     */
+    public static void ouvrirMenuParticulier(String email) throws IOException {
+        afficherJaune("Email du particulier authentifié: " + email);
+        if (!ModifierParticulier.ModificationDonnees(email)) {
+            ouvrirMenuParticulier(email);
+        }
     }
 }

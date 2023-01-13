@@ -1,13 +1,18 @@
 package Affichage;
 
-
 import Recherche.Recherche;
 
-import java.util.Objects;
+import java.io.IOException;
 
-
+/**
+ * Gestion du menu recherche
+ */
 public class MenuRecherche extends Accueil {
-    public static void afficherMenuRecherche() {
+    /**
+     *Affichage des options du menu recherche
+     * @throws IOException
+     */
+    public static void afficherMenuRecherche() throws IOException {
         afficherCyan("""
                 Rechercher un ou des particuliers
                    a. Par nom
@@ -23,16 +28,14 @@ public class MenuRecherche extends Accueil {
 
             switch (lettre) {
                 // a. Par nom
-
-                case "a" -> {re.chercherParNom(annuaire, scannerClavier); afficherMenuRecherche();}
+                case "a" -> {re.chercherParNom(annuaire); afficherMenuRecherche();}
                 // b. Par email
-                case "b" -> {re.chercherParEmail(annuaire, scannerClavier); afficherMenuRecherche();}
+                case "b" -> {re.chercherParEmail(annuaire); afficherMenuRecherche();}
                 // c. Par profil
-                case "c" -> {re.chercherParProfil(annuaire, scannerClavier); afficherMenuRecherche();}
+                case "c" -> {re.chercherParProfil(annuaire); afficherMenuRecherche();}
                 // d. Retour au menu principal
-                case "d" -> mA.ouvrirMenuAccueil();
+                case "d" -> MenuAccueil.ouvrirMenuAccueil();
                 default -> {afficherRouge(entrerABCD); afficherMenuRecherche();}
-
             }
         }
     }

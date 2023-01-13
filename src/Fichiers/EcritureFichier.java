@@ -1,14 +1,13 @@
 package Fichiers;
 
-import Utilisateurs.*;
+import Utilisateurs.Compte;
+import Utilisateurs.Particulier;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.Locale;
 
 import static Affichage.Accueil.dateFormatter;
 
@@ -23,14 +22,14 @@ public class EcritureFichier {
      * @param file
      * @throws IOException
      */
-    public void ecrireComptes(HashMap<String, Compte> comptes, File file) throws IOException {
+    public static void ecrireComptes(HashMap<String, Compte> comptes, File file) throws IOException {
         //Méthode qui prend en argument la variable comptes(Hashmap<String, Utilisateur>) où String est l'email
 
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
 
         comptes.forEach((u, compte) -> {
-            String email = u;
+            String email = compte.getEmail();
             String password = compte.getMotDePasse();
             String role = compte.getRole().toString();
 
@@ -56,7 +55,7 @@ public class EcritureFichier {
      * @param file
      * @throws IOException
      */
-    public void ecrireAnnuaire(HashMap<String, Particulier> annuaire, File file) throws IOException {
+    public static void ecrireAnnuaire(HashMap<String, Particulier> annuaire, File file) throws IOException {
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
 
