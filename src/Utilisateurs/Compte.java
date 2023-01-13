@@ -6,8 +6,11 @@ import Affichage.Accueil;
  * Classe des comptes
  */
 public class Compte extends Accueil {
-    private Role role;
+    private final Role role;
     private String email, motDePasse;
+    public enum Role {
+        Administrateur, Particulier
+    }
 
     /**
      * Constructeur d'un compte
@@ -68,17 +71,9 @@ public class Compte extends Accueil {
     }
 
     /**
-     * Setter Role
-     * retourne role
+     * Getter du compte
+     * @return Le compte
      */
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public enum Role {
-        Administrateur, Particulier
-    }
-
     public Compte getCompte() {
         return this;
     }
