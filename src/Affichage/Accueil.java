@@ -1,8 +1,7 @@
 package Affichage;
 
 import Fichiers.LectureFichier;
-import Utilisateurs.Compte;
-import Utilisateurs.Particulier;
+import Utilisateurs.*;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -69,11 +68,12 @@ public class Accueil {
         lf.lectureComptes(FICHIER_COMPTES);
         comptes = lf.getComptes();
 
+        afficherNormal(" ****************************************\n" +
+                " *** Bienvenue dans l’Annuaire NFA032 ***\n" +
+                " ****************************************");
+
         // Boucle programme
         while (!quitter) {
-            afficherNormal("\n ****************************************");
-            afficherNormal(" *** Bienvenue dans l’Annuaire NFA032 ***");
-            afficherNormal(" ****************************************");
             MenuAccueil.ouvrirMenuAccueil();
         }
         afficherNormal("Merci d'avoir utilisé le programme");
