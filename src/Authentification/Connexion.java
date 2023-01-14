@@ -32,8 +32,9 @@ public class Connexion {
                     return authentification(role);
                 }
                 Compte.Role authentRole = comptes.get(authentEmail).getRole();
-                if (role == Compte.Role.Administrateur && authentRole != Compte.Role.Administrateur) {
-                    Accueil.afficherJaune("Vous n'êtes pas administrateur ...!");
+                if (role == Compte.Role.Administrateur && authentRole != Compte.Role.Administrateur ||
+                        role == Compte.Role.Particulier && authentRole != Compte.Role.Particulier) {
+                    Accueil.afficherJaune("Vous n'avez pas le role : " + role);
                     return false;
                 }
                 while (!checkMDP()) {
