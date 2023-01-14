@@ -1,16 +1,15 @@
 package Authentification;
 
 import Affichage.Accueil;
-import Affichage.MenuAccueil;
 import Utilisateurs.Compte;
 import Utilisateurs.Particulier;
 
-import java.io.IOException;
+import static Affichage.Accueil.*;
 
 /**
  * Classe de connexion
  */
-public class Connexion extends MenuAccueil {
+public class Connexion {
     public static int nbErreurs = 0;
     private final static int MAX_ERREURS = 3;
     public static String authentEmail = null;
@@ -21,7 +20,8 @@ public class Connexion extends MenuAccueil {
      * @param role Role à authentifier
      * @return La connexion est établie
      */
-    public static boolean authentification(Particulier.Role role) throws IOException {
+    public static boolean authentification(Particulier.Role role) {
+        errorloop:
         while (checkErreurs()) {
             Accueil.afficherCyan("Email " + role + " :");
             if (scannerClavier.hasNext()) {
@@ -34,23 +34,20 @@ public class Connexion extends MenuAccueil {
                 Compte.Role authentRole = comptes.get(authentEmail).getRole();
                 if (role == Compte.Role.Administrateur && authentRole != Compte.Role.Administrateur) {
                     Accueil.afficherJaune("Vous n'êtes pas administrateur ...!");
-                    ouvrirMenuAccueil();
+                    return false;
                 }
                 while (!checkMDP()) {
                     if (!checkErreurs()) {
-                        nbErreurs = 0;
-                        Accueil.afficherRouge("Trop de tentatives erronées !");
-                        ouvrirMenuAccueil();
+                        break errorloop;
                     }
                 }
                 nbErreurs = 0;
-                afficherNormal("\n " + role + " authentifié !");
+                afficherNormal("\n" + role + " authentifié !");
                 return true;
             }
         }
         Accueil.afficherRouge("Trop de tentatives erronées !");
         nbErreurs = 0;
-        ouvrirMenuAccueil();
         return false;
     }
 
