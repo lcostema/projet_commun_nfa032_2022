@@ -30,13 +30,13 @@ public class MenuAdmin extends Accueil {
             switch (lettre) {
                 // a. Ajouter un Admin
                 case "a" -> {
-                    if (GestionComptes.AjouterCompte.creationCompte(Compte.Role.Administrateur)) {
+                    if (!GestionComptes.AjouterCompte.creationCompte(Compte.Role.Administrateur)) {
                         afficherMenuAdmin();
                     }
                 }
                 // b. Ajouter un Particulier
                 case "b" -> {
-                    if (GestionComptes.AjouterCompte.creationCompte(Compte.Role.Particulier)) {
+                    if (!GestionComptes.AjouterCompte.creationCompte(Compte.Role.Particulier)) {
                         afficherMenuAdmin();
                     }
                 }
