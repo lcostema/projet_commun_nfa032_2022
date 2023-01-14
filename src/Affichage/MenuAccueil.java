@@ -16,13 +16,10 @@ public class MenuAccueil extends Accueil {
      * @throws IOException IOException
      */
     public static void ouvrirMenuAccueil() throws IOException {
-        // ligne vide au-dessus de *** Bienvenue dans l’Annuaire NFA032 ***
-        // pour éviter de coller en sous des affichages précédents
-        afficherNormal("""
-                                
-                *** Bienvenue dans l’Annuaire NFA032 ***
-                """);
+        /* ligne vide au-dessus du menu
+        pour éviter de coller sous des affichages précédents */
         afficherCyan("""
+                                
                 Recherche :
                    1. Rechercher un ou des particuliers
                 Particulier :
@@ -32,7 +29,6 @@ public class MenuAccueil extends Accueil {
                 Quitter le programme:
                    4. Quitter le programme
                 """);
-
         afficherVert("Choisir (taper le chiffre puis Enter) :");
         if (scannerClavier.hasNext()) {
             int chiffre;
@@ -66,7 +62,6 @@ public class MenuAccueil extends Accueil {
                     case 4 -> quitter = true;
                     default -> afficherRouge(ENTRER_1234);
                 }
-
             } else {
                 // gestion erreurs d'entrée
                 afficherRouge(ENTRER_1234);

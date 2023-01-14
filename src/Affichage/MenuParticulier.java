@@ -15,9 +15,6 @@ public class MenuParticulier extends Accueil {
      * @throws IOException Erreur d'écriture sur les fichiers
      */
     public static void ouvrirMenuParticulier(String email) throws IOException {
-        afficherJaune("Email du particulier authentifié: " + email);
-        if (!ModifierParticulier.ModificationDonnees(email)) {
-            ouvrirMenuParticulier(email);
-        }
+        ModifierParticulier.ModificationDonnees(email);
     }
 }

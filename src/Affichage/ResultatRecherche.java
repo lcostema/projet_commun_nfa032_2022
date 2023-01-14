@@ -49,8 +49,13 @@ public class ResultatRecherche extends Accueil {
         if (liste.size() == 0) {
             afficherJaune("Aucune entrée trouvée");
         } else {
-            afficherJaune(liste.size() + " entrée(s) trouvée(s) dans l'annuaire (par date d'ajout) :");
-            liste.forEach(this::afficherParticulier);
+            if (liste.size() > 1) {
+                liste.forEach(this::afficherParticulier);
+                afficherJaune("\n ^ " + liste.size() + " entrées trouvées dans l'annuaire (par date d'ajout)");
+            } else {
+                afficherJaune("\nEntrée trouvée dans l'annuaire (par date d'ajout) :");
+                liste.forEach(this::afficherParticulier);
+            }
         }
     }
 }

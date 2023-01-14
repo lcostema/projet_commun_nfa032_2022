@@ -16,6 +16,7 @@ public class MenuAdmin extends Accueil {
      */
     public static void afficherMenuAdmin() throws IOException {
         afficherCyan("""
+                
                 Ajouter un utilisateur (Administrateur)
                    a. Ajouter un Admin
                    b. Ajouter un Particulier

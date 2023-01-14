@@ -1,6 +1,6 @@
 package Affichage;
 
-import Fichiers.*;
+import Fichiers.LectureFichier;
 import Utilisateurs.*;
 
 import java.io.File;
@@ -67,6 +67,10 @@ public class Accueil {
         annuaire = lf.getAnnuaire();
         lf.lectureComptes(FICHIER_COMPTES);
         comptes = lf.getComptes();
+
+        afficherNormal(" ****************************************\n" +
+                " *** Bienvenue dans l’Annuaire NFA032 ***\n" +
+                " ****************************************");
 
         // Boucle programme
         while (!quitter) {
