@@ -4,7 +4,6 @@ import Authentification.Connexion;
 import Utilisateurs.Compte;
 
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * Gestion du Menu Accueil
@@ -17,8 +16,8 @@ public class MenuAccueil extends Accueil {
      * @throws IOException IOException
      */
     public static void ouvrirMenuAccueil() throws IOException {
-        // ligne vide au-dessus du menu
-        // pour éviter de coller sous des affichages précédents
+        /* ligne vide au-dessus du menu
+        pour éviter de coller sous des affichages précédents */
         afficherCyan("""
                                 
                 Recherche :
@@ -30,7 +29,6 @@ public class MenuAccueil extends Accueil {
                 Quitter le programme:
                    4. Quitter le programme
                 """);
-
         afficherVert("Choisir (taper le chiffre puis Enter) :");
         if (scannerClavier.hasNext()) {
             int chiffre;
@@ -64,7 +62,6 @@ public class MenuAccueil extends Accueil {
                     case 4 -> quitter = true;
                     default -> afficherRouge(ENTRER_1234);
                 }
-
             } else {
                 // gestion erreurs d'entrée
                 afficherRouge(ENTRER_1234);
