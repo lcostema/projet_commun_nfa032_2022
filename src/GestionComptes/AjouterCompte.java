@@ -6,16 +6,15 @@ import java.util.Date;
 
 import Fichiers.EcritureFichier;
 import Utilisateurs.*;
-
 import static Affichage.Accueil.*;
 
 /**
  * Classe pour l'ajout d'un utilisateur dans le fichier compte et utilisateur
  */
+@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class AjouterCompte {
     /**
      * Méthode pour créer un compte ainsi que les informations correspondantes dans l'annuaire
-     *
      * @param role Role de l'utilisateur à créer
      * @return Réussite de l'ajout
      * @throws IOException Erreur d'écriture sur les fichiers
@@ -32,12 +31,12 @@ public class AjouterCompte {
                 + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.\\p{L}{2,})$") || email.isEmpty()) {
             afficherCyan("Veuillez indiquer l'email du compte " + role + " à ajouter \n(Laisser vide pour quitter le menu) :");
             email = scannerClavier.nextLine().toLowerCase();
-            if (comptes.get(email) != null) {
+            if (comptes.get(email) != null){
                 Affichage.Accueil.afficherRouge("Cet email est déjà associé à un compte.");
-                return true;
+                return false;
             } else if (email.isEmpty()) {
-                afficherJaune("Aucun email entré...");
-                return true;
+                Affichage.Accueil.afficherRouge("Aucun email saisi");
+                return false;
             }
         }
         while (!motDePasse.matches("^\\S*$") || motDePasse.isEmpty()) {
@@ -91,16 +90,15 @@ public class AjouterCompte {
         annuaire.put(email, particulier);
         return controleEnregistrement(email, role);
     }
-
     public static boolean controleEnregistrement(String email, Compte.Role role) throws IOException {
         if ((comptes.get(email) != null)) {
             EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
             EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
             afficherJaune(role + " ajouté !");
-            return false;
+            return true;
         } else {
             afficherRouge("Erreur lors de l'ajout du : " + role);
-            return true;
+            return false;
         }
     }
 }
