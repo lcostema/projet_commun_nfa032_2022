@@ -34,17 +34,17 @@ public class ModifierParticulier {
                 email = "";
             }
         }
-        return ModificationDonnees(email);
+        ModificationDonnees(email);
+        return true;
     }
 
     /**
      * Modifie les données du particulier
      *
      * @param email Email du particulier à modifier
-     * @return Réussite de la modification des données
      * @throws IOException Erreur d'écriture dans les fichiers
      */
-    public static boolean ModificationDonnees(String email) throws IOException {
+    public static void ModificationDonnees(String email) throws IOException {
         Particulier particulier = annuaire.get(email);
         new ResultatRecherche().afficherParticulier(particulier);
         scannerClavier.nextLine();
@@ -61,9 +61,7 @@ public class ModifierParticulier {
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
             afficherCyan("Modifier Prénom (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             particulier.setPrenom(line);
         }
         line = "";
@@ -71,27 +69,21 @@ public class ModifierParticulier {
                 + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.\\p{L}{2,})$") || line.isEmpty()) {
             afficherCyan("Modifier Email (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             particulier.setEmail(line);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú0-9 ,]*$") || line.isEmpty()) {
             afficherCyan("Modifier Adresse postale (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             particulier.setAdressePostale(line);
         }
         line = "";
         while (line.isEmpty()) {
             afficherCyan("Modifier Date de Naissance (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             try {
                 Date dateNaissance = dateFormatter.parse(line);
                 particulier.setDateNaissance(dateNaissance);
@@ -104,9 +96,7 @@ public class ModifierParticulier {
         while (line.isEmpty()) {
             afficherCyan("Modifier Profil (Laisser vide en cas de non modification) " + java.util.Arrays.asList(Particulier.Profil.values()) + ":");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
+            if (line.isEmpty()) { break; }
             try {
                 particulier.setProfil(Particulier.Profil.valueOf(line));
             } catch (IllegalArgumentException err) {
@@ -118,6 +108,5 @@ public class ModifierParticulier {
         EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
         EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
         afficherJaune("Les données ont été modifiées.");
-        return true;
     }
 }
