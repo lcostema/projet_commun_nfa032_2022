@@ -1,7 +1,8 @@
 package Affichage;
 
-import Fichiers.*;
-import Utilisateurs.*;
+import Fichiers.LectureFichier;
+import Utilisateurs.Compte;
+import Utilisateurs.Particulier;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -70,6 +71,9 @@ public class Accueil {
 
         // Boucle programme
         while (!quitter) {
+            afficherNormal("\n ****************************************");
+            afficherNormal(" *** Bienvenue dans l’Annuaire NFA032 ***");
+            afficherNormal(" ****************************************");
             MenuAccueil.ouvrirMenuAccueil();
         }
         afficherNormal("Merci d'avoir utilisé le programme");

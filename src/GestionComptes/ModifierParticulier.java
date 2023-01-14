@@ -24,13 +24,13 @@ public class ModifierParticulier {
     public static boolean AffichageSaisieEmail() throws IOException {
         String email = "";
         while (email.isEmpty()) {
-            afficherVert("Veuillez saisir l'email du particulier à modifier (Laisser vide pour quitter le menu) : ");
+            afficherCyan("Veuillez saisir l'email du particulier à modifier \n(Laisser vide pour quitter le menu) : ");
             email = scannerClavier.next().toLowerCase();
             if (email.isEmpty()) {
-                Affichage.Accueil.afficherRouge("Retour au menu administrateur.");
+                afficherJaune("Aucun email entré...");
                 return false;
-            } else if (annuaire.get(email) == null){
-                Affichage.Accueil.afficherRouge("Cet email n'est pas associé à un particulier.");
+            } else if (annuaire.get(email) == null) {
+                afficherRouge("Cet email n'est pas associé à un particulier.");
                 email = "";
             }
         }
@@ -50,38 +50,48 @@ public class ModifierParticulier {
         scannerClavier.nextLine();
         String line = "";
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
-            afficherVert("Modifier Nom (Laisser vide en cas de non modification) :");
+            afficherCyan("\nModifier Nom (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) { break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setNom(line);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
-            afficherVert("Modifier Prénom (Laisser vide en cas de non modification) :");
+            afficherCyan("Modifier Prénom (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) { break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setPrenom(line);
         }
         line = "";
         while (!line.matches("^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@"
                 + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.\\p{L}{2,})$") || line.isEmpty()) {
-            afficherVert("Modifier Email (Laisser vide en cas de non modification) :");
+            afficherCyan("Modifier Email (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) { break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setEmail(line);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú0-9 ,]*$") || line.isEmpty()) {
-            afficherVert("Modifier Adresse postale (Laisser vide en cas de non modification) :");
+            afficherCyan("Modifier Adresse postale (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) { break; }
+            if (line.isEmpty()) {
+                break;
+            }
             particulier.setAdressePostale(line);
         }
         line = "";
         while (line.isEmpty()) {
-            afficherVert("Modifier Date de Naissance (Laisser vide en cas de non modification) :");
+            afficherCyan("Modifier Date de Naissance (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) { break; }
+            if (line.isEmpty()) {
+                break;
+            }
             try {
                 Date dateNaissance = dateFormatter.parse(line);
                 particulier.setDateNaissance(dateNaissance);
@@ -92,9 +102,11 @@ public class ModifierParticulier {
         }
         line = "";
         while (line.isEmpty()) {
-            afficherVert("Modifier Profil (Laisser vide en cas de non modification) " + java.util.Arrays.asList(Particulier.Profil.values()) + ":");
+            afficherCyan("Modifier Profil (Laisser vide en cas de non modification) " + java.util.Arrays.asList(Particulier.Profil.values()) + ":");
             line = scannerClavier.nextLine();
-            if (line.isEmpty()) { break; }
+            if (line.isEmpty()) {
+                break;
+            }
             try {
                 particulier.setProfil(Particulier.Profil.valueOf(line));
             } catch (IllegalArgumentException err) {

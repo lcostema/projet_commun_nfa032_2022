@@ -4,6 +4,7 @@ import Authentification.Connexion;
 import Utilisateurs.Compte;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Gestion du Menu Accueil
@@ -16,13 +17,10 @@ public class MenuAccueil extends Accueil {
      * @throws IOException IOException
      */
     public static void ouvrirMenuAccueil() throws IOException {
-        // ligne vide au-dessus de *** Bienvenue dans l’Annuaire NFA032 ***
-        // pour éviter de coller en sous des affichages précédents
-        afficherNormal("""
-                                
-                *** Bienvenue dans l’Annuaire NFA032 ***
-                """);
+        // ligne vide au-dessus du menu
+        // pour éviter de coller sous des affichages précédents
         afficherCyan("""
+                                
                 Recherche :
                    1. Rechercher un ou des particuliers
                 Particulier :
