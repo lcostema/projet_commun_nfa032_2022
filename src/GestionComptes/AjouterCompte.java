@@ -68,7 +68,7 @@ public class AjouterCompte {
             try {
                 dateNaissance = dateFormatter.parse(dateNaissanceInput);
             } catch (ParseException exception) {
-                afficherRouge("Erreur de format de date (jj/mm/aaaa). Retour au menu Admin");
+                afficherRouge("Erreur de format de date (jj/mm/aaaa)");
                 dateNaissanceInput = "";
             }
         }
