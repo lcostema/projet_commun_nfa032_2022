@@ -22,11 +22,12 @@ public class ModifierParticulier {
      * @return Réussite de la modification des données
      * @throws IOException Erreur d'écriture dans les fichiers
      */
-    public static boolean AffichageSaisieEmail() throws IOException {
+    public static boolean affichageSaisieEmail() throws IOException {
         String email = "";
+        scannerClavier.nextLine();
         while (email.isEmpty()) {
             afficherCyan("Veuillez saisir l'email du particulier à modifier \n(Laisser vide pour quitter le menu) : ");
-            email = scannerClavier.next().toLowerCase();
+            email = scannerClavier.nextLine().toLowerCase();
             if (email.isEmpty()) {
                 afficherJaune("Aucun email entré...");
                 return false;
