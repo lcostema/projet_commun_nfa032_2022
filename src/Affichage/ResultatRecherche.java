@@ -35,7 +35,7 @@ public class ResultatRecherche extends Accueil {
         if (p == null) {
             afficherJaune("Aucune entrée trouvée");
         } else {
-            afficherJaune(1 + " entrée trouvée dans l'annuaire :");
+            afficherJaune("\nEntrée trouvée dans l'annuaire :");
             afficherParticulier(p);
         }
     }
@@ -53,7 +53,7 @@ public class ResultatRecherche extends Accueil {
                 liste.forEach(this::afficherParticulier);
                 afficherJaune("\n ^ " + liste.size() + " entrées trouvées dans l'annuaire (par date d'ajout)");
             } else {
-                afficherJaune("\nEntrée trouvée dans l'annuaire (par date d'ajout) :");
+                afficherJaune("\nEntrée trouvée dans l'annuaire :");
                 liste.forEach(this::afficherParticulier);
             }
         }

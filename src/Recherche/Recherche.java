@@ -49,14 +49,14 @@ public class Recherche {
         String nom = scannerClavier.next();
         liste = annuaire.values().stream()
                 .filter(p -> p.getNom().equalsIgnoreCase(nom))
-                .sorted((p1, p2) -> p2.getDateAjout().compareTo(p1.getDateAjout()))
-                .limit(10)
                 .sorted(Comparator.comparing(Particulier::getPrenom))
+                .limit(10)
+                .sorted((p1, p2) -> p2.getDateAjout().compareTo(p1.getDateAjout()))
                 .toList();
         //filter : filtre sur le nom donné en input
-        //sorted (1) : on compare la date d'ajout de l'objet n+1 par rapport à n (ce qui donne que les dates les plus récentes sont en premieres dans la liste finale)
+        //sorted (1) : on trie sur le prénom du Particulier (le nom étant le meme)
         //limit : on limite la taille de la liste à 10
-        //sorted (2) : on trie sur le prénom du Particulier (le nom étant le meme)
+        //sorted (1) : on compare la date d'ajout de l'objet n+1 par rapport à n (ce qui donne que les dates les plus récentes sont en premieres dans la liste finale)
         //toList : on convertit le stream en liste
 
         affRes.afficherResultatRecherche(liste);
@@ -94,16 +94,15 @@ public class Recherche {
 
         liste = annuaire.values().stream()
                 .filter(p -> p.getProfil() == finalPro)
-                .sorted((p1, p2) -> p2.getDateAjout().compareTo(p1.getDateAjout()))
-                .limit(10)
                 .sorted(Comparator.comparing(Particulier::getNom))
+                .limit(10)
+                .sorted((p1, p2) -> p2.getDateAjout().compareTo(p1.getDateAjout()))
                 .toList();
         //filter : filtre sur le profil donné en input
-        //sorted (1) : on compare la date d'ajout de l'objet n+1 par rapport à n (ce qui donne que les date les plus récentes sont en premieres dans la liste finale)
+        //sorted (1) : on trie sur les noms des Particuliers
         //limit : on limite la taille de la liste à 10
-        //sorted (2) : on trie sur les noms des Particuliers
+        //sorted (2) : on compare la date d'ajout de l'objet n+1 par rapport à n (ce qui donne que les date les plus récentes sont en premieres dans la liste finale)
         //toList : on convertit le stream en liste
-
 
         affRes.afficherResultatRecherche(liste);
     }
