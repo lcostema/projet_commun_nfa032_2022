@@ -2,7 +2,6 @@ package GestionComptes;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.Year;
 import java.util.Date;
 
 import Fichiers.EcritureFichier;
@@ -12,7 +11,6 @@ import static Affichage.Accueil.*;
 /**
  * Classe pour l'ajout d'un utilisateur dans le fichier compte et utilisateur
  */
-@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class AjouterCompte {
     /**
      * Méthode pour créer un compte ainsi que les informations correspondantes dans l'annuaire
@@ -63,14 +61,14 @@ public class AjouterCompte {
             afficherCyan("Veuillez indiquer l'adresse postale du Particulier à ajouter :");
             adressePostale = scannerClavier.nextLine();
         }
-        /* REGEX jj/mm/aaaa avec 1900 <= aaaa <= année en cours */
-        while (!dateNaissanceInput.matches("(?:0[1-9]|[12][0-9]|3[01])[-/.](?:0[1-9]|1[012])[-/.](?:19\\d{2}|20[0-"
-                + Year.now().minusYears(1).toString().charAt(2)+"][0-9]|20["+Year.now().toString().charAt(2)+"][0-"
-                +Year.now().toString().charAt(3)+"])") || dateNaissanceInput.isEmpty()) {
+        while (!dateNaissanceInput.matches("(?:0[1-9]|[12][0-9]|3[01])[-/.](?:0[1-9]|1[012])[-/.](?:19\\d{2}|2\\d{3})") || dateNaissanceInput.isEmpty()) {
             afficherCyan("Veuillez indiquer la date de naissance (jj/mm/aaaa) du Particulier à ajouter :");
             dateNaissanceInput = scannerClavier.nextLine();
             try {
                 dateNaissance = dateFormatter.parse(dateNaissanceInput);
+                if (dateNaissance.after(new Date(System.currentTimeMillis()))) {
+                    dateNaissanceInput = "";
+                }
             } catch (ParseException exception) {
                 afficherRouge("Erreur de format de date (jj/mm/aaaa)");
                 dateNaissanceInput = "";

@@ -2,12 +2,10 @@ package GestionComptes;
 
 import Affichage.ResultatRecherche;
 import Fichiers.EcritureFichier;
-import Utilisateurs.Compte;
 import Utilisateurs.Particulier;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.Year;
 import java.util.Date;
 
 import static Affichage.Accueil.*;
