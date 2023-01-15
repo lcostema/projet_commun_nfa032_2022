@@ -7,6 +7,7 @@ import Utilisateurs.Particulier;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.Year;
 import java.util.Date;
 
 import static Affichage.Accueil.*;
@@ -48,10 +49,7 @@ public class ModifierParticulier {
      */
     public static void ModificationDonnees(String email) throws IOException {
         Particulier particulier = annuaire.get(email);
-        Compte compte = comptes.get(email);
-
         new ResultatRecherche().afficherParticulier(particulier);
-        scannerClavier.nextLine();
         String line = "";
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
             afficherCyan("\nModifier Nom (Laisser vide en cas de non modification) :");
@@ -75,16 +73,12 @@ public class ModifierParticulier {
             afficherCyan("Modifier Email (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine().toLowerCase();
             if (line.isEmpty()) { break; }
-
-            particulier.setEmail(line); //modification de l'objet Particulier
-            compte.setEmail(line); // modification de l'objet Compte
-
-            //suppression de l'ancien key des hashmaps et rajout de la nouvelle
+            particulier.setEmail(line);
+            /* Nouvelle key dans les HashMap */
             comptes.remove(email);
             annuaire.remove(email);
-            comptes.put(line, compte);
+            comptes.put(line, particulier.getCompte());
             annuaire.put(line, particulier);
-
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú0-9 ,]*$") || line.isEmpty()) {
@@ -94,12 +88,15 @@ public class ModifierParticulier {
             particulier.setAdressePostale(line);
         }
         line = "";
-        while (line.isEmpty()) {
+        while (!line.matches("(?:0[1-9]|[12][0-9]|3[01])[-/.](?:0[1-9]|1[012])[-/.](?:19\\d{2}|2\\d{3})") || line.isEmpty()) {
             afficherCyan("Modifier Date de Naissance (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
             if (line.isEmpty()) { break; }
             try {
                 Date dateNaissance = dateFormatter.parse(line);
+                if (dateNaissance.after(new Date(System.currentTimeMillis()))) {
+                    line = "";
+                }
                 particulier.setDateNaissance(dateNaissance);
             } catch (ParseException exception) {
                 afficherRouge("Erreur de format de date (jj/mm/aaaa). Retour au menu Admin");
@@ -121,7 +118,6 @@ public class ModifierParticulier {
         particulier.setDateMaj(new Date(System.currentTimeMillis()));
         EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
         EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
-        System.out.println(comptes.keySet());
         afficherJaune("Les données ont été modifiées.");
     }
 }
