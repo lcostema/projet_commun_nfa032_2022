@@ -51,7 +51,8 @@ public class ResultatRecherche extends Accueil {
         } else {
             if (liste.size() > 1) {
                 liste.forEach(this::afficherParticulier);
-                afficherJaune("\n ^ " + liste.size() + " entrées trouvées dans l'annuaire (par date d'ajout)");
+                afficherJaune("\n ^ " + liste.size() + " entrées trouvées dans l'annuaire" +
+                        "\n(Par date d'ajout, plus récente en haut)");
             } else {
                 afficherJaune("\nEntrée trouvée dans l'annuaire :");
                 liste.forEach(this::afficherParticulier);
