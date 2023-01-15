@@ -2,6 +2,7 @@ package GestionComptes;
 
 import Affichage.ResultatRecherche;
 import Fichiers.EcritureFichier;
+import Utilisateurs.Compte;
 import Utilisateurs.Particulier;
 
 import java.io.IOException;
@@ -46,6 +47,8 @@ public class ModifierParticulier {
      */
     public static void ModificationDonnees(String email) throws IOException {
         Particulier particulier = annuaire.get(email);
+        Compte compte = comptes.get(email);
+
         new ResultatRecherche().afficherParticulier(particulier);
         scannerClavier.nextLine();
         String line = "";
@@ -63,14 +66,24 @@ public class ModifierParticulier {
             line = scannerClavier.nextLine();
             if (line.isEmpty()) { break; }
             particulier.setPrenom(line);
+
         }
         line = "";
         while (!line.matches("^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@"
                 + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.\\p{L}{2,})$") || line.isEmpty()) {
             afficherCyan("Modifier Email (Laisser vide en cas de non modification) :");
-            line = scannerClavier.nextLine();
+            line = scannerClavier.nextLine().toLowerCase();
             if (line.isEmpty()) { break; }
-            particulier.setEmail(line);
+
+            particulier.setEmail(line); //modification de l'objet Particulier
+            compte.setEmail(line); // modification de l'objet Compte
+
+            //suppression de l'ancien key des hashmaps et rajout de la nouvelle
+            comptes.remove(email);
+            annuaire.remove(email);
+            comptes.put(line, compte);
+            annuaire.put(line, particulier);
+
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú0-9 ,]*$") || line.isEmpty()) {
@@ -107,6 +120,7 @@ public class ModifierParticulier {
         particulier.setDateMaj(new Date(System.currentTimeMillis()));
         EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
         EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
+        System.out.println(comptes.keySet());
         afficherJaune("Les données ont été modifiées.");
     }
 }
