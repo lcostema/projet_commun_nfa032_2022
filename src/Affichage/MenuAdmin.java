@@ -42,7 +42,7 @@ public class MenuAdmin extends Accueil {
                 }
                 //c. Modifier Un Particulier
                 case "c" -> {
-                    if (!ModifierParticulier.AffichageSaisieEmail()) {
+                    if (!ModifierParticulier.affichageSaisieEmail()) {
                         afficherMenuAdmin();
                     }
                 }

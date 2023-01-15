@@ -21,11 +21,12 @@ public class ModifierParticulier {
      * @return Réussite de la modification des données
      * @throws IOException Erreur d'écriture dans les fichiers
      */
-    public static boolean AffichageSaisieEmail() throws IOException {
+    public static boolean affichageSaisieEmail() throws IOException {
         String email = "";
+        scannerClavier.nextLine();
         while (email.isEmpty()) {
             afficherCyan("Veuillez saisir l'email du particulier à modifier \n(Laisser vide pour quitter le menu) : ");
-            email = scannerClavier.next().toLowerCase();
+            email = scannerClavier.nextLine().toLowerCase();
             if (email.isEmpty()) {
                 afficherJaune("Aucun email entré...");
                 return false;
@@ -47,7 +48,6 @@ public class ModifierParticulier {
     public static void ModificationDonnees(String email) throws IOException {
         Particulier particulier = annuaire.get(email);
         new ResultatRecherche().afficherParticulier(particulier);
-        scannerClavier.nextLine();
         String line = "";
         while (!line.matches("^[A-zÀ-ú]*$") || line.isEmpty()) {
             afficherCyan("\nModifier Nom (Laisser vide en cas de non modification) :");
@@ -63,14 +63,20 @@ public class ModifierParticulier {
             line = scannerClavier.nextLine();
             if (line.isEmpty()) { break; }
             particulier.setPrenom(line);
+
         }
         line = "";
         while (!line.matches("^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@"
                 + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.\\p{L}{2,})$") || line.isEmpty()) {
             afficherCyan("Modifier Email (Laisser vide en cas de non modification) :");
-            line = scannerClavier.nextLine();
+            line = scannerClavier.nextLine().toLowerCase();
             if (line.isEmpty()) { break; }
             particulier.setEmail(line);
+            /* Nouvelle key dans les HashMap */
+            comptes.remove(email);
+            annuaire.remove(email);
+            comptes.put(line, particulier.getCompte());
+            annuaire.put(line, particulier);
         }
         line = "";
         while (!line.matches("^[A-zÀ-ú0-9 ,]*$") || line.isEmpty()) {
@@ -80,12 +86,15 @@ public class ModifierParticulier {
             particulier.setAdressePostale(line);
         }
         line = "";
-        while (line.isEmpty()) {
+        while (!line.matches("(?:0[1-9]|[12][0-9]|3[01])[-/.](?:0[1-9]|1[012])[-/.](?:19\\d{2}|2\\d{3})") || line.isEmpty()) {
             afficherCyan("Modifier Date de Naissance (Laisser vide en cas de non modification) :");
             line = scannerClavier.nextLine();
             if (line.isEmpty()) { break; }
             try {
                 Date dateNaissance = dateFormatter.parse(line);
+                if (dateNaissance.after(new Date(System.currentTimeMillis()))) {
+                    line = "";
+                }
                 particulier.setDateNaissance(dateNaissance);
             } catch (ParseException exception) {
                 afficherRouge("Erreur de format de date (jj/mm/aaaa). Retour au menu Admin");

@@ -11,7 +11,6 @@ import static Affichage.Accueil.*;
 /**
  * Classe pour l'ajout d'un utilisateur dans le fichier compte et utilisateur
  */
-@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class AjouterCompte {
     /**
      * Méthode pour créer un compte ainsi que les informations correspondantes dans l'annuaire
@@ -62,13 +61,16 @@ public class AjouterCompte {
             afficherCyan("Veuillez indiquer l'adresse postale du Particulier à ajouter :");
             adressePostale = scannerClavier.nextLine();
         }
-        while (dateNaissanceInput.isEmpty()) {
+        while (!dateNaissanceInput.matches("(?:0[1-9]|[12][0-9]|3[01])[-/.](?:0[1-9]|1[012])[-/.](?:19\\d{2}|2\\d{3})") || dateNaissanceInput.isEmpty()) {
             afficherCyan("Veuillez indiquer la date de naissance (jj/mm/aaaa) du Particulier à ajouter :");
             dateNaissanceInput = scannerClavier.nextLine();
             try {
                 dateNaissance = dateFormatter.parse(dateNaissanceInput);
+                if (dateNaissance.after(new Date(System.currentTimeMillis()))) {
+                    dateNaissanceInput = "";
+                }
             } catch (ParseException exception) {
-                afficherRouge("Erreur de format de date (jj/mm/aaaa). Retour au menu Admin");
+                afficherRouge("Erreur de format de date (jj/mm/aaaa)");
                 dateNaissanceInput = "";
             }
         }
