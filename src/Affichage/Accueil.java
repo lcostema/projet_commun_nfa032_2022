@@ -68,9 +68,12 @@ public class Accueil {
         lf.lectureComptes(FICHIER_COMPTES);
         comptes = lf.getComptes();
 
-        afficherNormal(" ****************************************\n" +
-                " *** Bienvenue dans l’Annuaire NFA032 ***\n" +
-                " ****************************************");
+        afficherNormal("""
+                 
+                 ****************************************
+                 *** Bienvenue dans l’Annuaire NFA032 ***
+                 ****************************************\
+                """);
 
         // Boucle programme
         while (!quitter) {

@@ -32,10 +32,10 @@ public class AjouterCompte {
             email = scannerClavier.nextLine().toLowerCase();
             if (comptes.get(email) != null){
                 afficherRouge("Cet email est déjà associé à un compte !");
-                return false;
+                return true;
             } else if (email.isEmpty()) {
                 afficherJaune("Pas d'email saisi !");
-                return false;
+                return true;
             }
         }
         while (!motDePasse.matches("^\\S*$") || motDePasse.isEmpty()) {
@@ -97,10 +97,10 @@ public class AjouterCompte {
             EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
             EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
             afficherJaune(role + " ajouté.");
-            return true;
+            return false;
         } else {
             afficherRouge("Erreur lors de l'ajout d'un : " + role);
-            return false;
+            return true;
         }
     }
 }
