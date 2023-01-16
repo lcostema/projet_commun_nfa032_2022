@@ -25,13 +25,13 @@ public class ModifierParticulier {
         String email = "";
         scannerClavier.nextLine();
         while (email.isEmpty()) {
-            afficherCyan("Veuillez saisir l'email du particulier à modifier \n(Laisser vide pour quitter le menu) : ");
+            afficherCyan("Veuillez saisir l'email du particulier à modifier \n(Laisser vide pour quitter le menu) :");
             email = scannerClavier.nextLine().toLowerCase();
             if (email.isEmpty()) {
-                afficherJaune("Aucun email entré...");
+                afficherJaune("Pas d'email saisi !");
                 return false;
             } else if (annuaire.get(email) == null) {
-                afficherRouge("Cet email n'est pas associé à un particulier.");
+                afficherRouge("Cet email n'est pas associé à un particulier !");
                 email = "";
             }
         }
@@ -97,13 +97,13 @@ public class ModifierParticulier {
                 }
                 particulier.setDateNaissance(dateNaissance);
             } catch (ParseException exception) {
-                afficherRouge("Erreur de format de date (jj/mm/aaaa). Retour au menu Admin");
+                afficherRouge("Erreur de format de date (jj/mm/aaaa) !");
                 line = "";
             }
         }
         line = "";
         while (line.isEmpty()) {
-            afficherCyan("Modifier Profil (Laisser vide en cas de non modification) " + java.util.Arrays.asList(Particulier.Profil.values()) + ":");
+            afficherCyan("Modifier Profil (Laisser vide en cas de non modification) " + java.util.Arrays.asList(Particulier.Profil.values()) + " :");
             line = scannerClavier.nextLine();
             if (line.isEmpty()) { break; }
             try {

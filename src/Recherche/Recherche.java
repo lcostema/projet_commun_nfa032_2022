@@ -27,7 +27,7 @@ public class Recherche {
     public void chercherParEmail(HashMap<String, Particulier> annuaire) {
         String email;
         do {
-            afficherCyan("Veuillez saisir un email à rechercher : ");
+            afficherCyan("Veuillez saisir un email à rechercher :");
             email = scannerClavier.next();
         } while (!email.contains("@"));
 
@@ -45,7 +45,7 @@ public class Recherche {
     public void chercherParNom(HashMap<String, Particulier> annuaire) {
         List<Particulier> liste;
 
-        afficherCyan("Veuillez saisir un nom à rechercher : ");
+        afficherCyan("Veuillez saisir un nom à rechercher :");
         String nom = scannerClavier.next();
         liste = annuaire.values().stream()
                 .filter(p -> p.getNom().equalsIgnoreCase(nom))

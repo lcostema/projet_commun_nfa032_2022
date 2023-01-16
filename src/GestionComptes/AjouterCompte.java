@@ -31,10 +31,10 @@ public class AjouterCompte {
             afficherCyan("Veuillez indiquer l'email du compte " + role + " à ajouter \n(Laisser vide pour quitter le menu) :");
             email = scannerClavier.nextLine().toLowerCase();
             if (comptes.get(email) != null){
-                Affichage.Accueil.afficherRouge("Cet email est déjà associé à un compte.");
+                afficherRouge("Cet email est déjà associé à un compte !");
                 return false;
             } else if (email.isEmpty()) {
-                Affichage.Accueil.afficherRouge("Aucun email saisi");
+                afficherJaune("Pas d'email saisi !");
                 return false;
             }
         }
@@ -70,12 +70,12 @@ public class AjouterCompte {
                     dateNaissanceInput = "";
                 }
             } catch (ParseException exception) {
-                afficherRouge("Erreur de format de date (jj/mm/aaaa)");
+                afficherRouge("Erreur de format de date (jj/mm/aaaa) !");
                 dateNaissanceInput = "";
             }
         }
         while (profilInput.isEmpty()) {
-            afficherCyan("Veuillez indiquer le profil du Particulier à ajouter " + java.util.Arrays.asList(Particulier.Profil.values()) + ":");
+            afficherCyan("Veuillez indiquer le profil du Particulier à ajouter " + java.util.Arrays.asList(Particulier.Profil.values()) + " :");
             profilInput = scannerClavier.nextLine();
             try {
                 profil = Particulier.Profil.valueOf(profilInput);
@@ -96,10 +96,10 @@ public class AjouterCompte {
         if ((comptes.get(email) != null)) {
             EcritureFichier.ecrireAnnuaire(annuaire, FICHIER_ANNUAIRE);
             EcritureFichier.ecrireComptes(comptes, FICHIER_COMPTES);
-            afficherJaune(role + " ajouté !");
+            afficherJaune(role + " ajouté.");
             return true;
         } else {
-            afficherRouge("Erreur lors de l'ajout du : " + role);
+            afficherRouge("Erreur lors de l'ajout d'un : " + role);
             return false;
         }
     }

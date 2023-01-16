@@ -33,7 +33,7 @@ public class ResultatRecherche extends Accueil {
      */
     public void afficherResultatRecherche(Particulier p) {
         if (p == null) {
-            afficherJaune("Aucune entrée trouvée");
+            afficherJaune("Aucune entrée trouvée...");
         } else {
             afficherJaune("\nEntrée trouvée dans l'annuaire :");
             afficherParticulier(p);
@@ -47,11 +47,11 @@ public class ResultatRecherche extends Accueil {
      */
     public void afficherResultatRecherche(List<Particulier> liste) {
         if (liste.size() == 0) {
-            afficherJaune("Aucune entrée trouvée");
+            afficherJaune("Aucune entrée trouvée...");
         } else {
             if (liste.size() > 1) {
                 liste.forEach(this::afficherParticulier);
-                afficherJaune("\n ^ " + liste.size() + " entrées trouvées dans l'annuaire" +
+                afficherJaune("\n ^ " + liste.size() + " entrées trouvées dans l'annuaire." +
                         "\n(Par date d'ajout, plus récente en haut)");
             } else {
                 afficherJaune("\nEntrée trouvée dans l'annuaire :");

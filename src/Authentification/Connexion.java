@@ -23,18 +23,18 @@ public class Connexion {
     public static boolean authentification(Particulier.Role role) {
         errorloop:
         while (checkErreurs()) {
-            Accueil.afficherCyan("Email " + role + " :");
+            Accueil.afficherCyan("Veuillez indiquer l'email " + role + " :");
             if (scannerClavier.hasNext()) {
                 authentEmail = scannerClavier.next().toLowerCase();
                 if (comptes.get(authentEmail) == null) {
-                    Accueil.afficherJaune("Pas trouvé cet email ...!");
+                    Accueil.afficherJaune("Pas trouvé cet email...");
                     nbErreurs++;
                     return authentification(role);
                 }
                 Compte.Role authentRole = comptes.get(authentEmail).getRole();
                 if (role == Compte.Role.Administrateur && authentRole != Compte.Role.Administrateur ||
                         role == Compte.Role.Particulier && authentRole != Compte.Role.Particulier) {
-                    Accueil.afficherJaune("Vous n'avez pas le role : " + role);
+                    Accueil.afficherJaune("Vous n'avez pas le rôle : " + role + " !");
                     return false;
                 }
                 while (!checkMDP()) {
@@ -43,7 +43,7 @@ public class Connexion {
                     }
                 }
                 nbErreurs = 0;
-                afficherNormal("\n" + role + " authentifié !");
+                afficherJaune("\n" + role + " authentifié.");
                 return true;
             }
         }
@@ -58,10 +58,10 @@ public class Connexion {
      * @return Validité après 3 essais du mot de passe
      */
     private static boolean checkMDP() {
-        afficherCyan("Mot de passe :");
+        afficherCyan("Veuillez indiquer le mot de passe :");
         String authentMDP = scannerClavier.next();
         if (!comptes.get(authentEmail).getMotDePasse().equals(authentMDP)) {
-            Accueil.afficherJaune("Mot de passe erroné ...!");
+            Accueil.afficherJaune("Mot de passe erroné !");
             nbErreurs++;
             return false;
         }
