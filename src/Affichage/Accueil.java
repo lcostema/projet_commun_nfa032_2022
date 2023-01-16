@@ -1,20 +1,15 @@
 package Affichage;
 
-import Fichiers.*;
-import Recherche.*;
-import Utilisateurs.Compte;
-import Utilisateurs.Particulier;
+import Fichiers.LectureFichier;
+import Utilisateurs.*;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Accueil {
-
     //Mise en forme par la couleur
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -23,10 +18,9 @@ public class Accueil {
     public static final String ANSI_YELLOW = "\u001B[33m";
 
     //Les strings de réponses des menus
-    static String entrerABC = "Veuillez entrer les lettres a, b ou c uniquement :";
-    static String entrerABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
-    static String entrer1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
-    static String erreurChoix = "Saisie incorrecte !";
+    public static final String ENTRER_ABCD = "Veuillez entrer les lettres a, b, c ou d uniquement :";
+    public static final String ENTRER_1234 = "Veuillez entrer un chiffre entre 1 et 4 uniquement :";
+    public static final String ERREUR_Choix = "Saisie incorrecte !";
 
     public static void afficherNormal(Object invite) {
         System.out.println(invite);
@@ -49,44 +43,40 @@ public class Accueil {
     }
 
     static boolean quitter = false;
-    static public MenuAccueil mA = new MenuAccueil();
-
-    //TODO: discuter l'emplacement des URI des fichiers.txt
-    public static File comptesTxt = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
-    public static File annuaireTxt = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
+    public static final File FICHIER_COMPTES = new File(System.getProperty("user.dir") + "\\src\\comptes.txt");
+    public static final File FICHIER_ANNUAIRE = new File(System.getProperty("user.dir") + "\\src\\annuaire.txt");
 
     static public HashMap<String, Compte> comptes = new HashMap<>();
     static public HashMap<String, Particulier> annuaire = new HashMap<>();
 
-
     //ajout du formateur de date
-    static public SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-
-    static public Scanner scannerClavier = new Scanner(System.in);
+    static public final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    static public final Scanner scannerClavier = new Scanner(System.in);
 
     /**
      * Méthode principale
-     * @param args
-     * @throws Exception
+     *
+     * @param args Pas d'argument de lancement
+     * @throws Exception Exception
      */
-    public static void main(String[] args) throws Exception, IOException, ParseException {
-
-        EcritureFichier ef = new EcritureFichier();
+    public static void main(String[] args) throws Exception {
         LectureFichier lf = new LectureFichier();
 
-
-        //lecture des fichiers
-        lf.lectureComptes(comptesTxt);
-        comptes = lf.getComptes();
-        lf.lectureAnnuaire(annuaireTxt);
+        // Lecture des fichiers
+        lf.lectureAnnuaire(FICHIER_ANNUAIRE);
         annuaire = lf.getAnnuaire();
+        lf.lectureComptes(FICHIER_COMPTES);
+        comptes = lf.getComptes();
 
+        afficherNormal(" ****************************************\n" +
+                " *** Bienvenue dans l’Annuaire NFA032 ***\n" +
+                " ****************************************");
 
-        /* boucle programme */
+        // Boucle programme
         while (!quitter) {
-            mA.ouvrirMenuAccueil();
+            MenuAccueil.ouvrirMenuAccueil();
         }
-        System.out.println("Merci d'avoir utlisé le programme");
+        afficherNormal("Merci d'avoir utilisé le programme");
         scannerClavier.close();
     }
 }

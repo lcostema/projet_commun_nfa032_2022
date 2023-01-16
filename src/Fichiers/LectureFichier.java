@@ -8,31 +8,28 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
-import static Affichage.Accueil.dateFormatter;
+import static Affichage.Accueil.*;
 
 /**
  * Classe pour charger le contenu des fichiers annuaire.txt et comptes.txt dans des Hashmaps
  */
 public class LectureFichier {
-    HashMap<String, Compte> comptes = new HashMap<>();
-    HashMap<String, Particulier> annuaire = new HashMap<>();
-
     public HashMap<String, Compte> getComptes() {
         return comptes;
     }
+
     public HashMap<String, Particulier> getAnnuaire() {
         return annuaire;
     }
 
     /**
      * Méthode pour lire le fichier comptes et stocker les données dans la Hashmap comptes
-     * @param file
-     * @throws IOException
+     *
+     * @param file file
+     * @throws IOException IOException
      */
     public void lectureComptes(File file) throws IOException {
         FileReader in = new FileReader(file);
@@ -42,8 +39,15 @@ public class LectureFichier {
         while (var != null) {
             //on récupère les champs dans un tableau de String
             String[] ligne = var.split(";");
+            Compte c;
             //on crée le Compte
-            Compte c = new Compte(ligne[0], ligne[1], Compte.Role.valueOf(ligne[2]));
+            if (Compte.Role.valueOf(ligne[2]) == Compte.Role.Administrateur) {
+                c = new Compte(ligne[0], ligne[1], Compte.Role.Administrateur);
+            } else {
+                Particulier particulier = annuaire.get(ligne[0]);
+                particulier.setMotDePasse(ligne[1]);
+                c = particulier.getCompte();
+            }
             //on l'ajoute dans le hashmap
             comptes.put(ligne[0], c);
             var = br.readLine();
@@ -54,14 +58,14 @@ public class LectureFichier {
 
     /**
      * Méthode pour lire le fichier annuaire et stocker les données dans la Hashmap annuaire
-     * @param file
-     * @throws IOException
-     * @throws ParseException
+     *
+     * @param file file
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     public void lectureAnnuaire(File file) throws IOException, ParseException {
         FileReader in = new FileReader(file);
         BufferedReader br = new BufferedReader(in);
-
 
         String var = br.readLine();
         while (var != null) {
@@ -76,10 +80,7 @@ public class LectureFichier {
             Date joinDate = dateFormatter.parse(ligne[6]);
             Date updateDate = dateFormatter.parse(ligne[7]);
 
-
-            String password = "Coder la fonction qui va chercher le mdp dans le Hashmap comptes";
-
-            Particulier p = new Particulier(email, password, lastName, firstName, postalAdress, birthday, joinDate, updateDate, profil);
+            Particulier p = new Particulier(email, null, lastName, firstName, postalAdress, birthday, joinDate, updateDate, profil);
 
             annuaire.put(email, p);
 

@@ -8,6 +8,9 @@ import Affichage.Accueil;
 public class Compte extends Accueil {
     private final Role role;
     private String email, motDePasse;
+    public enum Role {
+        Administrateur, Particulier
+    }
 
     /**
      * Constructeur d'un compte
@@ -34,7 +37,7 @@ public class Compte extends Accueil {
     /**
      * Setter email
      *
-     * @param email
+     * @param email email
      */
     public void setEmail(String email) {
         this.email = email;
@@ -52,7 +55,7 @@ public class Compte extends Accueil {
     /**
      * Setter Mot de passe
      *
-     * @param motDePasse
+     * @param motDePasse motDePasse
      */
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
@@ -67,8 +70,11 @@ public class Compte extends Accueil {
         return role;
     }
 
-    public enum Role {
-        Administrateur, Particulier
+    /**
+     * Getter du compte
+     * @return Le compte
+     */
+    public Compte getCompte() {
+        return this;
     }
-
 }
